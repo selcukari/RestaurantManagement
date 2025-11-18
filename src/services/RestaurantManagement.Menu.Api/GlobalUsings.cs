@@ -1,0 +1,10 @@
+﻿global using AutoMapper;
+global using MediatR;
+global using System.Net;
+global using FluentValidation;
+global using Microsoft.EntityFrameworkCore;
+global using RestaurantManagement.Shared;
+global using RestaurantManagement.Shared.Extensions;
+global using RestaurantManagement.Menu.Api.Repositories;
+global using RestaurantManagement.Menu.Api.Features.Menus.Dtos;
+

@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{ABAA1D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Shared", "shared\RestaurantManagement.Shared\RestaurantManagement.Shared.csproj", "{4B3092DD-47B6-40A0-9039-6CB137E508F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bus", "bus", "{843E0D2F-9D43-40AE-80D9-77AFC01BA721}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Bus", "src\services\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj", "{69C3B3AB-5526-4E83-B2A3-F866B15CB643}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{4B3092DD-47B6-40A0-9039-6CB137E508F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B3092DD-47B6-40A0-9039-6CB137E508F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B3092DD-47B6-40A0-9039-6CB137E508F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +87,8 @@ Global
 		{0F0F6E37-E0BE-467A-9B87-E29534778AFF} = {DF632C3B-187F-4708-BD96-F0ACBFABFA80}
 		{ABAA1DD3-D92E-44DC-B191-3A450C6C530E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{4B3092DD-47B6-40A0-9039-6CB137E508F7} = {ABAA1DD3-D92E-44DC-B191-3A450C6C530E}
+		{843E0D2F-9D43-40AE-80D9-77AFC01BA721} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
+		{69C3B3AB-5526-4E83-B2A3-F866B15CB643} = {843E0D2F-9D43-40AE-80D9-77AFC01BA721}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEAA38BA-56AB-4792-85A4-4B7C78EEEE19}
