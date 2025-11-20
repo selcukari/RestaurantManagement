@@ -7,16 +7,16 @@ namespace RestaurantManagement.Menu.Api.Features.Menus.Create;
     public async Task<ServiceResult<CreateMenuResponse>> Handle(CreateMenuCommand request,
         CancellationToken cancellationToken)
     {
-        var existCategory =
-            await context.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken);
+        var existMenu =
+            await context.Menus.AnyAsync(x => x.Name == request.Name, cancellationToken);
 
 
-        if (existCategory)
+        if (existMenu)
             ServiceResult<CreateMenuResponse>.Error("Category Name already exists",
-                $"The category name '{request.Name}' already exists", HttpStatusCode.BadRequest);
+                $"The menu name '{request.Name}' already exists", HttpStatusCode.BadRequest);
 
 
-        var menu = new Menu
+        var menu = new Menum
         {
             Name = request.Name,
             Id = NewId.NextSequentialGuid()

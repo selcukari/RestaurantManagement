@@ -8,7 +8,7 @@ namespace RestaurantManagement.Menu.Api.Repositories
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
         public DbSet<Product> Products { get; set; }
-        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Menum> Menus { get; set; }
 
 
         public static AppDbContext Create(IMongoDatabase database)

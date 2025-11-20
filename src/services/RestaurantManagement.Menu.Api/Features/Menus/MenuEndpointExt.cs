@@ -5,7 +5,7 @@ namespace RestaurantManagement.Menu.Api.Features.Menus
 {
     public static class MenuEndpointExt
     {
-        public static void AddCategoryGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
+        public static void AddMenuGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
             app.MapGroup("api/v{version:apiVersion}/menus").WithTags("Menus")
                 .WithApiVersionSet(apiVersionSet)

@@ -5,7 +5,7 @@ namespace RestaurantManagement.Menu.Api.Features.Menus
     {
         public MenuMapping()
         {
-            CreateMap<Menu, MenuDto>().ReverseMap();
+            CreateMap<Menum, MenuDto>().ReverseMap();
         }
     }
 }

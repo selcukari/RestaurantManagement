@@ -1,5 +1,4 @@
-﻿
-using RestaurantManagement.Menu.Api.Features.Menus;
+﻿using RestaurantManagement.Menu.Api.Features.Menus;
 
 namespace RestaurantManagement.Menu.Api.Features.Products
 {
@@ -14,6 +13,8 @@ namespace RestaurantManagement.Menu.Api.Features.Products
         public DateTime Created { get; set; }
 
         public Guid MenuId { get; set; }
-        public Menu Menu { get; set; } = default!;
+        public Menum Menum { get; set; } = default!;
+
+        public Feature Feature { get; set; } = default!;
     }
 }
