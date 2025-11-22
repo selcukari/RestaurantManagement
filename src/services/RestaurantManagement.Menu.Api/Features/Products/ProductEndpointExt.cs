@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.Builder;
+using RestaurantManagement.Menu.Api.Features.Products.Create;
 using RestaurantManagement.Menu.Api.Features.Products.GetAll;
 
 namespace RestaurantManagement.Menu.Api.Features.Products
@@ -8,7 +9,8 @@ namespace RestaurantManagement.Menu.Api.Features.Products
         public static void AddProductGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
             app.MapGroup("api/v{version:apiVersion}/products").WithTags("Product").WithApiVersionSet(apiVersionSet)
-                .GetAllProductGroupItemEndpoint();
+                .GetAllProductGroupItemEndpoint()
+                .CreateProductGroupItemEndpoint();
         }
     }
 }

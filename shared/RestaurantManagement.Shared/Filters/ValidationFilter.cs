@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RestaurantManagement.Shared.Filters
 {
+    // controllera girmeden once vaidation bakılır sonra controllera girer
     public class ValidationFilter<T> : IEndpointFilter
     {
         public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context,

@@ -11,8 +11,8 @@ namespace RestaurantManagement.Menu.Api.Features.Menus.Create;
             await context.Menus.AnyAsync(x => x.Name == request.Name, cancellationToken);
 
 
-        if (existMenu)
-            ServiceResult<CreateMenuResponse>.Error("Category Name already exists",
+        if (existMenu) // menu isimle aynı data veritabanda var mı
+            ServiceResult<CreateMenuResponse>.Error("Menu Name already exists",
                 $"The menu name '{request.Name}' already exists", HttpStatusCode.BadRequest);
 
 
