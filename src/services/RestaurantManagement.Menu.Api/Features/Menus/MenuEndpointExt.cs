@@ -11,7 +11,7 @@ namespace RestaurantManagement.Menu.Api.Features.Menus
             app.MapGroup("api/v{version:apiVersion}/menus").WithTags("Menus")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateMenuGroupItemEndpoint()
-                .GetAllCategoryGroupItemEndpoint();
+                .GetAllMenuGroupItemEndpoint();
         }
     }
 }

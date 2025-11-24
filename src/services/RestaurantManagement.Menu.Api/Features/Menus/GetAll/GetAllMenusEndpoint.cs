@@ -17,7 +17,7 @@
 
         public static class GetAllMenusEndpoint
         {
-            public static RouteGroupBuilder GetAllCategoryGroupItemEndpoint(this RouteGroupBuilder group)
+            public static RouteGroupBuilder GetAllMenuGroupItemEndpoint(this RouteGroupBuilder group)
             {
             group.MapGet("/",
                     async (IMediator mediator) =>
