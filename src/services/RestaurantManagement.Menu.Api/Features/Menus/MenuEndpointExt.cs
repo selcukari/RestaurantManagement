@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using RestaurantManagement.Menu.Api.Features.Menus.Create;
 using RestaurantManagement.Menu.Api.Features.Menus.GetAll;
+using RestaurantManagement.Menu.Api.Features.Menus.GetById;
 
 namespace RestaurantManagement.Menu.Api.Features.Menus
 {
@@ -11,7 +12,8 @@ namespace RestaurantManagement.Menu.Api.Features.Menus
             app.MapGroup("api/v{version:apiVersion}/menus").WithTags("Menus")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateMenuGroupItemEndpoint()
-                .GetAllMenuGroupItemEndpoint();
+                .GetAllMenuGroupItemEndpoint()
+                .GetByIdCategoryGroupItemEndpoint();
         }
     }
 }

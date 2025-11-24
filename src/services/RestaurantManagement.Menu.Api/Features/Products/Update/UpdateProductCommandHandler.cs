@@ -1,0 +1,26 @@
+﻿namespace RestaurantManagement.Menu.Api.Features.Products.Update
+{
+    public class UpdateProductCommandHandler(AppDbContext context, IMapper mapper)
+    : IRequestHandler<UpdateProductCommand, ServiceResult>
+    {
+        public async Task<ServiceResult> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        {
+            var hasProduct = await context.Products.FindAsync([request.Id], cancellationToken);
+            if (hasProduct == null) return ServiceResult.ErrorAsNotFound();
+
+            hasProduct.Name = request.Name;
+            hasProduct.Description = request.Description;
+            hasProduct.Price = request.Price;
+            hasProduct.ImageUrl = request.ImageUrl;
+            hasProduct.MenuId = request.MenuId;
+
+
+            context.Products.Update(hasProduct);
+
+
+            await context.SaveChangesAsync(cancellationToken);
+
+            return ServiceResult.SuccessAsNoContent();
+        }
+    }
+}
