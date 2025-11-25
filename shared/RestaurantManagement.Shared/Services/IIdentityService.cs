@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement.Shared.Services
 {
-    public class IIdentityService
+    public interface IIdentityService
     {
         Guid UserId { get; }
         string UserName { get; }

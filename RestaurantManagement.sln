@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bus", "bus", "{843E0D2F-9D4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Bus", "src\services\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj", "{69C3B3AB-5526-4E83-B2A3-F866B15CB643}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basket", "basket", "{02E8FD61-6323-4E78-8A07-23712C3610A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Basket.Api", "src\services\basket\RestaurantManagement.Basket.Api\RestaurantManagement.Basket.Api.csproj", "{469202DD-B32B-47CF-A79D-E6B2B784FE5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C3B3AB-5526-4E83-B2A3-F866B15CB643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469202DD-B32B-47CF-A79D-E6B2B784FE5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469202DD-B32B-47CF-A79D-E6B2B784FE5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469202DD-B32B-47CF-A79D-E6B2B784FE5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469202DD-B32B-47CF-A79D-E6B2B784FE5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +97,8 @@ Global
 		{4B3092DD-47B6-40A0-9039-6CB137E508F7} = {ABAA1DD3-D92E-44DC-B191-3A450C6C530E}
 		{843E0D2F-9D43-40AE-80D9-77AFC01BA721} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
 		{69C3B3AB-5526-4E83-B2A3-F866B15CB643} = {843E0D2F-9D43-40AE-80D9-77AFC01BA721}
+		{02E8FD61-6323-4E78-8A07-23712C3610A4} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
+		{469202DD-B32B-47CF-A79D-E6B2B784FE5D} = {02E8FD61-6323-4E78-8A07-23712C3610A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEAA38BA-56AB-4792-85A4-4B7C78EEEE19}

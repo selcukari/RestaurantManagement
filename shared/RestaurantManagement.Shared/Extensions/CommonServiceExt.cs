@@ -15,7 +15,9 @@ namespace RestaurantManagement.Shared.Extensions
 
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
-            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IIdentityService, IdentityServiceFake>();
+            // services.AddScoped<IIdentityService, IdentityService>();
+
 
             services.AddAutoMapper(assembly);
             services.AddExceptionHandler<GlobalExceptionHandler>();

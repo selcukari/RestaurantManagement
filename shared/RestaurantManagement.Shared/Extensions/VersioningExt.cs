@@ -17,7 +17,7 @@ namespace RestaurantManagement.Shared.Extensions
                 options.ApiVersionReader = new UrlSegmentApiVersionReader();
                 //options.ApiVersionReader = ApiVersionReader.Combine(new HeaderApiVersionReader(),
                 //    new QueryStringApiVersionReader(), new UrlSegmentApiVersionReader());
-            }).AddApiExplorer(options =>
+            }).AddApiExplorer(options => // swagger ın v1,v2 gibi sıralama yapması icin
             {
                 options.GroupNameFormat = "'v'V";
                 options.SubstituteApiVersionInUrl = true;
