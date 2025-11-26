@@ -7,6 +7,6 @@
     decimal Price,
     string ImageUrl,
     DateTime Created,
-    MenuDto Menu,
-    FeatureDto Feature);
+    MenuDto Menum,
+    FeatureDto? Feature = null);
 }

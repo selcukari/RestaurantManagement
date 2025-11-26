@@ -16,7 +16,7 @@
                 .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.");
 
 
-            RuleFor(x => x.MenuId)
+            RuleFor(x => x.MenumId)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }

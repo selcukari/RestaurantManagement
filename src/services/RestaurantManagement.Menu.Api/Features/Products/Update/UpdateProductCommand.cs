@@ -5,4 +5,4 @@
     string Description,
     decimal Price,
     string? ImageUrl,
-    Guid MenuId) : IRequestByServiceResult;
+    Guid MenumId) : IRequestByServiceResult;

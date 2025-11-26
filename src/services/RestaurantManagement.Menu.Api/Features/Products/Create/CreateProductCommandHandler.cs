@@ -10,12 +10,12 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
     {
         public async Task<ServiceResult<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var hasMenu = await context.Menus.AnyAsync(x => x.Id == request.MenuId, cancellationToken);
+            var hasMenu = await context.Menus.AnyAsync(x => x.Id == request.MenumId, cancellationToken);
 
 
             if (!hasMenu)
                 return ServiceResult<Guid>.Error("Menu not found.",
-                    $"The Menu with id({request.MenuId}) was not found", HttpStatusCode.NotFound);
+                    $"The Menu with id({request.MenumId}) was not found", HttpStatusCode.NotFound);
 
             // daha once veri tabanda aynı isimle data var mı
             var hasProduct = await context.Products.AnyAsync(x => x.Name == request.Name, cancellationToken);

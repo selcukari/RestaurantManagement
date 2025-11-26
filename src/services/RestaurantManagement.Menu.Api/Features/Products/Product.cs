@@ -12,7 +12,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products
 
         public DateTime Created { get; set; }
 
-        public Guid MenuId { get; set; }
+        public Guid MenumId { get; set; }
         public Menum Menum { get; set; } = default!;
 
         public Feature Feature { get; set; } = default!;

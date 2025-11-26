@@ -12,7 +12,7 @@
             hasProduct.Description = request.Description;
             hasProduct.Price = request.Price;
             hasProduct.ImageUrl = request.ImageUrl;
-            hasProduct.MenuId = request.MenuId;
+            hasProduct.MenumId = request.MenumId;
 
 
             context.Products.Update(hasProduct);

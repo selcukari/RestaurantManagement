@@ -17,7 +17,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.GetById
                 return ServiceResult<ProductDto>.Error("Product not found",
                     $"The Product with id({request.Id}) was not found", HttpStatusCode.NotFound);
 
-            var menu = await context.Menus.FindAsync(hasProduct.MenuId, cancellationToken);
+            var menu = await context.Menus.FindAsync(hasProduct.MenumId, cancellationToken);
 
             hasProduct.Menum = menu!;
 

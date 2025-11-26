@@ -10,8 +10,8 @@
                 CancellationToken cancellationToken)
             {
                 var menus = await context.Menus.ToListAsync(cancellationToken);
-                var categoriesAsDto = mapper.Map<List<MenuDto>>(menus);
-                return ServiceResult<List<MenuDto>>.SuccessAsOk(categoriesAsDto);
+                var menusAsDto = mapper.Map<List<MenuDto>>(menus);
+                return ServiceResult<List<MenuDto>>.SuccessAsOk(menusAsDto);
             }
         }
 

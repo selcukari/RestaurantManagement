@@ -5,7 +5,7 @@
         public string Name { get; init; } = null!;
         public string Description { get; init; } = null!;
         public decimal Price { get; init; }
-        public Guid MenuId { get; init; }
+        public Guid MenumId { get; init; }
 
         public IFormFile? Picture { get; set; }
     }

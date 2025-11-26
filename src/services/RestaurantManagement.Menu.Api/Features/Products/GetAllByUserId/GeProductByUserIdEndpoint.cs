@@ -2,12 +2,12 @@
 
 namespace RestaurantManagement.Menu.Api.Features.Products.GetAllByUserId;
 
-public record GetProductByUserIdQuery(Guid Id) : IRequestByServiceResult<HashSet<ProductDto>>;
+public record GetProductByUserIdQuery(Guid Id) : IRequestByServiceResult<List<ProductDto>>;
 
 public class GetProductByIdQueryHandler(AppDbContext context, IMapper mapper)
-    : IRequestHandler<GetProductByUserIdQuery, ServiceResult<HashSet<ProductDto>>>
+    : IRequestHandler<GetProductByUserIdQuery, ServiceResult<List<ProductDto>>>
 {
-    public async Task<ServiceResult<HashSet<ProductDto>>> Handle(GetProductByUserIdQuery request,
+    public async Task<ServiceResult<List<ProductDto>>> Handle(GetProductByUserIdQuery request,
         CancellationToken cancellationToken)
     {
         var products = await context.Products.Where(x => x.UserId == request.Id)
@@ -16,10 +16,10 @@ public class GetProductByIdQueryHandler(AppDbContext context, IMapper mapper)
         var categories = await context.Menus.ToListAsync(cancellationToken);
 
 
-        foreach (var product in products) product.Menum = categories.First(x => x.Id == product.MenuId);
+        foreach (var product in products) product.Menum = categories.First(x => x.Id == product.MenumId);
 
-        var coursesAsDto = mapper.Map<HashSet<ProductDto>>(products);
-        return ServiceResult<HashSet<ProductDto>>.SuccessAsOk(coursesAsDto);
+        var coursesAsDto = mapper.Map<List<ProductDto>>(products);
+        return ServiceResult<List<ProductDto>>.SuccessAsOk(coursesAsDto);
     }
 }
 

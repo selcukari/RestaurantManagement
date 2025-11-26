@@ -16,7 +16,7 @@ namespace RestaurantManagement.Menu.Api.Repositories
             builder.Property(x => x.Created).HasElementName("created");
             builder.Property(x => x.UserId).HasElementName("userId");
             builder.Property(x => x.ImageUrl).HasElementName("imageUrl").HasMaxLength(200);
-            builder.Property(x => x.MenuId).HasElementName("menuId");
+            builder.Property(x => x.MenumId).HasElementName("menumId");
             builder.Ignore(x => x.Menum);
 
             // id si olmayan field

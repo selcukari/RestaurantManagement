@@ -16,7 +16,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.GetAll
             var menus = await context.Menus.ToListAsync(cancellationToken);
 
 
-            foreach (var product in products) product.Menum = menus.First(x => x.Id == product.MenuId);
+            foreach (var product in products) product.Menum = menus.First(x => x.Id == product.MenumId);
 
             var coursesAsDto = mapper.Map<HashSet<ProductDto>>(products);
             return ServiceResult<HashSet<ProductDto>>.SuccessAsOk(coursesAsDto);
