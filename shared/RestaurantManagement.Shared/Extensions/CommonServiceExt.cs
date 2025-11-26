@@ -18,8 +18,10 @@ namespace RestaurantManagement.Shared.Extensions
             services.AddScoped<IIdentityService, IdentityServiceFake>();
             // services.AddScoped<IIdentityService, IdentityService>();
 
-
-            services.AddAutoMapper(assembly);
+            services.AddAutoMapper(cfg =>
+            {
+                // Optional: Configure global settings
+            }, assembly);
             services.AddExceptionHandler<GlobalExceptionHandler>();
             return services;
         }
