@@ -43,6 +43,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "discount", "discount", "{39
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Discount.Api", "src\service\discount\RestaurantManagement.Discount.Api\RestaurantManagement.Discount.Api.csproj", "{B90A755B-44CB-43D6-8539-D5A051A3C786}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "file", "file", "{E4552296-7B6E-4CA5-AC6C-310F4AEFAC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.File.Api", "src\services\file\RestaurantManagement.File.Api\RestaurantManagement.File.Api.csproj", "{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,10 @@ Global
 		{B90A755B-44CB-43D6-8539-D5A051A3C786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B90A755B-44CB-43D6-8539-D5A051A3C786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B90A755B-44CB-43D6-8539-D5A051A3C786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +117,8 @@ Global
 		{469202DD-B32B-47CF-A79D-E6B2B784FE5D} = {02E8FD61-6323-4E78-8A07-23712C3610A4}
 		{39E7BAF6-F206-481D-B914-7310EADBAE2A} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
 		{B90A755B-44CB-43D6-8539-D5A051A3C786} = {39E7BAF6-F206-481D-B914-7310EADBAE2A}
+		{E4552296-7B6E-4CA5-AC6C-310F4AEFAC12} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
+		{93EBC336-8CA0-46C2-8F25-6D5CA25DB3E5} = {E4552296-7B6E-4CA5-AC6C-310F4AEFAC12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEAA38BA-56AB-4792-85A4-4B7C78EEEE19}
