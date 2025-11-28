@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RestaurantManagement.Order.Application.Contracts.Repositories;
 using RestaurantManagement.Order.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace RestaurantManagement.Order.Persistence.Repositories
 {
