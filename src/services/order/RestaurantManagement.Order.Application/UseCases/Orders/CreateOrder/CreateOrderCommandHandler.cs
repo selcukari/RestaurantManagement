@@ -64,8 +64,8 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
             await unitOfWork.CommitAsync(cancellationToken);
 
 
-            await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
-                cancellationToken);
+            //await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
+            //    cancellationToken);
             return ServiceResult.SuccessAsNoContent();
         }
     }

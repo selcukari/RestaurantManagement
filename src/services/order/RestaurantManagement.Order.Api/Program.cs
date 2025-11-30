@@ -8,6 +8,7 @@ using RestaurantManagement.Order.Persistence;
 using RestaurantManagement.Order.Persistence.Repositories;
 using RestaurantManagement.Order.Persistence.UnitOfWork;
 using RestaurantManagement.Shared.Extensions;
+using RestaurantManagement.Order.Application.Contracts.Refit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,14 +24,14 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
-
+builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddVersioningExt();
 // builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
-// builder.Services.AddRefitConfigurationExt(builder.Configuration);
+builder.Services.AddRefitConfigurationExt(builder.Configuration);
 
 var app = builder.Build();
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
