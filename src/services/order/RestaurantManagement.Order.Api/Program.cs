@@ -30,7 +30,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddVersioningExt();
-// builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddRefitConfigurationExt(builder.Configuration);
 
 var app = builder.Build();
@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

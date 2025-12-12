@@ -17,7 +17,7 @@ builder.Services.AddCommonServiceExt(typeof(PaymentAssembly));
 builder.Services.AddCommonMasstransitExt(builder.Configuration);
 builder.Services.AddDbContext<AppDbContext>(options => { options.UseInMemoryDatabase("payment-in-memory-db"); });
 
-// builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 app.AddPaymentGroupEndpointExt(app.AddVersionSetExt());
@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
