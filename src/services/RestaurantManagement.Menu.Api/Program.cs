@@ -13,7 +13,7 @@ builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(MenuAssembly));
 builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
-builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+// builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 
@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
      app.UseSwaggerUI();
 }
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.Run();

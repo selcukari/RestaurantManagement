@@ -18,7 +18,7 @@ namespace RestaurantManagement.Discount.Api.Consumers
                     Id = NewId.NextSequentialGuid(),
                     Code = DiscountCodeGenerator.Generate(),
                     Created = DateTime.Now,
-                    Rate = 0.1f,
+                    Rate = 0.1f, // yuzde kac indirim olacak
                     Expired = DateTime.Now.AddMonths(1),
                     UserId = context.Message.UserId
                 };

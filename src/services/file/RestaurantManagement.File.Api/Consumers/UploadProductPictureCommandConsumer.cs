@@ -24,7 +24,7 @@ namespace RestaurantManagement.File.Api.Consumers
 
 
             await publishEndpoint.Publish(new ProductPictureUploadedEvent(context.Message.courseId,
-                $"files/{newFileName}"));
+                $"files/{newFileName}")); // kuyruk a atarak kuyruktan menu service dinleyecek
         }
     }
 }

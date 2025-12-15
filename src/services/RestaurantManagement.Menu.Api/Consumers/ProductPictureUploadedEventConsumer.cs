@@ -8,9 +8,10 @@
             using var scope = serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            var course = dbContext.Products.Find(context.Message.CourseId);
-            if (course == null) throw new NotImplementedException();
-            course.ImageUrl = context.Message.ImageUrl;
+            var product = dbContext.Products.Find(context.Message.ProductId);
+            if (product == null) throw new NotImplementedException();
+            product.ImageUrl = context.Message.ImageUrl;
+
             await dbContext.SaveChangesAsync();
         }
     }

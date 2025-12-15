@@ -24,8 +24,8 @@ public static class DeleteProductEndpoint
                 async (IMediator mediator, Guid id) =>
                     (await mediator.Send(new DeleteProductCommand(id))).ToGenericResult())
             .WithName("DeleteProduct")
-            .MapToApiVersion(1, 0);
-            //.RequireAuthorization(policyNames: "InstructorPolicy");
+            .MapToApiVersion(1, 0)
+            .RequireAuthorization(policyNames: "InstructorPolicy");
 
         return group;
     }

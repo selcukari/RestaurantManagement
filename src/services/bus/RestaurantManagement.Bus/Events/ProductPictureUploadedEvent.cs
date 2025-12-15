@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace RestaurantManagement.Bus.Events
 {
-   public record ProductPictureUploadedEvent(Guid CourseId, string ImageUrl);
+   public record ProductPictureUploadedEvent(Guid ProductId, string ImageUrl);
    
 }

@@ -24,7 +24,7 @@ namespace RestaurantManagement.Menu.Api
                         host.Password(busOptions.Password);
                     });
 
-                    cfg.ReceiveEndpoint("menu-microservice.course-picture-uploaded.queue",
+                    cfg.ReceiveEndpoint("menu-microservice.product-picture-uploaded.queue",
                         e => { e.ConfigureConsumer<ProductPictureUploadedEventConsumer>(ctx); });
 
 

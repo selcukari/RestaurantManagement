@@ -17,8 +17,8 @@ namespace RestaurantManagement.Payment.Api.Feature.Payments.GetStatus
                 .AddEndpointFilter<ValidationFilter<GetPaymentStatusRequest>>()
                 .Produces(StatusCodes.Status200OK)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-                .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
-                //.RequireAuthorization("ClientCredential");
+                .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
+                .RequireAuthorization("ClientCredential");
 
             return group;
         }

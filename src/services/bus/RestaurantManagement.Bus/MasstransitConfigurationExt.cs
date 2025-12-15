@@ -11,12 +11,12 @@ namespace RestaurantManagement.Bus
         {
             // Fix: Use Get<T> extension method from Microsoft.Extensions.Configuration.Binder
             // Add the required using directive: using Microsoft.Extensions.Configuration;
-            var busOptions = configuration.GetSection(nameof(BusOption));
+            var busOptions = configuration.GetSection(nameof(BusOption)).Get<BusOption>()!;
 
-            var Address = busOptions.GetSection("Address").Value;
-            var Port = busOptions.GetSection("Port").Value;
-            var UserName = busOptions.GetSection("UserName").Value;
-            var Password = busOptions.GetSection("Password").Value;
+            var Address = busOptions.Address;
+            var Port = busOptions.Port;
+            var UserName = busOptions.UserName;
+            var Password = busOptions.Password;
 
             services.AddMassTransit(configure =>
             {

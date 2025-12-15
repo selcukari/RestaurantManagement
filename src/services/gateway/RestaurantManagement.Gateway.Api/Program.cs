@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 var deneme = builder.Configuration.GetSection("ReverseProxy");
-//builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 

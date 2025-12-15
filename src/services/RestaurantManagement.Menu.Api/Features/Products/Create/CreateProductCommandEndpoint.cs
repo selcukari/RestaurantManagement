@@ -16,8 +16,8 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
                 .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateProductCommand>>().DisableAntiforgery();
-                //.RequireAuthorization(policyNames: "InstructorPolicy");
+                .AddEndpointFilter<ValidationFilter<CreateProductCommand>>().DisableAntiforgery(); // cross site request forgest saldırıları icin "DisableAntiforgery" 
+                 //.RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }
