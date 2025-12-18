@@ -17,6 +17,7 @@ namespace RestaurantManagement.Order.Application.BackgroundServices
             var orderRepository = scope.ServiceProvider.GetRequiredService<IOrderRepository>();
             var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
+            // iptal request gelmedigi surece bu dongu devam edecek
             while (!stoppingToken.IsCancellationRequested)
             {
                 var orders = orderRepository.Where(x => x.Status == OrderStatus.WaitingForPayment)
@@ -34,7 +35,7 @@ namespace RestaurantManagement.Order.Application.BackgroundServices
                     }
                 }
 
-                await Task.Delay(2000, stoppingToken);
+                await Task.Delay(5 * 60 * 1000, stoppingToken); // 5 dk bekleme
             }
         }
     }
