@@ -67,6 +67,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{5F629249-5D9C-4934-AF48-0F4AB014C6AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement.Web", "src\ui\RestaurantManagement.Web\RestaurantManagement.Web.csproj", "{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +137,10 @@ Global
 		{9913EB31-2512-40DA-B4E5-743ECCAD8E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9913EB31-2512-40DA-B4E5-743ECCAD8E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9913EB31-2512-40DA-B4E5-743ECCAD8E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -166,6 +174,8 @@ Global
 		{32ECC102-B3F5-4001-BF2B-3F1D9A6D3899} = {D44D4778-0671-4C3C-A386-1AD1BC6BC022}
 		{10B610CA-D8E5-4F80-8A85-8F11A8E63C89} = {DBF4B0CC-283D-40C1-BD3B-3DEEB4956B72}
 		{9913EB31-2512-40DA-B4E5-743ECCAD8E34} = {10B610CA-D8E5-4F80-8A85-8F11A8E63C89}
+		{5F629249-5D9C-4934-AF48-0F4AB014C6AE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{23CDFA6F-A3F6-4FA3-B081-97F06E348D9F} = {5F629249-5D9C-4934-AF48-0F4AB014C6AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEAA38BA-56AB-4792-85A4-4B7C78EEEE19}
