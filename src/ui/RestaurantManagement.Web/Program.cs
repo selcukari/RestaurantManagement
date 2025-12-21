@@ -1,7 +1,14 @@
+using RestaurantManagement.Web.Extensions;
+using RestaurantManagement.Web.Pages.Auth.SignUp;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddOptionsExt();
+
+builder.Services.AddHttpClient<SignUpService>();
 
 var app = builder.Build();
 
