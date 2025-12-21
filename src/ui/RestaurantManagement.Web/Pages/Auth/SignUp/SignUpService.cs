@@ -17,7 +17,7 @@ namespace RestaurantManagement.Web.Pages.Auth.SignUp;
             var address = $"{identityOption.BaseAddress}/admin/realms/RestauranTenant/users";
 
             client.SetBearerToken(token);
-
+            // user oluştur
             var userCreateRequest = CreateUserCreateRequest(model);
 
             var response = await client.PostAsJsonAsync(address, userCreateRequest);
@@ -37,7 +37,7 @@ namespace RestaurantManagement.Web.Pages.Auth.SignUp;
 
             return ServiceResult.Success();
         }
-
+        // user oluştur
         private static UserCreateRequest CreateUserCreateRequest(SignUpViewModel model)
         {
             return new UserCreateRequest(
