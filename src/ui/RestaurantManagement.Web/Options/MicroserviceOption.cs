@@ -2,7 +2,7 @@
 {
     public class MicroserviceOption
     {
-        public required MicroserviceOptionItem Catalog { get; set; }
+        public required MicroserviceOptionItem Menu { get; set; }
 
         public required MicroserviceOptionItem File { get; set; }
 
