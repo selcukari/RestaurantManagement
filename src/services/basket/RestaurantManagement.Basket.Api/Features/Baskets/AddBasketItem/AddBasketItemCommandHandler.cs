@@ -15,7 +15,6 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.AddBasketItem
         {
             var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
-
             Data.Basket? currentBasket;
 
             var newBasketItem = new BasketItem(request.ProductId, request.ProductName, request.ImageUrl,

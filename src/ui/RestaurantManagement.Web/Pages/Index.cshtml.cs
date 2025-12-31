@@ -1,20 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RestaurantManagement.Web.PageModels;
+using RestaurantManagement.Web.Services;
+using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel(MenuService menuService, ILogger<IndexModel> logger) : BasePageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        public List<ProductViewModel>? Products { get; set; } = [];
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public async Task<IActionResult> OnGet()
         {
-            _logger = logger;
-        }
+            var productsAsResult = await menuService.GetAllProductsAsync();
 
-        public void OnGet()
-        {
+            if (productsAsResult.IsFail) return ErrorPage(productsAsResult);
 
+            Products = productsAsResult.Data!;
+
+            return Page();
         }
     }
 }

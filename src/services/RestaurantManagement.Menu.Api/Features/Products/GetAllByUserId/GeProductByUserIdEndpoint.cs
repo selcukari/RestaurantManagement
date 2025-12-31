@@ -31,8 +31,8 @@ public static class GeProductByUserIdEndpoint
                 async (IMediator mediator, Guid userId) =>
                     (await mediator.Send(new GetProductByUserIdQuery(userId))).ToGenericResult())
             .WithName("GetByUserIdProducts")
-            .MapToApiVersion(1, 0);
-            //.RequireAuthorization(policyNames: "InstructorPolicy");
+            .MapToApiVersion(1, 0)
+            .RequireAuthorization(policyNames: "InstructorPolicy");
 
         return group;
     }

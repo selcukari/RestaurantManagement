@@ -1,7 +1,8 @@
-﻿using System;
+﻿using RestaurantManagement.Shared.Services;
+using System;
 
 namespace RestaurantManagement.Menu.Api.Features.Menus.Create;
-    public class CreateMenuCommandHandler(AppDbContext context)
+    public class CreateMenuCommandHandler(AppDbContext context, ICacheService cacheService)
     : IRequestHandler<CreateMenuCommand, ServiceResult<CreateMenuResponse>>
 {
     public async Task<ServiceResult<CreateMenuResponse>> Handle(CreateMenuCommand request,
@@ -27,6 +28,7 @@ namespace RestaurantManagement.Menu.Api.Features.Menus.Create;
 
         await context.SaveChangesAsync(cancellationToken);
 
+        cacheService.Remove("menus");
 
         return ServiceResult<CreateMenuResponse>.SuccessAsCreated(new CreateMenuResponse(menu.Id),
             "<empty>");

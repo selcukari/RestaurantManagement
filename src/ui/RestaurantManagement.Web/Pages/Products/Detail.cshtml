@@ -1,0 +1,62 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Products.DetailModel
+@{
+}
+
+<div class="container mt-5">
+
+    <div class="row">
+
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+
+
+                <course-picture class="card-img-top img-fluid" alt="Kurs Resmi" src="@Model.Product.ImageUrl"></course-picture>
+                <div class="card-body">
+                    <h2 class="mb-4">@Model.Product.Name</h2>
+                    <h5 class="card-title">Kurs Açıklaması</h5>
+                    <p>@Model.Product.Description</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+
+                    <h5 class="card-title">Kategori</h5>
+                    <p class="card-text">@Model.Product.MenuName</p>
+                    <hr>
+
+
+                    <h5 class="card-title">Fiyat</h5>
+                    <p class="card-text">
+                        <strong>@Model.Product.Price.ToString("C")</strong>
+                    </p>
+                    <hr>
+
+
+                    <h5 class="card-title">Detaylar</h5>
+                    <p class="card-text">
+                        <small class="text-muted">Eğitmen: <strong>@Model.Product.EducatorFullName</strong></small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Oluşturulma Tarihi: <strong>@Model.Product.Created</strong></small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Puan: <strong>@Model.Product.Rating</strong> | Süre: <strong>@Model.Product.Duration</strong> saat</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-light text-center">
+                    <a asp-page="/basket/index" asp-page-handler="AddBasket" asp-route-productId="@Model.Product.Id" class="btn btn-primary">Add To Basket</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

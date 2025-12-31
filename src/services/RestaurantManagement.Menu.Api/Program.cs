@@ -2,6 +2,7 @@ using RestaurantManagement.Menu.Api;
 using RestaurantManagement.Menu.Api.Features.Menus;
 using RestaurantManagement.Menu.Api.Features.Products;
 using RestaurantManagement.Menu.Api.Options;
+using RestaurantManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,8 @@ builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(MenuAssembly));
 builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
-// builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddScoped<ICacheService, CacheService>();
 
 var app = builder.Build();
 
@@ -28,7 +30,7 @@ if (app.Environment.IsDevelopment())
      app.UseSwaggerUI();
 }
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

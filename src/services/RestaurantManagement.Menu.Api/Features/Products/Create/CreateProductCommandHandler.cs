@@ -27,7 +27,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
 
             var newProduct = mapper.Map<Product>(request);
             newProduct.Created = DateTime.Now;
-            // newProduct.UserId = identityService.UserId;
+            newProduct.UserId = identityService.UserId;
             newProduct.Id = NewId.NextSequentialGuid(); // index performance
 
             newProduct.Feature = new Feature

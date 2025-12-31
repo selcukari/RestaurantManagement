@@ -13,14 +13,14 @@ namespace RestaurantManagement.Web.Services.Refit
 
 
         [Get("/api/v1/categories")]
-        Task<ApiResponse<List<MenuDto>>> GetMenuAsync();
+        Task<ApiResponse<List<MenuDto>>> GetMenusAsync();
 
 
         [Get("/api/v1/products/user/{userId}")]
         Task<ApiResponse<List<ProductDto>>> GetProductByUserId(Guid UserId);
 
 
-        [Multipart]
+        [Multipart] // dosya gondermek icin
         [Post("/api/v1/products")]
         Task<ApiResponse<object>> CreateProductAsync(
             [AliasAs("Name")] string Name,

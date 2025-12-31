@@ -11,8 +11,8 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Update
                         (await mediator.Send(command)).ToGenericResult())
                 .WithName("UpdateProduct")
                 .MapToApiVersion(1, 0)
-                .AddEndpointFilter<ValidationFilter<UpdateProductCommand>>();
-                // .RequireAuthorization(policyNames: "InstructorPolicy");
+                .AddEndpointFilter<ValidationFilter<UpdateProductCommand>>()
+                .RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }

@@ -1,0 +1,55 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Instructor.ProductModel
+@{
+    Layout = "_Instructor_Layout";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <td>Picture</td>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ProductViewModels.Any())
+        {
+            var index = 1;
+            foreach (var product in Model.ProductViewModels)
+            {
+                <tr>
+                    <th scope="row">@index</th>
+                    <td>
+                        <product-thumbnail-picture with="100px" class="img-fluid img-thumbnail" src="@product.ImageUrl"></product-thumbnail-picture>
+                    </td>
+                    <td>@product.Name</td>
+                    <td>@product.TruncateDescription(100)</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.MenuName</td>
+                    <td>@product.Rating</td>
+                    <td>@product.Duration</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-page="Update" asp-route-id="@product.Id" class="btn btn-sm btn-primary">Edit</a>
+                            <a asp-page-handler="Delete" asp-route-id="@product.Id" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10" class="text-center">No courses available.</td>
+            </tr>
+        }
+    </tbody>
+</table>

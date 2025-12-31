@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
 using Refit;
 using RestaurantManagement.Web.DelegateHandlers;
+using RestaurantManagement.Web.ExceptionHandlers;
 using RestaurantManagement.Web.Extensions;
 using RestaurantManagement.Web.Options;
 using RestaurantManagement.Web.Pages.Auth.SignIn;
 using RestaurantManagement.Web.Pages.Auth.SignUp;
 using RestaurantManagement.Web.Services;
 using RestaurantManagement.Web.Services.Refit;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,14 @@ builder.Services.AddHttpClient<SignUpService>();
 builder.Services.AddHttpClient<SignInService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<MenuService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<BasketService>();
+
+builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
+builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>(); // exception hatalar� yakala
 
 builder.Services.AddRefitClient<IMenuRefitService>().ConfigureHttpClient(configure =>
 {
@@ -27,10 +38,28 @@ builder.Services.AddRefitClient<IMenuRefitService>().ConfigureHttpClient(configu
     configure.BaseAddress = new Uri(microserviceOption!.Menu.BaseAddress);
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+builder.Services.AddRefitClient<IBasketRefitService>().ConfigureHttpClient(configure =>
+{
+    var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+    configure.BaseAddress = new Uri(microserviceOption!.Basket.BaseAddress);
+}).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
 
-builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
-builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+builder.Services.AddRefitClient<IDiscountRefitService>().ConfigureHttpClient(configure =>
+{
+    var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+    configure.BaseAddress = new Uri(microserviceOption!.Discount.BaseAddress);
+}).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+
+
+builder.Services.AddRefitClient<IOrderRefitService>().ConfigureHttpClient(configure =>
+{
+    var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+    configure.BaseAddress = new Uri(microserviceOption!.Order.BaseAddress);
+}).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
 builder.Services.AddAuthentication(configureOption =>
 {
@@ -40,7 +69,7 @@ builder.Services.AddAuthentication(configureOption =>
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
     {
         options.LoginPath = "/Auth/SignIn";
-        options.ExpireTimeSpan = TimeSpan.FromDays(30);
+        options.ExpireTimeSpan = TimeSpan.FromDays(60);
         options.Cookie.Name = "RestaurantManagerMicroserviceWebCookie";
         options.AccessDeniedPath = "/Auth/AccessDenied"; // yetkisi yok ise
     });
@@ -49,11 +78,19 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+var cultureInfo = new CultureInfo("tr-TR");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+app.UseRequestLocalization(new RequestLocalizationOptions
 {
-    app.UseExceptionHandler("/Error");
-}
+    DefaultRequestCulture = new RequestCulture(cultureInfo),
+    SupportedCultures = [cultureInfo],
+    SupportedUICultures = [cultureInfo]
+});
+
+// Configure the HTTP request pipeline.
+app.UseExceptionHandler("/Error");
 
 app.UseRouting();
 

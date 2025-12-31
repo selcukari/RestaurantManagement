@@ -2,9 +2,52 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <h1 class="mb-4">Products</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+
+        @if (!Model.Products.Any())
+        {
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    No Products Found!
+                </div>
+            </div>
+            return;
+        }
+
+        @foreach (var product in Model.Products!)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-lg border-0">
+                    <a asp-page="/Products/Detail" asp-route-id="@product.Id">
+                        <product-thumbnail-picture src="@product.ImageUrl" class="card-img-top" alt="product Resmi"></product-thumbnail-picture>
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.TruncateDescription(100)</p>
+                        <p class="card-text">
+                            <small class="text-muted">Category: <strong>@product.Name</strong></small>
+                        </p>
+                        <p class="card-text">
+                            <strong>@product.Price.ToString("C")</strong>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Instructor: <strong>@product.EducatorFullName</strong></small><br>
+                        <small class="text-muted">Created Date: <strong>@product.Created</strong></small><br>
+                        <small class="text-muted">Point : <strong>@product.Rating</strong> | Süre: <strong>@product.Duration</strong> saat</small>
+
+                        <br>
+                        <a asp-page="/Products/Detail" asp-route-id="@product.Id" class="btn btn-primary mt-2">Show Detail</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
