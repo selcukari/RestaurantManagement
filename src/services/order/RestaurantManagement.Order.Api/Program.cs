@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using RestaurantManagement.Bus;
 using RestaurantManagement.Order.Api.Endpoints.Orders;
 using RestaurantManagement.Order.Application;
-using RestaurantManagement.Bus;
+using RestaurantManagement.Order.Application.Contracts.Refit;
 using RestaurantManagement.Order.Application.Contracts.Repositories;
 using RestaurantManagement.Order.Application.Contracts.UnitOfWork;
 using RestaurantManagement.Order.Persistence;
 using RestaurantManagement.Order.Persistence.Repositories;
 using RestaurantManagement.Order.Persistence.UnitOfWork;
 using RestaurantManagement.Shared.Extensions;
-using RestaurantManagement.Order.Application.Contracts.Refit;
+using RestaurantManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddVersioningExt();

@@ -17,11 +17,11 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
     IIdentityService identityService,
     IUnitOfWork unitOfWork,
     IPublishEndpoint publishEndpoint,
-    IPaymentService paymentService) : IRequestHandler<CreateOrderCommand, ServiceResult>
+    IPaymentService paymentService, ICacheService cacheService) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            if (!request.Items.Any())
+            if (request.Items.Any() != true)
                 return ServiceResult.Error("Order items not found", "Order must have at least one item",
                     HttpStatusCode.BadRequest);
 
@@ -66,6 +66,9 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
 
             await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
                 cancellationToken);
+
+            cacheService.Remove("orders");
+
             return ServiceResult.SuccessAsNoContent();
         }
     }

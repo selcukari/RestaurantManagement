@@ -14,7 +14,8 @@ namespace RestaurantManagement.Menu.Api.Features.Menus.GetAll
                 var cacheKey = $"menus";
 
                 var menuList = cacheService.Get<List<MenuDto>>(cacheKey);
-                if (!menuList.Any())
+
+                if (menuList.Any() != true)
                 {
                     var menus = await context.Menus.ToListAsync(cancellationToken);
                     menuList = mapper.Map<List<MenuDto>>(menus);

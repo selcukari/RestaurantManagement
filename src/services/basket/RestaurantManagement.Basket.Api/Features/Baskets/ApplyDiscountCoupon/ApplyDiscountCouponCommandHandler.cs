@@ -20,7 +20,7 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.ApplyDiscountCoupon
 
             var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
 
-            if (!basket.Items.Any())
+            if (basket.Items.Any() != true)
                 return ServiceResult<BasketDto>.Error("Basket item not found", HttpStatusCode.NotFound);
 
             basket.ApplyNewDiscount(request.Coupon, request.DiscountRate);

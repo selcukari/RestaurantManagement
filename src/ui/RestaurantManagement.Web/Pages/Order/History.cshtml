@@ -6,7 +6,7 @@
     <h2 class="mb-4">Order History</h2>
 
 
-    @if (!Model.OrderHistoryList.Any())
+    @if (Model.OrderHistoryList?.Any() != true)
     {
         <p class="text-muted">No orders found.</p>
         return;

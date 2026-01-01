@@ -6,7 +6,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
     public class CreateProductCommandHandler(AppDbContext context,
     IMapper mapper,
     IPublishEndpoint publishEndpoint,
-    IIdentityService identityService) : IRequestHandler<CreateProductCommand, ServiceResult<Guid>>
+    IIdentityService identityService, ICacheService cacheService) : IRequestHandler<CreateProductCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
@@ -54,6 +54,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
                 await publishEndpoint.Publish(uploadProductPictureCommand, cancellationToken);
             }
 
+            cacheService.Remove("products");
 
             return ServiceResult<Guid>.SuccessAsCreated(newProduct.Id, $"/api/products/{newProduct.Id}");
         }
