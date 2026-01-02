@@ -25,7 +25,7 @@ namespace RestaurantManagement.Shared.Services
                     throw new UnauthorizedAccessException("User is not authenticated.");
 
                 return httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c =>
-                        c.Type == ClaimTypes.Name)?.Value!;
+                        c.Type == "name")?.Value!;
             }
         }
 
