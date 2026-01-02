@@ -12,7 +12,7 @@ namespace RestaurantManagement.Web.Services.Refit
         Task<ApiResponse<ProductDto>> GetProduct(Guid id);
 
 
-        [Get("/api/v1/categories")]
+        [Get("/api/v1/menus")]
         Task<ApiResponse<List<MenuDto>>> GetMenusAsync();
 
 

@@ -9,8 +9,7 @@ namespace RestaurantManagement.Order.Api.Endpoints.Orders
             app.MapGroup("api/v{version:apiVersion}/orders").WithTags("Orders")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateOrderGroupItemEndpoint()
-                .GetOrdersGroupItemEndpoint()
-            .RequireAuthorization();
+                .GetOrdersGroupItemEndpoint().RequireAuthorization("Password");
         }
     }
 }

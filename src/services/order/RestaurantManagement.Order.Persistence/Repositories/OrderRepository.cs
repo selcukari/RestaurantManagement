@@ -13,6 +13,14 @@ namespace RestaurantManagement.Order.Persistence.Repositories
                 .OrderByDescending(x => x.Created).ToListAsync();
         }
 
+        public Task<List<Domain.Entities.Order>> GetOrdersByProductId(Guid productId)
+        {
+            return context.Orders
+                    .Include(o => o.OrderItems)
+                    .Where(o => o.OrderItems.Any(item => item.ProductId == productId))
+                    .ToListAsync();
+        }
+
         public async Task SetStatus(string orderCode, Guid paymentId, OrderStatus status)
         {
             var order = await context.Orders.FirstAsync(x => x.Code == orderCode);

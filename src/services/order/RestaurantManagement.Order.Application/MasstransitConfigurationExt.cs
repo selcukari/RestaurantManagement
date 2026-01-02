@@ -1,20 +1,25 @@
 ﻿using MassTransit;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using RestaurantManagement.Bus;
-using RestaurantManagement.File.Api.Consumers;
+using RestaurantManagement.Order.Application.Consumers;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace RestaurantManagement.File.Api
+namespace RestaurantManagement.Order.Application
 {
     public static class MasstransitConfigurationExt
     {
         public static IServiceCollection AddMasstransitExt(this IServiceCollection services,
-        IConfiguration configuration)
+      IConfiguration configuration)
         {
             var busOptions = configuration.GetSection(nameof(BusOption)).Get<BusOption>()!;
 
 
             services.AddMassTransit(configure =>
             {
-                configure.AddConsumer<UploadProductPictureCommandConsumer>();
+                configure.AddConsumer<ProductNameChangedEventConsumer>();
 
 
                 configure.UsingRabbitMq((ctx, cfg) =>
@@ -25,8 +30,8 @@ namespace RestaurantManagement.File.Api
                         host.Password(busOptions.Password);
                     });
 
-                    cfg.ReceiveEndpoint("file-microservice.upload-product-picture-command.queue",
-                        e => { e.ConfigureConsumer<UploadProductPictureCommandConsumer>(ctx); });
+                    cfg.ReceiveEndpoint("order-microservice.product-name-changed.queue",
+                        e => { e.ConfigureConsumer<ProductNameChangedEventConsumer>(ctx); });
 
 
                     // cfg.ConfigureEndpoints(ctx);

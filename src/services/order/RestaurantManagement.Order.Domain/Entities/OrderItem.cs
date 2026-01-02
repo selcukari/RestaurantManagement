@@ -35,6 +35,11 @@
             UnitPrice = newPrice;
         }
 
+        public void UpdateProductName(string productName)
+        {
+            ProductName = productName;
+        }
+
         public void ApplyDiscount(float discountPercentage)
         {
             if (discountPercentage < 0 || discountPercentage > 100)

@@ -9,8 +9,8 @@ namespace RestaurantManagement.File.Api.Features.File
         public static void AddFileGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
             app.MapGroup("api/v{version:apiVersion}/files").WithTags("files").WithApiVersionSet(apiVersionSet)
-                .UploadFileGroupItemEndpoint().DeleteFileGroupItemEndpoint();
-            //.RequireAuthorization();
+                .UploadFileGroupItemEndpoint().DeleteFileGroupItemEndpoint()
+                .RequireAuthorization();
         }
     }
 }

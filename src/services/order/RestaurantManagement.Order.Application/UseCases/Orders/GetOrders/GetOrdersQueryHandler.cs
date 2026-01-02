@@ -20,7 +20,7 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.GetOrders
 
             var response = cacheService.Get<List<GetOrdersResponse>>(cacheKey);
 
-            if (response.Any() != true)
+            if (response == null || response.Count == 1)
             {
                 var orders = await orderRepository.GetOrderByBuyerId(identityService.UserId);
 

@@ -1,8 +1,9 @@
-﻿using RestaurantManagement.Shared.Services;
+﻿using RestaurantManagement.Bus.Events;
+using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Menu.Api.Features.Products.Update
 {
-    public class UpdateProductCommandHandler(AppDbContext context, IMapper mapper, ICacheService cacheService)
+    public class UpdateProductCommandHandler(AppDbContext context, IMapper mapper, ICacheService cacheService, IPublishEndpoint publishEndpoint)
     : IRequestHandler<UpdateProductCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
@@ -23,6 +24,8 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Update
             await context.SaveChangesAsync(cancellationToken);
 
             cacheService.Remove("products");
+
+            await publishEndpoint.Publish(new ProductNameChangedEvent(request.Id, request.Name), cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }
