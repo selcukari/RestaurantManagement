@@ -24,7 +24,8 @@ namespace RestaurantManagement.Shared.Services
                 if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
                     throw new UnauthorizedAccessException("User is not authenticated.");
 
-                return httpContextAccessor.HttpContext!.User.Identity!.Name!;
+                return httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c =>
+                        c.Type == ClaimTypes.Name)?.Value!;
             }
         }
 

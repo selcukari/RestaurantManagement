@@ -33,7 +33,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
             newProduct.Feature = new Feature
             {
                 Duration = 10, // calculate by course video
-                EducatorFullName = "Ahmet Yılmaz", // get by token payload
+                EducatorFullName = identityService.UserName, // get by token payload
                 Rating = 0
             };
 
