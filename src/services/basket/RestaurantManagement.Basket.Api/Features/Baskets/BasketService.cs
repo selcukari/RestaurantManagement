@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using RestaurantManagement.Shared.Services;
-using System.Text.Json;
 using RestaurantManagement.Basket.Api.Const;
+using RestaurantManagement.Shared.Services;
+using StackExchange.Redis;
+using System.Text.Json;
 
 namespace RestaurantManagement.Basket.Api.Features.Baskets
 {
-    public class BasketService(IIdentityService identityService, IDistributedCache distributedCache)
+    public class BasketService(IIdentityService identityService, IDistributedCache distributedCache, IConnectionMultiplexer redis)
     {
         private string GetCacheKey()
         {
@@ -31,6 +32,30 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets
         public async Task DeleteBasket(Guid userId)
         {
             await distributedCache.RemoveAsync(GetCacheKey(userId));
+        }
+        public async Task DeleteBasketsByProductId(Guid productId)
+        {
+            // 1. Redis sunucusuna bağlan (Anahtarları taramak için)
+            var server = redis.GetServer(redis.GetEndPoints().First());
+
+            // 2. Tüm sepet anahtarlarını bul (Örn: "basket:*")
+            var pattern = "basket:*";
+            var keys = server.Keys(pattern: pattern).ToList();
+
+            foreach (var key in keys)
+            {
+                // 3. Sepet içeriğini oku
+                var basketJson = await distributedCache.GetStringAsync(key);
+                if (string.IsNullOrEmpty(basketJson)) continue;
+
+                var basket = JsonSerializer.Deserialize<Data.Basket>(basketJson);
+
+                // 4. Eğer sepetin içinde silinmesi istenen ProductId varsa sepeti komple sil
+                if (basket != null && basket.Items.Any(x => x.Id == productId))
+                {
+                    await distributedCache.RemoveAsync(key);
+                }
+            }
         }
     }
 }

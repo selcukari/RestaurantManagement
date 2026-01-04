@@ -16,7 +16,7 @@ namespace RestaurantManagement.Basket.Api;
         services.AddMassTransit(configure =>
         {
             configure.AddConsumer<OrderCreatedEventConsumer>();
-
+            configure.AddConsumer<ProductNameChangedEventConsumer>();
 
             configure.UsingRabbitMq((ctx, cfg) =>
             {
@@ -28,6 +28,11 @@ namespace RestaurantManagement.Basket.Api;
 
                 cfg.ReceiveEndpoint("basket-microservice.order-created.queue",
                     e => { e.ConfigureConsumer<OrderCreatedEventConsumer>(ctx); });
+
+                cfg.ReceiveEndpoint("basket-microservice.product-name-changed.queue", e =>
+                {
+                    e.ConfigureConsumer<ProductNameChangedEventConsumer>(ctx);
+                });
 
 
                 // cfg.ConfigureEndpoints(ctx);
