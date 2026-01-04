@@ -5,7 +5,7 @@ namespace RestaurantManagement.Order.Application.Contracts.Repositories
     public interface IOrderRepository : IGenericRepository<Guid, Domain.Entities.Order>
     {
         Task<List<Domain.Entities.Order>> GetOrderByBuyerId(Guid buyerId);
-        Task<List<Domain.Entities.Order>> GetOrdersByProductId(Guid productId);
+        Task<List<OrderItem>> GetOrderItemsByProductId(Guid productId);
 
         Task SetStatus(string orderCode, Guid paymentId, OrderStatus status);
     }

@@ -10,22 +10,15 @@ namespace RestaurantManagement.Order.Application.Consumers
     {
         public async Task Consume(ConsumeContext<ProductNameChangedEvent> context)
         {
-            var orders = await orderRepository.GetOrdersByProductId(context.Message.ProductId);
+            var orderItems = await orderRepository.GetOrderItemsByProductId(context.Message.ProductId);
 
-            if (orders.Any() != true) return;
+            if (orderItems == null || orderItems.Count < 1) return;
 
-            foreach (var order in orders)
+            foreach (var orderItem in orderItems)
             {
-                // 2. Siparişin içindeki ilgili ürünleri bul ve ismini güncelle
-                var itemsToUpdate = order.OrderItems.Where(x => x.ProductId == context.Message.ProductId);
 
-                foreach (var item in itemsToUpdate)
-                {
-                    item.UpdateProductName(context.Message.UpdatedName);
-                }
+                orderItem.UpdateProductName(context.Message.UpdatedName);
 
-                // 3. Siparişi güncelle
-                orderRepository.Update(order);
             }
             cacheService.Remove("orders");
 
