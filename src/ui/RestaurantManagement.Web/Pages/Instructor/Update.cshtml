@@ -1,0 +1,61 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Instructor.UpdateModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "_Instructor_Layout";
+}
+
+<div class="row">
+    <h2>Ürünü Güncelle</h2>
+    <div asp-validation-summary="ModelOnly" class="alert alert-warning"></div>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="ViewModel.Id" />
+        <input type="hidden" asp-for="ViewModel.ExistingPictureUrl" />
+
+        <div class="mb-3">
+            <label asp-for="ViewModel.MenuId" class="form-label">Kategori</label>
+            <select asp-for="ViewModel.MenuId" class="form-select" asp-items="@Model.ViewModel.MenuDropdownList">
+                <option value="">Kategori Seçiniz</option>
+            </select>
+            <span asp-validation-for="ViewModel.MenuId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ViewModel.Name" class="form-label"></label>
+            <input asp-for="ViewModel.Name" class="form-control">
+            <span asp-validation-for="ViewModel.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label d-block">Mevcut Resim</label>
+            @if (!string.IsNullOrEmpty(Model.ViewModel.ExistingPictureUrl))
+            {
+                <img src="@Model.ViewModel.ExistingPictureUrl" class="img-thumbnail mb-2" style="max-height: 150px;" />
+            }
+            <input asp-for="ViewModel.PictureFormFile" class="form-control" type="file">
+            <small class="text-muted">Değiştirmek istemiyorsanız boş bırakın.</small>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ViewModel.Description" class="form-label"></label>
+            <textarea asp-for="ViewModel.Description" class="form-control"></textarea>
+            <span asp-validation-for="ViewModel.Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ViewModel.Price" class="form-label"></label>
+            <input asp-for="ViewModel.Price" class="form-control" type="number" step="0.01">
+            <span asp-validation-for="ViewModel.Price" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Değişiklikleri Kaydet</button>
+        <a asp-page="Products" class="btn btn-secondary">Vazgeç</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");
+    }
+}

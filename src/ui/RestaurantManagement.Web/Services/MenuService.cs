@@ -1,4 +1,5 @@
 ﻿using Refit;
+using RestaurantManagement.Web.Dto;
 using RestaurantManagement.Web.Services.Refit;
 using RestaurantManagement.Web.ViewModel;
 using System.Text.Json;
@@ -29,8 +30,17 @@ namespace RestaurantManagement.Web.Services
             var products = productAsResult.Content!;
 
             var menusViewModel = products.Select(c =>
-                new ProductViewModel(c.Id, c.Name, c.Description, c.Price, c.ImageUrl, c.Created.ToLongDateString(),
-                    c.Feature.EducatorFullName, c.Menum.Name, c.Feature.Duration,
+                new ProductViewModel(
+                    c.Id,
+                    c.Name,
+                    c.Description,
+                    c.Price,
+                    c.ImageUrl,
+                    c.Created.ToLongDateString(),
+                    c.Feature.EducatorFullName,
+                    c.Menum.Name,
+                    c.Menum.Id,
+                    c.Feature.Duration,
                     c.Feature.Rating)).ToList();
 
             return ServiceResult<List<ProductViewModel>>.Success(menusViewModel);
@@ -48,8 +58,7 @@ namespace RestaurantManagement.Web.Services
             var product = response.Content!;
             var courseViewModel = new ProductViewModel(product.Id, product.Name, product.Description, product.Price,
                 product.ImageUrl, product.Created.ToLongDateString(), product.Feature.EducatorFullName, product.Menum.Name,
-                product.Feature.Duration,
-                product.Feature.Rating);
+                product.Menum.Id, product.Feature.Duration, product.Feature.Rating);
 
             return ServiceResult<ProductViewModel>.Success(courseViewModel);
         }
@@ -100,6 +109,38 @@ namespace RestaurantManagement.Web.Services
             return ServiceResult.Success();
         }
 
+        public async Task<ServiceResult> UpdateProductAsync(UpdateProductViewModel model)
+        {
+            StreamPart? pictureStreamPart = null;
+            await using var stream = model.PictureFormFile?.OpenReadStream();
+
+            if (model.PictureFormFile is not null && model.PictureFormFile.Length > 0)
+                pictureStreamPart =
+                    new StreamPart(stream!, model.PictureFormFile.FileName, model.PictureFormFile.ContentType);
+
+
+            var response = await menuRefitService.UpdaterPoductAsync(
+                new UpdateProductRequest(
+                    model.Id,
+                    model.Name,
+                    model.Description,
+                    model.Price,
+                    model.ExistingPictureUrl,
+                    model.MenuId
+                )
+            );
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while creating course");
+                return ServiceResult.Error("Fail to create course. Please try again later");
+            }
+
+
+            return ServiceResult.Success();
+        }
+
 
         public async Task<ServiceResult<List<ProductViewModel>>> GetProductByUserId()
         {
@@ -122,6 +163,7 @@ namespace RestaurantManagement.Web.Services
                     c.Created.ToLongDateString(),
                     c.Feature.EducatorFullName,
                     c.Menum.Name,
+                    c.Menum.Id,
                     c.Feature.Duration,
                     c.Feature.Rating
                 ))

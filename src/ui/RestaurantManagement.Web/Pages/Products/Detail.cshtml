@@ -1,6 +1,7 @@
 ﻿@page
 @model RestaurantManagement.Web.Pages.Products.DetailModel
 @{
+    ViewData["Title"] = "Ürün Detail";
 }
 
 <div class="container mt-5">
@@ -11,16 +12,14 @@
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
 
-
-                <course-picture class="card-img-top img-fluid" alt="Kurs Resmi" src="@Model.Product.ImageUrl"></course-picture>
+                <product-thumbnail-picture class="card-img-top img-fluid" alt="Kurs Resmi" src="@Model.Product.ImageUrl"></product-thumbnail-picture>
                 <div class="card-body">
                     <h2 class="mb-4">@Model.Product.Name</h2>
-                    <h5 class="card-title">Kurs Açıklaması</h5>
+                    <h5 class="card-title">Ürün Açıklaması</h5>
                     <p>@Model.Product.Description</p>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-6">
             <div class="card shadow-lg border-0">

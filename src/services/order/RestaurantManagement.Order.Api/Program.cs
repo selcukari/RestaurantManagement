@@ -19,7 +19,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
-builder.Services.AddCommonMasstransitExt(builder.Configuration);
+// builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
@@ -31,6 +31,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddRefitConfigurationExt(builder.Configuration);

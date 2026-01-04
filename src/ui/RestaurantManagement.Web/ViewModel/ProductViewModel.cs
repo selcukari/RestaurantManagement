@@ -10,6 +10,7 @@
     string Created,
     string EducatorFullName,
     string MenuName,
+    Guid? MenuId,
     int Duration,
     float Rating)
     {
