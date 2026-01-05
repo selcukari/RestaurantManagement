@@ -29,7 +29,7 @@ namespace RestaurantManagement.Web.Pages.Instructor
 
             if (!result.IsSuccess)
             {
-                //TODO : Show error
+                return RedirectToPage("Error");
             }
 
             return RedirectToPage("Products");
