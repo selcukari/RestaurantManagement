@@ -17,7 +17,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.GetAll
 
             if (productList?.Any() != true)
             {
-                var products = await context.Products
+                var products = await context.Products.Where(x => x.Quantity > 0)
                 .ToListAsync(cancellationToken);
 
                 var menus = await context.Menus.ToListAsync(cancellationToken);

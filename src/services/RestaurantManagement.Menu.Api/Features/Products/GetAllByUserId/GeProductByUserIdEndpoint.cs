@@ -10,7 +10,7 @@ public class GetProductByIdQueryHandler(AppDbContext context, IMapper mapper)
     public async Task<ServiceResult<HashSet<ProductDto>>> Handle(GetProductByUserIdQuery request,
         CancellationToken cancellationToken)
     {
-        var products = await context.Products.Where(x => x.UserId == request.Id)
+        var products = await context.Products.Where(x => x.UserId == request.Id && x.Quantity > 0)
             .ToListAsync(cancellationToken);
 
         var categories = await context.Menus.ToListAsync(cancellationToken);
