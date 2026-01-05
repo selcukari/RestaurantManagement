@@ -37,6 +37,7 @@ namespace RestaurantManagement.Web.Services
                     c.Price,
                     c.ImageUrl,
                     c.Created.ToLongDateString(),
+                    c.Quantity,
                     c.Feature.EducatorFullName,
                     c.Menum.Name,
                     c.Menum.Id,
@@ -57,7 +58,7 @@ namespace RestaurantManagement.Web.Services
 
             var product = response.Content!;
             var courseViewModel = new ProductViewModel(product.Id, product.Name, product.Description, product.Price,
-                product.ImageUrl, product.Created.ToLongDateString(), product.Feature.EducatorFullName, product.Menum.Name,
+                product.ImageUrl, product.Created.ToLongDateString(), product.Quantity, product.Feature.EducatorFullName, product.Menum.Name,
                 product.Menum.Id, product.Feature.Duration, product.Feature.Rating);
 
             return ServiceResult<ProductViewModel>.Success(courseViewModel);
@@ -145,16 +146,16 @@ namespace RestaurantManagement.Web.Services
 
         public async Task<ServiceResult<List<ProductViewModel>>> GetProductByUserId()
         {
-            var course = await menuRefitService.GetProductByUserId(userService.UserId);
+            var product = await menuRefitService.GetProductByUserId(userService.UserId);
 
-            if (!course.IsSuccessStatusCode)
+            if (!product.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(course.Error.Content!);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(product.Error.Content!);
                 logger.LogError("Error occurred while fetching courses by user id");
                 return ServiceResult<List<ProductViewModel>>.Error("Fail to retrieve courses. Please try again later");
             }
 
-            var products = course!.Content!
+            var products = product!.Content!
                 .Select(c => new ProductViewModel(
                     c.Id,
                     c.Name,
@@ -162,6 +163,7 @@ namespace RestaurantManagement.Web.Services
                     c.Price,
                     c.ImageUrl,
                     c.Created.ToLongDateString(),
+                    c.Quantity,
                     c.Feature.EducatorFullName,
                     c.Menum.Name,
                     c.Menum.Id,

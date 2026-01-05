@@ -8,6 +8,7 @@
     decimal Price,
     string ImageUrl,
     string Created,
+    int Quantity,
     string EducatorFullName,
     string MenuName,
     Guid? MenuId,

@@ -29,6 +29,7 @@ namespace RestaurantManagement.Web.Pages.Instructor
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
+                Quantity = product.Quantity,
                 MenuId = (Guid)product?.MenuId!,
                 ExistingPictureUrl = product.ImageUrl // Mevcut resim yolu
             };
@@ -44,7 +45,7 @@ namespace RestaurantManagement.Web.Pages.Instructor
 
             if (!result.IsSuccess)
             {
-                //TODO : Show error
+                return RedirectToPage("Error");
             }
 
             return RedirectToPage("Products");
