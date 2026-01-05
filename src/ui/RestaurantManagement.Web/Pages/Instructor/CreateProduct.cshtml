@@ -5,6 +5,7 @@
 }
 
 <div class="row">
+    
     <h2>Create Course</h2>
     <div asp-validation-summary="ModelOnly" class="alert alert-warning text-bg-warning   border-warning"></div>
     <form method="post" enctype="multipart/form-data">
@@ -35,8 +36,14 @@
 
         <div class="mb-3">
             <label asp-for="ViewModel.Price" class="form-label"></label>
-            <input asp-for="ViewModel.Price" class="form-control" type="number" step="0.01">
+            <input asp-for="ViewModel.Price" class="form-control" type="number" step="1">
             <span asp-validation-for="ViewModel.Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ViewModel.Quantity" class="form-label"></label>
+            <input asp-for="ViewModel.Quantity" class="form-control" type="number" min="1" step="1">
+            <span asp-validation-for="ViewModel.Quantity" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Create Product</button>

@@ -14,6 +14,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Update
             hasProduct.Name = request.Name;
             hasProduct.Description = request.Description;
             hasProduct.Price = request.Price;
+            hasProduct.Quantity = request.Quantity;
             hasProduct.ImageUrl = request.ImageUrl;
             hasProduct.MenumId = request.MenumId;
 

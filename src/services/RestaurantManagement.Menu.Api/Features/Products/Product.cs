@@ -8,6 +8,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products
         public string Description { get; set; } = default!;
         public decimal Price { get; set; }
         public Guid UserId { get; set; }
+        public int Quantity { get; set; }
         public string? ImageUrl { get; set; }
 
         public DateTime Created { get; set; }

@@ -94,6 +94,7 @@ namespace RestaurantManagement.Web.Services
                 model.Name,
                 model.Description,
                 model.Price,
+                model.Quantity,
                 pictureStreamPart,
                 model.MenuId.ToString()!
             );
