@@ -48,7 +48,7 @@ namespace RestaurantManagement.Web.Services
                 responseAsResult.Content.Items.Select(item => new BasketItemViewModel(
                     item.Id,
                     item.Name,
-                    item.ImageUrl, item.Price,
+                    item.ImageUrl, item.Price, item.Quantity,
                     item.PriceByApplyDiscountRate
                 )).ToList()
             );
@@ -75,8 +75,7 @@ namespace RestaurantManagement.Web.Services
 
             foreach (var basketItem in basketsAsResult.Data!.Items)
                 basketPageViewModel.Items.Add(new BasketViewModelItem(basketItem.Id, basketItem.ImageUrl,
-                    basketItem.Name,
-                    basketItem.Price, basketItem.PriceByApplyDiscountRate));
+                    basketItem.Name, basketItem.Price, basketItem.Quantity, basketItem.PriceByApplyDiscountRate));
 
 
             return ServiceResult<BasketPageViewModel>.Success(basketPageViewModel);

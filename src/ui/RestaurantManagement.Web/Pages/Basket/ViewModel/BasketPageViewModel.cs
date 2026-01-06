@@ -33,5 +33,6 @@
         string? PictureUrl,
         string Name,
         decimal Price,
+        int Quantity,
         decimal? PriceWithDiscountRate);
 }

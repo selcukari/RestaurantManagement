@@ -36,7 +36,7 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.AddBasketItem
             var existingBasketItem = currentBasket!.Items.FirstOrDefault(x => x.Id == request.ProductId);
 
 
-            if (existingBasketItem is not null) // basket  var ise sil
+            if (existingBasketItem is not null) // basket  var ise quantity leri topla
                  // TODO : business rule
             {
                 currentBasket.Items.Remove(existingBasketItem);

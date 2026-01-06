@@ -11,6 +11,7 @@ namespace RestaurantManagement.Web.Pages.Basket
     public class IndexModel(MenuService menuService, BasketService basketService) : BasePageModel
     {
         public BasketPageViewModel Basket { get; set; } = new();
+        
 
         public async Task<IActionResult> OnGet()
         {
@@ -22,13 +23,13 @@ namespace RestaurantManagement.Web.Pages.Basket
 
             return Page();
         }
-        public async Task<IActionResult> OnGetAddBasketAsync(Guid productId)
+        public async Task<IActionResult> OnGetAddBasketAsync(Guid productId, int quantity)
         {
             var product = await menuService.GetProduct(productId);
 
 
             var createOrUpdateBasket = new AddBasketRequest(product.Data!.Id, product.Data.Name,
-                product.Data.Price, product.Data.ImageUrl, 1);
+                product.Data.Price, product.Data.ImageUrl, quantity);
 
 
             var result = await basketService.CreateOrUpdateBasketAsync(createOrUpdateBasket);

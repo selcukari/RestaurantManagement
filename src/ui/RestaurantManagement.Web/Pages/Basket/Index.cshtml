@@ -8,9 +8,10 @@
     <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">product Picture</th>
-            <th scope="col">product Name</th>
-            <th scope="col">product Price</th>
+            <th scope="col">Ürün Resmi</th>
+            <th scope="col">Ürün Adı</th>
+            <th scope="col">Ürün Fiyatı</th>
+            <th scope="col">Ürün Adet/Miktar</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -50,6 +51,9 @@
                         @basketItem.Price.ToString("C")
                     }
 
+                </td>
+                <td>
+                    @basketItem.Quantity
                 </td>
 
                 <td>

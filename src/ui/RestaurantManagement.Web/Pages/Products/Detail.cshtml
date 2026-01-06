@@ -3,15 +3,10 @@
 @{
     ViewData["Title"] = "Ürün Detail";
 }
-
 <div class="container mt-5">
-
     <div class="row">
-
-
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
-
                 <product-thumbnail-picture class="card-img-top img-fluid" alt="Kurs Resmi" src="@Model.Product.ImageUrl"></product-thumbnail-picture>
                 <div class="card-body">
                     <h2 class="mb-4">@Model.Product.Name</h2>
@@ -20,23 +15,22 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
                 <div class="card-body">
-
                     <h5 class="card-title">Kategori</h5>
                     <p class="card-text">@Model.Product.MenuName</p>
                     <hr>
-
-
                     <h5 class="card-title">Fiyat</h5>
                     <p class="card-text">
                         <strong>@Model.Product.Price.ToString("C")</strong>
                     </p>
                     <hr>
-
-
+                    <h5 class="card-title">Adet/Miktar</h5>
+                    <p class="card-text">
+                        <input id="quantityInput" name="quantity" class="form-control" type="number" min="1" value="1">
+                    </p>
+                    <hr>
                     <h5 class="card-title">Detaylar</h5>
                     <p class="card-text">
                         <small class="text-muted">Eğitmen: <strong>@Model.Product.EducatorFullName</strong></small>
@@ -49,13 +43,19 @@
                     </p>
                 </div>
                 <div class="card-footer bg-light text-center">
-                    <a asp-page="/basket/index" asp-page-handler="AddBasket" asp-route-productId="@Model.Product.Id" class="btn btn-primary">Add To Basket</a>
+                    <button id="addToBasketBtn" class="btn btn-primary">Add To Basket</button>
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('addToBasketBtn').addEventListener('click', function() {
+            var quantity = document.getElementById('quantityInput').value;
+            var productId = '@Model.Product.Id';
+            window.location.href = '/Basket/Index?handler=AddBasket&productId=' + productId + '&quantity=' + quantity;
+        });
+    </script>
+}

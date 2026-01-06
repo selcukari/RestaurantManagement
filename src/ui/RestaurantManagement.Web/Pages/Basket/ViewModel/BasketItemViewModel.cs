@@ -5,5 +5,6 @@
      string Name,
      string ImageUrl,
      decimal Price,
+     int Quantity,
      decimal? PriceByApplyDiscountRate);
 }
