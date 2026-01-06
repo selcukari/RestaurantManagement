@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
 using MongoDB.Driver;
-using RestaurantManagement.Kitchen.Api.Features.Kitchens;
 
 namespace RestaurantManagement.Kitchen.Api.Repositories
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Kitchen> Kitchens { get; set; }
+        public DbSet<RestaurantManagement.Kitchen.Api.Features.Kitchens.Kitchen> Kitchens { get; set; }
 
 
         public static AppDbContext Create(IMongoDatabase database)

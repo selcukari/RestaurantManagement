@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOptionsExt();
+builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(KitchenAssembly));
 
 
