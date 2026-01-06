@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\RestaurantManagement.Shared\RestaurantManagement.Shared.csproj" />
+    <ProjectReference Include="..\..\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj" />
+  </ItemGroup>
+
 </Project>
