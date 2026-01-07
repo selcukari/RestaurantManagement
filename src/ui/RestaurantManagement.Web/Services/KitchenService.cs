@@ -1,5 +1,4 @@
-﻿using RestaurantManagement.Web.Pages.Kitchen.ViewModel;
-using RestaurantManagement.Web.Pages.Order.ViewModel;
+﻿using RestaurantManagement.Web.Pages.Instructor.Kitchen.ViewModel;
 using RestaurantManagement.Web.Services.Refit;
 
 namespace RestaurantManagement.Web.Services

@@ -1,5 +1,5 @@
 ﻿
-namespace RestaurantManagement.Web.Pages.Kitchen.ViewModel
+namespace RestaurantManagement.Web.Pages.Instructor.Kitchen.ViewModel
 {
     public record KitchenPageViewModel
     {

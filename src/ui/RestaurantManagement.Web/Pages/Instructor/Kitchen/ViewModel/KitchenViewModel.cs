@@ -1,7 +1,7 @@
 ﻿using RestaurantManagement.Web.Pages.Order.ViewModel;
 using System.Collections.Immutable;
 
-namespace RestaurantManagement.Web.Pages.Kitchen.ViewModel
+namespace RestaurantManagement.Web.Pages.Instructor.Kitchen.ViewModel
 {
     public record KitchenViewModel(Guid? UserId, string Created)
     {

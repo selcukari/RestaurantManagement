@@ -17,8 +17,4 @@
     <ProjectReference Include="..\..\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Kitchens\GetAll\" />
-  </ItemGroup>
-
 </Project>

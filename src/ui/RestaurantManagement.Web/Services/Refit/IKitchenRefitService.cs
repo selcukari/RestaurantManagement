@@ -1,5 +1,5 @@
 ﻿using Refit;
-using RestaurantManagement.Web.Pages.Kitchen.Dto;
+using RestaurantManagement.Web.Instructor.Pages.Kitchen.Dto;
 
 namespace RestaurantManagement.Web.Services.Refit
 {
