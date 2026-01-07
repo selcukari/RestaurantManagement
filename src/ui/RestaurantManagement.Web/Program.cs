@@ -27,6 +27,7 @@ builder.Services.AddScoped<MenuService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<BasketService>();
+builder.Services.AddScoped<KitchenService>();
 
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
@@ -58,6 +59,13 @@ builder.Services.AddRefitClient<IOrderRefitService>().ConfigureHttpClient(config
 {
     var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
     configure.BaseAddress = new Uri(microserviceOption!.Order.BaseAddress);
+}).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+
+builder.Services.AddRefitClient<IKitchenRefitService>().ConfigureHttpClient(configure =>
+{
+    var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+    configure.BaseAddress = new Uri(microserviceOption!.Kitchen.BaseAddress);
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 

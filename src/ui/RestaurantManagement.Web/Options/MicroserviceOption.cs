@@ -10,6 +10,7 @@
         public required MicroserviceOptionItem Discount { get; set; }
 
         public required MicroserviceOptionItem Order { get; set; }
+        public required MicroserviceOptionItem Kitchen { get; set; }
     }
 
     public class MicroserviceOptionItem

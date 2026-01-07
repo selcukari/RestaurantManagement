@@ -9,7 +9,7 @@ namespace RestaurantManagement.Kitchen.Api.Features.Kitchens
         {
             app.MapGroup("api/v{version:apiVersion}/kitchens").WithTags("Kitchens")
                 .WithApiVersionSet(apiVersionSet)
-                .GetAllKitchenGroupItemEndpoint().RequireAuthorization(policyNames: "InstructorPolicy");
+                .GetAllKitchenGroupItemEndpoint();
         }
     }
 }

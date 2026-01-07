@@ -36,7 +36,7 @@ namespace RestaurantManagement.Kitchen.Api.Features.Kitchens.GetAll
                     async (IMediator mediator) =>
                         (await mediator.Send(new GetAllKitchensQuery())).ToGenericResult())
                 .MapToApiVersion(1, 0)
-                .WithName("GetAllKitchen");
+                .WithName("GetAllKitchen").RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }
