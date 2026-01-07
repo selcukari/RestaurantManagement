@@ -1,5 +1,6 @@
 ﻿using RestaurantManagement.Bus.Events;
 using RestaurantManagement.Kitchen.Api.Features.Kitchens;
+using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Kitchen.Api.Consumers
 {
