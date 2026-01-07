@@ -9,9 +9,9 @@ namespace RestaurantManagement.Web.Pages.Order.ViewModel
         public ImmutableList<OrderItemViewModel> GetItems => OrderItems.ToImmutableList();
 
 
-        public void AddItem(Guid productId, string productName, decimal unitPrice)
+        public void AddItem(Guid productId, string productName, decimal unitPrice, int Quantity)
         {
-            OrderItems.Add(new OrderItemViewModel(productId, productName, unitPrice));
+            OrderItems.Add(new OrderItemViewModel(productId, productName, unitPrice, Quantity));
         }
     }
 }

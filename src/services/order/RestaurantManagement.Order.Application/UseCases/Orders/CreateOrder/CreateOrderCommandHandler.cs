@@ -63,9 +63,16 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
             orderRepository.Update(order);
             await unitOfWork.CommitAsync(cancellationToken);
 
-
+            // sepet datasını sil
             await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
                 cancellationToken);
+            // mutfak service ye kayıt et
+            await publishEndpoint.Publish(new OrderCreatedForKitchenEvent(order.Id,
+                order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
+                item.ProductId,
+                item.ProductName,
+                item.Quantity
+            )).ToList()), cancellationToken);
 
             cacheService.Remove("orders");
 

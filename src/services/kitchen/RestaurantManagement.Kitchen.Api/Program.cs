@@ -1,6 +1,5 @@
 using RestaurantManagement.Kitchen.Api;
 using RestaurantManagement.Kitchen.Api.Options;
-using RestaurantManagement.Shared.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOptionsExt();
 builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(KitchenAssembly));
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 
 var app = builder.Build();

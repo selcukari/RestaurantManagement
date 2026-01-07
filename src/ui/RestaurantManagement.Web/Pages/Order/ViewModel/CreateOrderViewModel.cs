@@ -27,7 +27,7 @@ namespace RestaurantManagement.Web.Pages.Order.ViewModel
         public void AddOrderItem(BasketItemViewModel basketItem)
         {
             OrderItems.Add(new OrderItemViewModel(basketItem.Id, basketItem.Name,
-                basketItem.PriceByApplyDiscountRate ?? basketItem.Price));
+                basketItem.PriceByApplyDiscountRate ?? basketItem.Price, basketItem.Quantity));
         }
     }
 }

@@ -3,6 +3,7 @@
     public record OrderItemDto(
      Guid ProductId,
      string ProductName,
-     decimal UnitPrice
+     decimal UnitPrice,
+     int Quantity
  );
 }
