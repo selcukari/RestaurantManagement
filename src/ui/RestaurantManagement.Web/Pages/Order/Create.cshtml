@@ -8,7 +8,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h2>Order information</h2>
+                <h2>Sipariş bilgileri</h2>
                 <div class="card mb-3">
 
                     <div class="card-body">
@@ -41,7 +41,7 @@
                         </div>
 
 
-                        <h3>Payment Information</h3>
+                        <h3>Ödeme Bilgileri</h3>
                         <div class="mb-3">
                             <label asp-for="CreateOrderViewModel.Payment.CardHolderName" class="form-label"></label>
                             <input class="form-control" asp-for="CreateOrderViewModel.Payment.CardHolderName" value="ahmet yıldız">
@@ -63,14 +63,8 @@
                             <input class="form-control" asp-for="CreateOrderViewModel.Payment.ExpiryDate" value="05/22">
                             <span asp-validation-for="CreateOrderViewModel.Payment.ExpiryDate" class="text-danger"></span>
                         </div>
-
-
                     </div>
-
-
                 </div>
-
-
             </div>
             <div class="col-md-6">
                 <h2>Sipariş Ürünleri</h2>
