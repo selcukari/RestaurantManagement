@@ -4,7 +4,7 @@ using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Kitchen.Api.Consumers
 {
-    public class OrderCreatedForKitchenEventConsumer(IServiceProvider serviceProvider) : IConsumer<OrderCreatedForKitchenEvent>
+    public class OrderCreatedForKitchenEventConsumer(IServiceProvider serviceProvider, ICacheService cacheService) : IConsumer<OrderCreatedForKitchenEvent>
     {
         public async Task Consume(ConsumeContext<OrderCreatedForKitchenEvent> context)
         {
@@ -30,6 +30,8 @@ namespace RestaurantManagement.Kitchen.Api.Consumers
             await dbContext.Kitchens.AddAsync(kitchen);
 
             await dbContext.SaveChangesAsync();
+
+            cacheService.Remove("kitchens");
         }
     }
 }

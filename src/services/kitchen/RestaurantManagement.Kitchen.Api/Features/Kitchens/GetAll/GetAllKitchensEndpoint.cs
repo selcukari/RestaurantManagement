@@ -11,7 +11,7 @@ namespace RestaurantManagement.Kitchen.Api.Features.Kitchens.GetAll
         public async Task<ServiceResult<List<KitchenDto>>> Handle(GetAllKitchensQuery request,
             CancellationToken cancellationToken)
         {
-            var cacheKey = $"menus";
+            var cacheKey = $"kitchens";
 
             var kitchenList = cacheService.Get<List<KitchenDto>>(cacheKey);
 
