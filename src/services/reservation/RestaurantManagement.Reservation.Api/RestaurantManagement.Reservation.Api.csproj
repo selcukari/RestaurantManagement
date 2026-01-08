@@ -15,8 +15,4 @@
     <ProjectReference Include="..\..\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
