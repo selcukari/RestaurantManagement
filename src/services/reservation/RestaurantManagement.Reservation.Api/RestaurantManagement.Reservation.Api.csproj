@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.EntityFrameworkCore" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\RestaurantManagement.Shared\RestaurantManagement.Shared.csproj" />
+    <ProjectReference Include="..\..\bus\RestaurantManagement.Bus\RestaurantManagement.Bus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
