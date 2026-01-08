@@ -19,7 +19,6 @@ namespace RestaurantManagement.Web.Pages.Instructor.Kitchen
 
             KitchenList = response.Data!;
 
-
             return Page();
         }
     }
