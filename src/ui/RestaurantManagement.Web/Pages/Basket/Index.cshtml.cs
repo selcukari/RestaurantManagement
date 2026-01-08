@@ -4,7 +4,6 @@ using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Pages.Basket.Dto;
 using RestaurantManagement.Web.Pages.Basket.ViewModel;
 using RestaurantManagement.Web.Services;
-using System.Text.Json;
 
 namespace RestaurantManagement.Web.Pages.Basket
 {
