@@ -14,7 +14,7 @@ namespace RestaurantManagement.Menu.Api
             services.AddMassTransit(configure =>
             {
                 configure.AddConsumer<ProductPictureUploadedEventConsumer>();
-
+                configure.AddConsumer<OrderCreatedItemsEventConsumer>();
 
                 configure.UsingRabbitMq((ctx, cfg) =>
                 {
@@ -26,6 +26,9 @@ namespace RestaurantManagement.Menu.Api
 
                     cfg.ReceiveEndpoint("menu-microservice.product-picture-uploaded.queue",
                         e => { e.ConfigureConsumer<ProductPictureUploadedEventConsumer>(ctx); });
+
+                    cfg.ReceiveEndpoint("menu-microservice.product-quantity-updated.queue",
+                        e => { e.ConfigureConsumer<OrderCreatedItemsEventConsumer>(ctx); });
 
 
                     // cfg.ConfigureEndpoints(ctx);

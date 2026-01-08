@@ -7,6 +7,7 @@ using RestaurantManagement.Order.Application.Contracts.UnitOfWork;
 using RestaurantManagement.Order.Domain.Entities;
 using RestaurantManagement.Shared;
 using RestaurantManagement.Shared.Services;
+using System.Linq;
 using System.Net;
 
 namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
@@ -69,6 +70,12 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
             // mutfak service ye kayıt et
             await publishEndpoint.Publish(new OrderCreatedForKitchenEvent(identityService.UserId,
                 order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
+                item.ProductId,
+                item.ProductName,
+                item.Quantity
+            )).ToList()), cancellationToken);
+            // siparişleri tamamlananların depodan sayısını cıkar
+            await publishEndpoint.Publish(new OrderCreatedItemsEvent(order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
                 item.ProductId,
                 item.ProductName,
                 item.Quantity

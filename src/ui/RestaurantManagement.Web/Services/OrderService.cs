@@ -5,10 +5,28 @@ using System.Net;
 
 namespace RestaurantManagement.Web.Services
 {
-    public class OrderService(IOrderRefitService orderService, ILogger<OrderService> logger)
+    public class OrderService(IOrderRefitService orderService, IMenuRefitService menuRefitService, ILogger<OrderService> logger)
     {
         public async Task<ServiceResult> CreateOrder(CreateOrderViewModel viewModel)
         {
+            //allProducts
+            var products = await menuRefitService.GetAllProducts();
+
+            if (products == null || products.Content.Count < 1)
+            {
+                return ServiceResult.Error("An error occurred while creating the product");
+            }
+
+            foreach (var item in viewModel.OrderItems!)
+            {
+                var findItem = products.Content.FirstOrDefault(x => x.Id == item.ProductId);
+
+                if (findItem != null && (findItem.Quantity < item.Quantity))
+                {
+                    return ServiceResult.Error("Yetersiz Stok", $"Üzgünüz, bu üründen stokta sadece {findItem.Quantity} adet kalmıştır.");
+                }
+            }
+
             //createAddressDto
             var address = new AddressDto(viewModel.Address.Province, viewModel.Address.District,
                 viewModel.Address.Street, viewModel.Address.ZipCode, viewModel.Address.Line);

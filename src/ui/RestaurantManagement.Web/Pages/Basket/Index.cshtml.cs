@@ -4,6 +4,7 @@ using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Pages.Basket.Dto;
 using RestaurantManagement.Web.Pages.Basket.ViewModel;
 using RestaurantManagement.Web.Services;
+using System.Text.Json;
 
 namespace RestaurantManagement.Web.Pages.Basket
 {
@@ -26,6 +27,22 @@ namespace RestaurantManagement.Web.Pages.Basket
         public async Task<IActionResult> OnGetAddBasketAsync(Guid productId, int quantity)
         {
             var product = await menuService.GetProduct(productId);
+
+            if (product.IsFail)
+            {
+                var customError = ServiceResult.Error("Ürün Bilgisi Alýnamadý", "Seçtiðiniz ürün þu an sistemde görüntülenemiyor.");
+                return ErrorPage(customError, "Index");
+            }
+
+            if (product.Data!.Quantity < quantity)
+            {
+                var errorResult = ServiceResult.Error(
+                    "Yetersiz Stok",
+                    $"Üzgünüz, bu üründen stokta sadece {product.Data.Quantity} adet kalmýþtýr."
+                );
+
+                return ErrorPage(errorResult, "Index");
+            }
 
 
             var createOrUpdateBasket = new AddBasketRequest(product.Data!.Id, product.Data.Name,
