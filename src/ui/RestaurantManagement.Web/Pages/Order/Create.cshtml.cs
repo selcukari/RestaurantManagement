@@ -20,7 +20,6 @@ namespace RestaurantManagement.Web.Pages.Order
             await LoadInitialFormData();
             if (!ModelState.IsValid) return Page();
 
-
             var result = await orderService.CreateOrder(CreateOrderViewModel);
 
             return result.IsFail
