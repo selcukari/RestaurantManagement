@@ -3,23 +3,23 @@ using RestaurantManagement.Reservation.Api.Features.Tables.Dtos;
 
 namespace RestaurantManagement.Reservation.Api.Features.Tables.GetById
 {
-    public record GetTableByIdQuery(Guid Id) : IRequestByServiceResult<TableDto>;
+    public record GetTableByIdQuery(Guid Id) : IRequestByServiceResult<ReservationDto>;
 
     public class GetProductByIdQueryHandler(AppDbContext context, IMapper mapper)
-    : IRequestHandler<GetTableByIdQuery, ServiceResult<TableDto>>
+    : IRequestHandler<GetTableByIdQuery, ServiceResult<ReservationDto>>
     {
-        public async Task<ServiceResult<TableDto>> Handle(GetTableByIdQuery request,
+        public async Task<ServiceResult<ReservationDto>> Handle(GetTableByIdQuery request,
             CancellationToken cancellationToken)
         {
             var hasTable = await context.Tables.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
 
             if (hasTable is null)
-                return ServiceResult<TableDto>.Error("Table not found",
+                return ServiceResult<ReservationDto>.Error("Table not found",
                     $"The Table with id({request.Id}) was not found", HttpStatusCode.NotFound);
 
-            var tableAsDto = mapper.Map<TableDto>(hasTable);
-            return ServiceResult<TableDto>.SuccessAsOk(tableAsDto);
+            var tableAsDto = mapper.Map<ReservationDto>(hasTable);
+            return ServiceResult<ReservationDto>.SuccessAsOk(tableAsDto);
         }
     }
 

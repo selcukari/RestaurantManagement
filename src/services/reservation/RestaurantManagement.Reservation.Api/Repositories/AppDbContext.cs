@@ -7,7 +7,7 @@ namespace RestaurantManagement.Reservation.Api.Repositories
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Table> Tables { get; set; }
+        public DbSet<Features.Tables.Reservation> Tables { get; set; }
 
 
         public static AppDbContext Create(IMongoDatabase database)

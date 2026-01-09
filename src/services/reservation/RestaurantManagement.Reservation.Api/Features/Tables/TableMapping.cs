@@ -9,8 +9,8 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables
     {
         public TableMapping()
         {
-            CreateMap<CreateTableCommand, Table>();
-            CreateMap<Table, TableDto>().ReverseMap();
+            CreateMap<CreateReservationCommand, Reservation>();
+            CreateMap<Reservation, ReservationDto>().ReverseMap();
         }
     }
 }
