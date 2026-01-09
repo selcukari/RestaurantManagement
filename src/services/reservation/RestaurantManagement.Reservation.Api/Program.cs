@@ -1,6 +1,14 @@
+using RestaurantManagement.Reservation.Api;
+using RestaurantManagement.Shared.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCommonServiceExt(typeof(TableAssembly));
+builder.Services.AddVersioningExt();
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddScoped<ICacheService, CacheService>();
 
 var app = builder.Build();
 
@@ -9,7 +17,3 @@ var app = builder.Build();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
