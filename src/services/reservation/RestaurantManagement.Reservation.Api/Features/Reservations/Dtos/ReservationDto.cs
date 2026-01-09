@@ -2,12 +2,12 @@
 {
     public record ReservationDto(
     Guid Id,
-    int TableNumber,
-    Guid UserId,
-    int Capacity,
+    Guid CustomerId,
     DateTime Created,
-    bool IsAvailable,
-    Location Location,
-    TableStatus Status
+    DateTime ReservationDate,
+    TimeSpan StartTime,
+    TimeSpan EndTime,
+    int GuestCount,
+    TableDto Table
     );
 }

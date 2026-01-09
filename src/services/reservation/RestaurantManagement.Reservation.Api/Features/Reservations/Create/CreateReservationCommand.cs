@@ -2,10 +2,10 @@
 {
     public record CreateReservationCommand : IRequestByServiceResult<Guid>
     {
-        public int TableNumber { get; set; }
-        public int Capacity { get; set; }
-        public Location Location { get; set; }
-        public bool IsAvailable { get; set; } = true;
-        public TableStatus Status { get; set; } = 0;
+        public Guid TableId { get; set; }
+        public DateTime ReservationDate { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public int GuestCount { get; set; }
     }
 }

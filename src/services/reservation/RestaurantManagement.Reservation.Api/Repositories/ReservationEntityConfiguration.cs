@@ -5,7 +5,7 @@ namespace RestaurantManagement.Reservation.Api.Repositories
 {
     public class ReservationEntityConfiguration
     {
-        public void Configure(EntityTypeBuilder<Reservation> builder)
+        public void Configure(EntityTypeBuilder<RestaurantManagement.Reservation.Api.Features.Reservations.Reservation> builder)
         {
             // Koleksiyon adı
             builder.ToCollection("reservations"); // Genelde varlık adıyla uyumlu olması tercih edilir (reservations yerine tables)
@@ -27,7 +27,10 @@ namespace RestaurantManagement.Reservation.Api.Repositories
                    .HasElementName("endTime")
                    .IsRequired();
 
-            builder.Property(x => x.TableNumber).HasElementName("tableNumber");
+            builder.Property(x => x.Created)
+                   .HasElementName("created")
+                   .IsRequired();
+
             builder.Property(x => x.TableId).HasElementName("tableId");
             builder.Property(x => x.CustomerId).HasElementName("customerId");
             builder.Property(x => x.GuestCount).HasElementName("guestCount");
