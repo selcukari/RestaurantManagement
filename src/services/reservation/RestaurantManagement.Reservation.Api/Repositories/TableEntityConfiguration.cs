@@ -37,14 +37,11 @@ namespace RestaurantManagement.Reservation.Api.Repositories
 
             // Enum Yapılandırmaları
             // Veritabanında string olarak saklamak sorgulanabilirliği artırır (Window, VIP vb.)
-            // Eğer sayı olarak saklamak isterseniz .HasConversion kısmını kaldırabilirsiniz.
             builder.Property(x => x.Location)
-                   .HasElementName("location")
-                   .HasConversion<string>();
+                   .HasElementName("location");
 
             builder.Property(x => x.Status)
-                   .HasElementName("status")
-                   .HasConversion<string>();
+                   .HasElementName("status");
         }
     }
 }

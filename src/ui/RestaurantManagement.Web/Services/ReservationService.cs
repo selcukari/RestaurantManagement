@@ -7,7 +7,6 @@ namespace RestaurantManagement.Web.Services
 {
     public class ReservationService(
     IReservationRefitService reservationRefitService,
-    UserService userService,
     ILogger<MenuService> logger)
     {
         public async Task<ServiceResult<List<ReservationViewModel>>> GetAllReservationsAsync()
@@ -30,7 +29,7 @@ namespace RestaurantManagement.Web.Services
             var reservationsViewModel = reservations.Select(c =>
                 new ReservationViewModel(
                     c.Id,
-                    c.CustomerId.ToString(), // bura da ıd ile fullname bull
+                    c.CustomerFullName,
                     c.Created.ToLongDateString(),
                     c.ReservationDate.ToLongDateString(),
                     c.StartTime.ToString(),

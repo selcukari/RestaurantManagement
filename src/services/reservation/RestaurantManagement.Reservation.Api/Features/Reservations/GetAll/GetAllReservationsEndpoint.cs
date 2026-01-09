@@ -42,7 +42,8 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAll
                     async (IMediator mediator) =>
                         (await mediator.Send(new GetAllReservationsQuery())).ToGenericResult())
                 .MapToApiVersion(1, 0)
-                .WithName("GetAllReservations");
+                .WithName("GetAllReservations")
+                .RequireAuthorization(policyNames: "InstructorPolicy"); // sadece garson baksın
 
             return group;
         }

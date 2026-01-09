@@ -10,27 +10,28 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
         {
 
             // daha once veri tabanda aynı isimle data var mı
-            var hasTable = await context.Tables.AnyAsync(x => x.TableNumber == request.TableNumber, cancellationToken);
+            var hasReservation = await context.Reservations.AnyAsync(x => x.TableId == request.TableId && x.ReservationDate == request.ReservationDate,
+                  cancellationToken);
 
-            if (hasTable)
-                return ServiceResult<Guid>.Error("Table already exists.",
-                    $"The Table with name({request.TableNumber}) already exists", HttpStatusCode.BadRequest);
+            if (hasReservation)
+                return ServiceResult<Guid>.Error("Reservation already exists.",
+                    $"The Reservation with date({request.ReservationDate.ToLongDateString()}) already exists", HttpStatusCode.BadRequest);
 
 
-            var newTable = mapper.Map<Reservation>(request);
-            newTable.Created = DateTime.Now;
-            newTable.UserFullName = identityService.UserName;
-            newTable.Id = NewId.NextSequentialGuid(); // index performance
+            var newReservation = mapper.Map<Reservation>(request);
+            newReservation.Created = DateTime.Now;
+            newReservation.CustomerFullName = identityService.UserName;
+            newReservation.Id = NewId.NextSequentialGuid(); // index performance
 
         
 
-            context.Tables.Add(newTable);
+            context.Reservations.Add(newReservation);
             await context.SaveChangesAsync(cancellationToken);
 
 
             cacheService.Remove("tables");
 
-            return ServiceResult<Guid>.SuccessAsCreated(newTable.Id, $"/api/tables/{newTable.Id}");
+            return ServiceResult<Guid>.SuccessAsCreated(newReservation.Id, $"/api/reservations/{newReservation.Id}");
         }
     }
 }

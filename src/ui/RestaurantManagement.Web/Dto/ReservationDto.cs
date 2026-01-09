@@ -2,7 +2,7 @@
 {
     public record ReservationDto(
         Guid Id,
-    Guid CustomerId,
+    string CustomerFullName,
     DateTime Created,
     DateTime ReservationDate,
     TimeSpan StartTime,

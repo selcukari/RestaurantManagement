@@ -5,7 +5,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations
 {
     public class Reservation: BaseEntity
     {
-        public Guid CustomerId { get; set; }
+        public string CustomerFullName { get; set; } = string.Empty;
 
         public Table Table { get; set; } = default!;
         public Guid TableId { get; set; }
