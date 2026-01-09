@@ -10,7 +10,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations
         public static void AddReservationGroupEndpointExt(this WebApplication app, ApiVersionSet apiVersionSet)
         {
             app.MapGroup("api/v{version:apiVersion}/reservations").WithTags("Reservations").WithApiVersionSet(apiVersionSet)
-                .CreateTableGroupItemEndpoint()
+                .CreateReservationGroupItemEndpoint()
                 .GetAllReservationGroupItemEndpoint();
         }
     }

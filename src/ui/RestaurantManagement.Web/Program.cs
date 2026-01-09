@@ -69,6 +69,13 @@ builder.Services.AddRefitClient<IKitchenRefitService>().ConfigureHttpClient(conf
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
+builder.Services.AddRefitClient<IReservationRefitService>().ConfigureHttpClient(configure =>
+{
+    var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+    configure.BaseAddress = new Uri(microserviceOption!.Reservation.BaseAddress);
+}).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+    .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+
 builder.Services.AddAuthentication(configureOption =>
 {
     configureOption.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

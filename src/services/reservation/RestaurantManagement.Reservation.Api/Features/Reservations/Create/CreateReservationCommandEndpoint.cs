@@ -5,7 +5,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
 {
     public static class CreateReservationCommandEndpoint
     {
-        public static RouteGroupBuilder CreateTableGroupItemEndpoint(this RouteGroupBuilder group)
+        public static RouteGroupBuilder CreateReservationGroupItemEndpoint(this RouteGroupBuilder group)
         {
             group.MapPost("/",
                     async (CreateReservationCommand command, IMediator mediator) =>

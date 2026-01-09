@@ -1,7 +1,7 @@
 ﻿using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reservation.Api.Features.Tables.Update;
-    public class UpdateTableCommandHandler(AppDbContext context, ICacheService cacheService, IIdentityService identityService, IPublishEndpoint publishEndpoint)
+    public class UpdateTableCommandHandler(AppDbContext context, ICacheService cacheService, IIdentityService identityService)
     : IRequestHandler<UpdateTableCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(UpdateTableCommand request, CancellationToken cancellationToken)

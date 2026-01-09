@@ -1,14 +1,18 @@
 using RestaurantManagement.Reservation.Api;
 using RestaurantManagement.Reservation.Api.Features.Reservations;
 using RestaurantManagement.Reservation.Api.Features.Tables;
+using RestaurantManagement.Reservation.Api.Options;
 using RestaurantManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOptionsExt();
 builder.Services.AddCommonServiceExt(typeof(TableAssembly));
 builder.Services.AddVersioningExt();
+builder.Services.AddDatabaseServiceExt();
+
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddScoped<ICacheService, CacheService>();
 
