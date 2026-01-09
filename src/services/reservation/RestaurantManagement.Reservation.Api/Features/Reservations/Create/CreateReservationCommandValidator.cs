@@ -4,10 +4,16 @@
     {
         public CreateReservationCommandValidator()
         {
-            RuleFor(x => x.TableNumber)
+            RuleFor(x => x.ReservationDate)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.StartTime)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.EndTime)
+                .NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(x => x.TableId)
                 .NotEmpty().WithMessage("{PropertyName} is required.");
 
-            RuleFor(x => x.Capacity).GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be at least 1.");
+            RuleFor(x => x.GuestCount).GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be at least 1.");
         }
     }
 }
