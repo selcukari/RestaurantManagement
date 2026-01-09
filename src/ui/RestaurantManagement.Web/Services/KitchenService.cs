@@ -8,7 +8,7 @@ namespace RestaurantManagement.Web.Services
     UserService userService,
     ILogger<MenuService> logger)
     {
-        public async Task<ServiceResult<List<KitchenViewModel>>> GetAllProductsAsync()
+        public async Task<ServiceResult<List<KitchenViewModel>>> GetAllKitchensAsync()
         {
             var response = await kitchenRefitService.GetAllKitchens();
 

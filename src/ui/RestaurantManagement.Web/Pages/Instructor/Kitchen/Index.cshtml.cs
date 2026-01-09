@@ -13,7 +13,7 @@ namespace RestaurantManagement.Web.Pages.Instructor.Kitchen
 
         public async Task<IActionResult> OnGet()
         {
-            var response = await kitchenService.GetAllProductsAsync();
+            var response = await kitchenService.GetAllKitchensAsync();
 
             if (response.IsFail) return ErrorPage(response);
 

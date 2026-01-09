@@ -29,7 +29,7 @@ namespace RestaurantManagement.Web.Services
 
             var products = productAsResult.Content!;
 
-            var menusViewModel = products.Select(c =>
+            var productsViewModel = products.Select(c =>
                 new ProductViewModel(
                     c.Id,
                     c.Name,
@@ -44,7 +44,7 @@ namespace RestaurantManagement.Web.Services
                     c.Feature.Duration,
                     c.Feature.Rating)).ToList();
 
-            return ServiceResult<List<ProductViewModel>>.Success(menusViewModel);
+            return ServiceResult<List<ProductViewModel>>.Success(productsViewModel);
         }
 
 
