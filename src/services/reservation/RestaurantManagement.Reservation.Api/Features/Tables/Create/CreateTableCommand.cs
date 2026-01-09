@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
 {
-    public record CreateReservationCommand : IRequestByServiceResult<Guid>
+    public record CreateTableCommand : IRequestByServiceResult<Guid>
     {
         public int TableNumber { get; set; }
         public int Capacity { get; set; }

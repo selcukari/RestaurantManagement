@@ -3,31 +3,31 @@ using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reservation.Api.Features.Tables.GetAll
 {
-    public record GetAllTablesQuery : IRequestByServiceResult<HashSet<ReservationDto>>;
+    public record GetAllTablesQuery : IRequestByServiceResult<HashSet<TableDto>>;
 
     public class GetAllCoursesQueryHandler(AppDbContext context, IMapper mapper, ICacheService cacheService)
-        : IRequestHandler<GetAllTablesQuery, ServiceResult<HashSet<ReservationDto>>>
+        : IRequestHandler<GetAllTablesQuery, ServiceResult<HashSet<TableDto>>>
     {
-        public async Task<ServiceResult<HashSet<ReservationDto>>> Handle(GetAllTablesQuery request,
+        public async Task<ServiceResult<HashSet<TableDto>>> Handle(GetAllTablesQuery request,
             CancellationToken cancellationToken)
         {
             var cacheKey = $"tables";
 
-            var tableList = cacheService.Get<HashSet<ReservationDto>>(cacheKey);
+            var tableList = cacheService.Get<HashSet<TableDto>>(cacheKey);
 
             if (tableList?.Any() != true)
             {
                 var tables = await context.Tables.Where(x => x.IsAvailable)
                 .ToListAsync(cancellationToken);
 
-                tableList = mapper.Map<HashSet<ReservationDto>>(tables);
+                tableList = mapper.Map<HashSet<TableDto>>(tables);
 
                 cacheService.Set(cacheKey, tableList, TimeSpan.FromDays(10));
             }
 
                 
 
-            return ServiceResult<HashSet<ReservationDto>>.SuccessAsOk(tableList);
+            return ServiceResult<HashSet<TableDto>>.SuccessAsOk(tableList);
         }
     }
 

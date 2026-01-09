@@ -1,8 +1,8 @@
 ﻿namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
 {
-    public class CreateReservationCommandValidator: AbstractValidator<CreateReservationCommand>
+    public class CreateTableCommandValidator: AbstractValidator<CreateTableCommand>
     {
-        public CreateReservationCommandValidator()
+        public CreateTableCommandValidator()
         {
             RuleFor(x => x.TableNumber)
                 .NotEmpty().WithMessage("{PropertyName} is required.");

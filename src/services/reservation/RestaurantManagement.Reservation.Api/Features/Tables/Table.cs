@@ -1,7 +1,7 @@
 ﻿
 namespace RestaurantManagement.Reservation.Api.Features.Tables
 {
-    public class Reservation: BaseEntity
+    public class Table: BaseEntity
     {
         public int TableNumber { get; set; }
         public string UserFullName { get; set; } = string.Empty;

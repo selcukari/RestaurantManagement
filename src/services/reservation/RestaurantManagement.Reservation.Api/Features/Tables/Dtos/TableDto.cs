@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement.Reservation.Api.Features.Tables.Dtos
 {
-    public record ReservationDto(
+    public record TableDto(
     Guid Id,
     int TableNumber,
     Guid UserId,

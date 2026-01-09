@@ -2,11 +2,11 @@
 
 namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
 {
-    public class CreateReservationCommandHandler(AppDbContext context,
+    public class CreateTableCommandHandler(AppDbContext context,
     IMapper mapper,
-    IIdentityService identityService, ICacheService cacheService) : IRequestHandler<CreateReservationCommand, ServiceResult<Guid>>
+    IIdentityService identityService, ICacheService cacheService) : IRequestHandler<CreateTableCommand, ServiceResult<Guid>>
     {
-        public async Task<ServiceResult<Guid>> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<Guid>> Handle(CreateTableCommand request, CancellationToken cancellationToken)
         {
 
             // daha once veri tabanda aynı isimle data var mı
@@ -17,7 +17,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
                     $"The Table with name({request.TableNumber}) already exists", HttpStatusCode.BadRequest);
 
 
-            var newTable = mapper.Map<Reservation>(request);
+            var newTable = mapper.Map<Table>(request);
             newTable.Created = DateTime.Now;
             newTable.UserFullName = identityService.UserName;
             newTable.Id = NewId.NextSequentialGuid(); // index performance

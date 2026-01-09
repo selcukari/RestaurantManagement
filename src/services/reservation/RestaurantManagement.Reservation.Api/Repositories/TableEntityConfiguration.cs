@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
+using RestaurantManagement.Reservation.Api.Features.Tables;
 
 namespace RestaurantManagement.Reservation.Api.Repositories
 {
     public class TableEntityConfiguration
     {
-        public void Configure(EntityTypeBuilder<Features.Tables.Reservation> builder)
+        public void Configure(EntityTypeBuilder<Table> builder)
         {
             // Koleksiyon adı
             builder.ToCollection("tables"); // Genelde varlık adıyla uyumlu olması tercih edilir (reservations yerine tables)
