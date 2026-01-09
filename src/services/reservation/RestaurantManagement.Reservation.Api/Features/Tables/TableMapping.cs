@@ -5,9 +5,9 @@ using RestaurantManagement.Reservation.Api.Features.Tables.Dtos;
 
 namespace RestaurantManagement.Reservation.Api.Features.Tables
 {
-    public class TableMapping: Profile
+    public class ReservationMapping: Profile
     {
-        public TableMapping()
+        public ReservationMapping()
         {
             CreateMap<CreateTableCommand, Table>();
             CreateMap<Table, TableDto>().ReverseMap();

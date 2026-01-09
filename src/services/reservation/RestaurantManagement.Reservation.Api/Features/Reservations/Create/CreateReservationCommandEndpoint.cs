@@ -10,13 +10,13 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
             group.MapPost("/",
                     async (CreateReservationCommand command, IMediator mediator) =>
                     (await mediator.Send(command)).ToGenericResult())
-                .WithName("CreateProduct")
+                .WithName("CreateReservation")
                 .MapToApiVersion(1, 0)
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateReservationCommand>>().DisableAntiforgery() // cross site request forgest saldırıları icin "DisableAntiforgery" 
+                .AddEndpointFilter<ValidationFilter<CreateReservationCommand>>() 
                 .RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;

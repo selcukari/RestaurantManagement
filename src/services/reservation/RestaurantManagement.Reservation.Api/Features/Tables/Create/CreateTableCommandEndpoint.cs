@@ -16,7 +16,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
                 .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateTableCommand>>().DisableAntiforgery() // cross site request forgest saldırıları icin "DisableAntiforgery" 
+                .AddEndpointFilter<ValidationFilter<CreateTableCommand>>() 
                 .RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;

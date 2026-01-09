@@ -1,4 +1,5 @@
 using RestaurantManagement.Reservation.Api;
+using RestaurantManagement.Reservation.Api.Features.Reservations;
 using RestaurantManagement.Reservation.Api.Features.Tables;
 using RestaurantManagement.Shared.Services;
 
@@ -17,6 +18,7 @@ var app = builder.Build();
 app.UseExceptionHandler(x => { });
 
 app.AddTableGroupEndpointExt(app.AddVersionSetExt());
+app.AddReservationGroupEndpointExt(app.AddVersionSetExt());
 
 app.UseAuthentication();
 app.UseAuthorization();
