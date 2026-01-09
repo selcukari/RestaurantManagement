@@ -1,6 +1,6 @@
 ﻿using RestaurantManagement.Shared.Services;
 
-namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
+namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
 {
     public class CreateReservationCommandHandler(AppDbContext context,
     IMapper mapper,
