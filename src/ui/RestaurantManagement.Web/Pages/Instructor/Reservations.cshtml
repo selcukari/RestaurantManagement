@@ -1,0 +1,114 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Instructor.ReservationsModel
+@{
+    ViewData["Title"] = "Rezervasyon Yönetimi";
+    Layout = "_Instructor_Layout";
+}
+
+<style>
+    .res-card {
+        transition: transform .2s;
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+        .res-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .table-number-circle {
+        width: 40px;
+        height: 40px;
+        background-color: #f8f9fa;
+        border: 2px solid #dee2e6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="fw-bold"><i class="bi bi-calendar-check me-2"></i>Rezervasyonlar</h2>
+            <p class="text-muted">Restoran masaları ve müşteri rezervasyon detayları.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a asp-page="Create" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                <i class="bi bi-plus-lg me-1"></i> Yeni Rezervasyon
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["Error_Title"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>@TempData["Error_Title"]</strong>: @TempData["Error_Detail"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4 py-3">Müşteri</th>
+                            <th class="py-3">Masa No</th>
+                            <th class="py-3 text-center">Kişi Sayısı</th>
+                            <th class="py-3">Tarih / Saat</th>
+                            <th class="py-3">Oluşturulma</th>
+                            <th class="py-3 pe-4 text-end">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var res in Model.ReservationViewModels)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm me-3 bg-primary-subtle text-primary rounded-circle p-2 text-center" style="width: 35px;">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                        <span class="fw-semibold">@res.CustomerFullName</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill bg-info-subtle text-info border border-info-subtle px-3 py-2">
+                                        Masa @res.TableNumber
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="fw-medium text-secondary">
+                                        <i class="bi bi-people me-1"></i>@res.GuestCount
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column text-nowrap">
+                                        <span class="fw-bold">@res.ReservationDate</span>
+                                        <small class="text-muted">@res.StartTime - @res.EndTime</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <small class="text-muted">@res.Created</small>
+                                </td>
+                                <td class="pe-4 text-end">
+                                    <div class="btn-group shadow-sm border rounded">
+                                        <a title="Düzenle" class="btn btn-white btn-sm border-0"><i class="bi bi-pencil text-primary"></i></a>
+                                        <a title="İptal Et" class="btn btn-white btn-sm border-0"><i class="bi bi-trash text-danger"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

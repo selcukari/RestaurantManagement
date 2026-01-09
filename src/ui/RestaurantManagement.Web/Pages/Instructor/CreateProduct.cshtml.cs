@@ -13,15 +13,15 @@ namespace RestaurantManagement.Web.Pages.Instructor
 
         public async Task OnGetAsync()
         {
-            var categoriesResult = await menuservice.GetMenusAsync();
+            var menusResult = await menuservice.GetMenusAsync();
 
 
-            if (categoriesResult.IsFail)
+            if (menusResult.IsFail)
             {
                 //TODO : redirect error page
             }
 
-            ViewModel.SetCategoryDropdownList(categoriesResult.Data!);
+            ViewModel.SetCategoryDropdownList(menusResult.Data!);
         }
         public async Task<IActionResult> OnPostAsync()
         {

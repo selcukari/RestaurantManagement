@@ -11,6 +11,7 @@
 
         public required MicroserviceOptionItem Order { get; set; }
         public required MicroserviceOptionItem Kitchen { get; set; }
+        public required MicroserviceOptionItem Reservation { get; set; }
     }
 
     public class MicroserviceOptionItem
