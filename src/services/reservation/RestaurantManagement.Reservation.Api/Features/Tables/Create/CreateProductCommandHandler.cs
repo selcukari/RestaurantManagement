@@ -19,7 +19,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
 
             var newTable = mapper.Map<Table>(request);
             newTable.Created = DateTime.Now;
-            newTable.UserId = identityService.UserId;
+            newTable.UserFullName = identityService.UserName;
             newTable.Id = NewId.NextSequentialGuid(); // index performance
 
         

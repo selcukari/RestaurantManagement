@@ -1,11 +1,10 @@
-﻿using RestaurantManagement.Reservation.Api.Repositories;
-
+﻿
 namespace RestaurantManagement.Reservation.Api.Features.Tables
 {
     public class Table: BaseEntity
     {
         public int TableNumber { get; set; }
-        public Guid UserId { get; set; }
+        public string UserFullName { get; set; } = string.Empty;
         public int Capacity { get; set; }
         public DateTime Created {  get; set; }
         public bool IsAvailable { get; set; }
