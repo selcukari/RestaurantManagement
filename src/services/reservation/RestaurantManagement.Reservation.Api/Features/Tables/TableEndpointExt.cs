@@ -10,7 +10,6 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables
         {
             app.MapGroup("api/v{version:apiVersion}/tables").WithTags("Tables").WithApiVersionSet(apiVersionSet)
                 .CreateTableGroupItemEndpoint();
-                
         }
     }
 }
