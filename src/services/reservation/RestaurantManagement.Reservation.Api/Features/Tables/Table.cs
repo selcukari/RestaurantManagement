@@ -5,7 +5,9 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables
     public class Table: BaseEntity
     {
         public int TableNumber { get; set; }
+        public Guid UserId { get; set; }
         public int Capacity { get; set; }
+        public DateTime Created {  get; set; }
         public bool IsAvailable { get; set; }
         public Location Location { get; set; }
         public TableStatus Status { get; set; }
