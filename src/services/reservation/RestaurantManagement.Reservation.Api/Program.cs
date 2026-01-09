@@ -1,4 +1,5 @@
 using RestaurantManagement.Reservation.Api;
+using RestaurantManagement.Reservation.Api.Features.Tables;
 using RestaurantManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,9 @@ builder.Services.AddScoped<ICacheService, CacheService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseExceptionHandler(x => { });
+
+app.AddTableGroupEndpointExt(app.AddVersionSetExt());
 
 app.UseAuthentication();
 app.UseAuthorization();
