@@ -28,6 +28,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<BasketService>();
 builder.Services.AddScoped<KitchenService>();
+builder.Services.AddScoped<ReservationService>();
 
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();

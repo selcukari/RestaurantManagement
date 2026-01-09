@@ -7,5 +7,11 @@ namespace RestaurantManagement.Web.Services.Refit
     {
         [Get("/api/v1/reservations")]
         Task<ApiResponse<List<ReservationDto>>> GetAllReservations();
+
+        [Get("/api/v1/tables")]
+        Task<ApiResponse<List<TableDto>>> GetTablesAsync();
+
+        [Post("/api/v1/tables/item")]
+        Task<ApiResponse<object>> AddTableItemAsync(AddTableRequest model);
     }
 }

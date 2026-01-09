@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using RestaurantManagement.Web.Dto;
 using RestaurantManagement.Web.Services.Refit;
 using RestaurantManagement.Web.ViewModel;
 using System.Text.Json;
+using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace RestaurantManagement.Web.Services
 {
@@ -42,5 +43,40 @@ namespace RestaurantManagement.Web.Services
             return ServiceResult<List<ReservationViewModel>>.Success(reservationsViewModel);
         }
 
+        public async Task<ServiceResult<List<TableViewModel>>> GetTablesAsync()
+        {
+            var response = await reservationRefitService.GetTablesAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while fetching tables");
+                return ServiceResult<List<TableViewModel>>.Error("Fail to retrieve table. Please try again later");
+            }
+
+            var menus = response!.Content!
+                .Select(c => new TableViewModel(c.Id, c.TableNumber))
+                .ToList();
+            return ServiceResult<List<TableViewModel>>.Success(menus);
+        }
+
+        public async Task<ServiceResult> CreateTableAsync(CreateTableViewModel model)
+        {
+            var request = new AddTableRequest(
+                model.TableNumber,
+                model.Capacity,
+                model.Location
+            );
+
+            var response = await reservationRefitService.AddTableItemAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while creating table");
+                return ServiceResult.Error("Fail to create table. Please try again later");
+            }
+
+            return ServiceResult.Success();
+        }
     }
 }

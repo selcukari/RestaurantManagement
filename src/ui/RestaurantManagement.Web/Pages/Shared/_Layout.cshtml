@@ -41,7 +41,13 @@
                                     @if (User.Claims.Any(x => x is { Type: ClaimTypes.Role, Value: "instructor" }))
                                     {
                                         <li>
-                                            <a class="dropdown-item" asp-page="/Instructor/Index">Instructor</a>
+                                            <a class="dropdown-item" asp-page="/Instructor/Index">Görevli</a>
+                                        </li>
+                                    }
+                                    @if (User.Claims.Any(x => x is { Type: ClaimTypes.Role, Value: "customer" }))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" asp-page="/Customer/Index">Müşteri</a>
                                         </li>
                                     }
                                     <li>
