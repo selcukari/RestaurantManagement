@@ -31,7 +31,7 @@ namespace RestaurantManagement.Web.Pages.Customer
                 return RedirectToPage("Error");
             }
 
-            return RedirectToPage("Tables");
+            return RedirectToPage("Index");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
 {
-    public record CreateReservationCommand : IRequestByServiceResult<Guid>
+    public record CreateReservationCommand : IRequestByServiceResult
     {
         public Guid TableId { get; set; }
         public DateTime ReservationDate { get; set; }
