@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Services;
 using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages.Customer
 {
     [Authorize(Roles = "customer,instructor")]
-    public class CreateReservationModel(ReservationService reservationService) : PageModel
+    public class CreateReservationModel(ReservationService reservationService) : BasePageModel
     {
         [BindProperty] public CreateReservationViewModel ViewModel { get; set; } = CreateReservationViewModel.Empty;
 
@@ -26,10 +27,7 @@ namespace RestaurantManagement.Web.Pages.Customer
         {
             var result = await reservationService.CreateReservationAsync(ViewModel);
 
-            if (!result.IsSuccess)
-            {
-                return RedirectToPage("Error");
-            }
+            if (!result.IsSuccess) return ErrorPage(result, "/");
 
             return RedirectToPage("Index");
         }
