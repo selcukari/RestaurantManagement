@@ -23,13 +23,11 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
             newReservation.CustomerFullName = identityService.UserName;
             newReservation.Id = NewId.NextSequentialGuid(); // index performance
 
-        
-
             context.Reservations.Add(newReservation);
             await context.SaveChangesAsync(cancellationToken);
 
-
             cacheService.Remove("tables");
+            cacheService.Remove("reservations");
 
             return ServiceResult<Guid>.SuccessAsCreated(newReservation.Id, $"/api/reservations/{newReservation.Id}");
         }

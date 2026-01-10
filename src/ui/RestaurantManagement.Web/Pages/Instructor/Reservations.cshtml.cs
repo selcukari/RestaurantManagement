@@ -6,7 +6,7 @@ using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages.Instructor
 {
-    [Authorize]
+    [Authorize(Roles = "instructor")]
     public class ReservationsModel(ReservationService reservationService) : BasePageModel
     {
         public List<ReservationViewModel> ReservationViewModels { get; set; } = null!;

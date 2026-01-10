@@ -6,7 +6,7 @@ using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages.Customer
 {
-    [Authorize(Roles = "customer")]
+    [Authorize(Roles = "customer,instructor")]
     public class CreateReservationModel(ReservationService reservationService) : PageModel
     {
         [BindProperty] public CreateReservationViewModel ViewModel { get; set; } = CreateReservationViewModel.Empty;
@@ -21,6 +21,17 @@ namespace RestaurantManagement.Web.Pages.Customer
             }
 
             ViewModel.SetTableDropdownList(tablesResult.Data!);
+        }
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var result = await reservationService.CreateReservationAsync(ViewModel);
+
+            if (!result.IsSuccess)
+            {
+                return RedirectToPage("Error");
+            }
+
+            return RedirectToPage("Tables");
         }
     }
 }

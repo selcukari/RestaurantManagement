@@ -13,5 +13,8 @@ namespace RestaurantManagement.Web.Services.Refit
 
         [Post("/api/v1/tables")]
         Task<ApiResponse<object>> AddTableItemAsync(AddTableRequest model);
+
+        [Post("/api/v1/reservations")]
+        Task<ApiResponse<object>> AddReservationItemAsync(AddReservationRequest model);
     }
 }

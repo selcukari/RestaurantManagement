@@ -1,4 +1,84 @@
 ﻿@page
 @model RestaurantManagement.Web.Pages.Customer.CreateReservationModel
 @{
+    ViewData["Title"] = "Create Reservation";
+    Layout = "_Instructor_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                <div class="card-header bg-primary text-white text-center py-4" style="border-radius: 20px 20px 0 0;">
+                    <h3 class="mb-0 fw-bold"><i class="bi bi-calendar-plus me-2"></i>Masa Rezervasyonu</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="CreateReservation" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.TableId" class="form-label fw-bold text-secondary"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-grid-3x3-gap"></i></span>
+                                <select asp-for="ViewModel.TableId" asp-items="@Model.ViewModel.TableDropdownList" class="form-select border-start-0">
+                                    <option value="">-- Masa Seçiniz --</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="ViewModel.TableId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="ViewModel.ReservationDate" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-calendar-event"></i></span>
+                                    <input asp-for="ViewModel.ReservationDate" type="date" class="form-control border-start-0"
+                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </div>
+                                <span asp-validation-for="ViewModel.ReservationDate" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ViewModel.StartTime" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-clock"></i></span>
+                                    <input asp-for="ViewModel.StartTime" type="time" class="form-control border-start-0" />
+                                </div>
+                                <span asp-validation-for="ViewModel.StartTime" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ViewModel.EndTime" class="form-label fw-bold text-secondary"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-clock-fill"></i></span>
+                                    <input asp-for="ViewModel.EndTime" type="time" class="form-control border-start-0" />
+                                </div>
+                                <span asp-validation-for="ViewModel.EndTime" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ViewModel.GuestCount" class="form-label fw-bold text-secondary"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-people"></i></span>
+                                <input asp-for="ViewModel.GuestCount" type="number" class="form-control border-start-0" placeholder="Örn: 4" min="1" />
+                            </div>
+                            <span asp-validation-for="ViewModel.GuestCount" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+                                <i class="bi bi-check-circle me-2"></i>Rezervasyonu Tamamla
+                            </button>
+                            <a asp-action="Index" class="btn btn-light text-secondary mt-2">Vazgeç</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

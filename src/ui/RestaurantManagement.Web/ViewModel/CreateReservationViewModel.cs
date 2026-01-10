@@ -17,8 +17,7 @@ namespace RestaurantManagement.Web.ViewModel
 
         [Display(Name = "Misafir Sayısı")] public int GuestCount { get; init; }
 
-        public Guid? TableId { get; init; }
-
+        public Guid TableId { get; init; }
 
         public void SetTableDropdownList(List<TableViewModel> tables)
         {

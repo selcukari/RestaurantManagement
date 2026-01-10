@@ -23,12 +23,11 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAll
                 var tables = await context.Tables.Where(x => x.IsAvailable).ToListAsync(cancellationToken);
 
                 foreach (var reservation in reservations) reservation.Table = tables.First(x => x.Id == reservation.TableId);
+                  
+                reservationList = mapper.Map<HashSet<ReservationDto>>(reservations);
 
-                reservationList = mapper.Map<HashSet<ReservationDto>>(tables);
-
-                cacheService.Set(cacheKey, reservationList, TimeSpan.FromDays(10));
+                cacheService.Set(cacheKey, reservationList, TimeSpan.FromDays(5));
             }
-
 
             return ServiceResult<HashSet<ReservationDto>>.SuccessAsOk(reservationList);
         }

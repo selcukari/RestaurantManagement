@@ -17,11 +17,11 @@ namespace RestaurantManagement.Web.Services
             if (!reservationAsResult.IsSuccessStatusCode)
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(reservationAsResult.Error.Content!);
-                logger.LogError("Error occurred while fetching products");
+                logger.LogError("Error occurred while fetching reservations");
                 //logger.LogProblemDetails(productAsResult.Error);
 
                 return ServiceResult<List<ReservationViewModel>>.Error(
-                    "Failed to retrieve product data. Please try again later.");
+                    "Failed to retrieve reservation data. Please try again later.");
             }
 
 
@@ -73,6 +73,27 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating table");
+                return ServiceResult.Error("Fail to create table. Please try again later");
+            }
+
+            return ServiceResult.Success();
+        }
+        public async Task<ServiceResult> CreateReservationAsync(CreateReservationViewModel model)
+        {
+            var request = new AddReservationRequest(
+                model.TableId,
+                model.ReservationDate,
+                model.StartTime,
+                model.EndTime,
+                model.GuestCount
+            );
+
+            var response = await reservationRefitService.AddReservationItemAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while creating Reservation");
                 return ServiceResult.Error("Fail to create table. Please try again later");
             }
 
