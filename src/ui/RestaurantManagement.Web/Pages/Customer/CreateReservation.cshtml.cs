@@ -15,7 +15,6 @@ namespace RestaurantManagement.Web.Pages.Customer
         {
             var tablesResult = await reservationService.GetTablesAsync();
 
-
             if (tablesResult.IsFail)
             {
                 //TODO : redirect error page

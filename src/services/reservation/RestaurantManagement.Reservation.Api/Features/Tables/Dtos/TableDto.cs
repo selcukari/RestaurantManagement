@@ -3,8 +3,8 @@
     public record TableDto(
     Guid Id,
     int TableNumber,
-    Guid UserId,
     int Capacity,
+    string UserFullName,
     DateTime Created,
     bool IsAvailable,
     Location Location,

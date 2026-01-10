@@ -20,9 +20,9 @@ namespace RestaurantManagement.Web.ViewModel
         public Guid? TableId { get; init; }
 
 
-        public void SetTableDropdownList(List<TableViewModel> menus)
+        public void SetTableDropdownList(List<TableViewModel> tables)
         {
-            TableDropdownList = new SelectList(menus, "Id", "Name");
+            TableDropdownList = new SelectList(tables, "Id", "TableNumber");
         }
     }
 }

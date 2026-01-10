@@ -25,8 +25,6 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.GetAll
                 cacheService.Set(cacheKey, tableList, TimeSpan.FromDays(10));
             }
 
-                
-
             return ServiceResult<HashSet<TableDto>>.SuccessAsOk(tableList);
         }
     }

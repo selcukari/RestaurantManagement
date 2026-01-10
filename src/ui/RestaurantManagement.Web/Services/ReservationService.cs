@@ -53,10 +53,10 @@ namespace RestaurantManagement.Web.Services
                 return ServiceResult<List<TableViewModel>>.Error("Fail to retrieve table. Please try again later");
             }
 
-            var menus = response!.Content!
-                .Select(c => new TableViewModel(c.Id, c.TableNumber))
+            var tables = response!.Content!
+                .Select(c => new TableViewModel(c.Id, c.TableNumber, c.UserFullName, c.Capacity, c.Created, c.Location.ToString(), c.Status.ToString()))
                 .ToList();
-            return ServiceResult<List<TableViewModel>>.Success(menus);
+            return ServiceResult<List<TableViewModel>>.Success(tables);
         }
 
         public async Task<ServiceResult> CreateTableAsync(CreateTableViewModel model)

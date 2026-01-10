@@ -27,4 +27,10 @@ namespace RestaurantManagement.Web.ViewModel
         Terrace,     // Teras
         VIP          // VIP alan
     }
+    public enum TableStatus
+    {
+        Empty,       // Boş
+        Occupied,    // Dolu
+        Reserved     // Rezerve
+    }
 }

@@ -1,13 +1,29 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RestaurantManagement.Web.PageModels;
+using RestaurantManagement.Web.Services;
+using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages.Instructor
 {
     [Authorize(Roles = "instructor")]
-    public class TablesModel : PageModel
+    public class TablesModel(ReservationService reservationService) : BasePageModel
     {
-        public void OnGet()
+        public List<TableViewModel> TableViewModels { get; set; } = null!;
+
+        public async Task<IActionResult> OnGetAsync()
         {
+            var result = await reservationService.GetTablesAsync();
+
+            if (result.IsFail)
+            {
+                return RedirectToPage("Error");
+            }
+
+            TableViewModels = result.Data!;
+
+            return Page();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
             group.MapPost("/",
                     async (CreateTableCommand command, IMediator mediator) =>
                     (await mediator.Send(command)).ToGenericResult())
-                .WithName("CreateProduct")
+                .WithName("CreateTable")
                 .MapToApiVersion(1, 0)
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces(StatusCodes.Status404NotFound)

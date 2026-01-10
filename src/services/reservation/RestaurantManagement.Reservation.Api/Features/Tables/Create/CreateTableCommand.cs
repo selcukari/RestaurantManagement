@@ -4,7 +4,7 @@
     {
         public int TableNumber { get; set; }
         public int Capacity { get; set; }
-        public Location Location { get; set; }
+        public string Location { get; set; } = null!;
         public bool IsAvailable { get; set; } = true;
         public TableStatus Status { get; set; } = 0;
     }
