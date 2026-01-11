@@ -1,13 +1,11 @@
 ﻿
-using RestaurantManagement.Reservation.Api.Features.Tables;
-
 namespace RestaurantManagement.Reservation.Api.Features.Reservations
 {
     public class Reservation: BaseEntity
     {
         public string CustomerFullName { get; set; } = string.Empty;
 
-        public Table Table { get; set; } = default!;
+        public RestaurantManagement.Reservation.Api.Features.Tables.Table Table { get; set; } = default!;
         public Guid TableId { get; set; }
 
         public DateTime Created { get; set; }

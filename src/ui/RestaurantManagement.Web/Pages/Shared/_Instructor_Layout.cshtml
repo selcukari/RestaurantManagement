@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,21 +25,15 @@
                 @RenderBody()
             </div>
             <div class="col-md-3">
+                @if (User.Claims.Any(x => x is { Type: ClaimTypes.Role, Value: "instructor" }))
+                {
+                    <partial name="_Instructor_Menu" />
 
+                } else
+                {
+                    <partial name="_Customer_Menu" />
 
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        Menu
-                    </a>
-                    <a asp-page="/Instructor/Index" class="list-group-item list-group-item-action">Home Page</a>
-                    <a asp-page="/Instructor/Products" class="list-group-item list-group-item-action">Product List</a>
-                    <a asp-page="/Instructor/Tables" class="list-group-item list-group-item-action">Table List</a>
-                    <a asp-page="/Instructor/Kitchen/Index" class="list-group-item list-group-item-action">Mutfak Sipariş Listesi</a>
-                    <a asp-page="/Instructor/Reservations" class="list-group-item list-group-item-action">Rezervasyon Listesi</a>
-                    <a asp-page="/Instructor/CreateTable" class="list-group-item list-group-item-action">Masa Oluştur</a>
-                    <a asp-page="/Instructor/CreateProduct" class="list-group-item list-group-item-action">Create Products</a>
-                    <a asp-page="/Customer/CreateReservation" class="list-group-item list-group-item-action">Create Reservation</a>
-                </div>
+                }
 
             </div>
         </div>
