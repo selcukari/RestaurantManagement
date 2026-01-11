@@ -1,4 +1,5 @@
 using RestaurantManagement.Basket.Api;
+using RestaurantManagement.Basket.Api.BackgroundServices;
 using RestaurantManagement.Basket.Api.Features.Baskets;
 using RestaurantManagement.Shared.Extensions;
 using StackExchange.Redis;
@@ -26,6 +27,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 builder.Services.AddVersioningExt();
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+
+// back service ile 5 saate bir tüm sepet siliniyor
+builder.Services.AddHostedService<DeleteBasketBackgroundService>();
 
 var app = builder.Build();
 

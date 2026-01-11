@@ -33,6 +33,18 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets
         {
             await distributedCache.RemoveAsync(GetCacheKey(userId));
         }
+        public async Task DeleteAllBasketsFastAsync()
+        {
+            var server = redis.GetServer(redis.GetEndPoints().First());
+            var keys = server.Keys(pattern: "*basket:*").ToArray();
+
+            if (keys.Any())
+            {
+                var db = redis.GetDatabase();
+                // Toplu silme (Dizi olarak gönderilir)
+                await db.KeyDeleteAsync(keys);
+            }
+        }
         public async Task DeleteBasketsByProductId(Guid productId)
         {
             // 1. Redis sunucusuna bağlan (Anahtarları taramak için)

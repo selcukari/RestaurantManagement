@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using RestaurantManagement.Bus;
 using RestaurantManagement.Order.Api.Endpoints.Orders;
 using RestaurantManagement.Order.Application;
+using RestaurantManagement.Order.Application.BackgroundServices;
 using RestaurantManagement.Order.Application.Contracts.Refit;
 using RestaurantManagement.Order.Application.Contracts.Repositories;
 using RestaurantManagement.Order.Application.Contracts.UnitOfWork;
@@ -19,7 +19,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
-// builder.Services.AddCommonMasstransitExt(builder.Configuration);
+//builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
@@ -35,6 +35,8 @@ builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddRefitConfigurationExt(builder.Configuration);
+
+builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 
 var app = builder.Build();
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
