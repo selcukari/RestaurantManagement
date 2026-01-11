@@ -24,6 +24,5 @@
     {
         Empty,       // Boş
         Occupied,    // Dolu
-        Reserved     // Rezerve
     }
 }

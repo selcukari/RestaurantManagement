@@ -27,6 +27,5 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables
     {
         Empty,       // Boş
         Occupied,    // Dolu
-        Reserved     // Rezerve
     }
 }

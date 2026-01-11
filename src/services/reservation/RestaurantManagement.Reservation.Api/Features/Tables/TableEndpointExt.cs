@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.Builder;
+using RestaurantManagement.Reservation.Api.Features.Table.Delete;
 using RestaurantManagement.Reservation.Api.Features.Tables.Create;
 using RestaurantManagement.Reservation.Api.Features.Tables.GetAll;
 using RestaurantManagement.Reservation.Api.Features.Tables.GetById;
@@ -15,6 +16,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables
                 .CreateTableGroupItemEndpoint()
                 .UpdateTableGroupItemEndpoint()
                 .GetAllTableGroupItemEndpoint()
+                .DeleteTableGroupItemEndpoint()
                 .GetByIdTableGroupItemEndpoint();
         }
     }

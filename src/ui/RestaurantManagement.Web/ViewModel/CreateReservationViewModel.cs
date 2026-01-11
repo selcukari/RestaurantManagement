@@ -21,7 +21,7 @@ namespace RestaurantManagement.Web.ViewModel
 
         public void SetTableDropdownList(List<TableViewModel> tables)
         {
-            TableDropdownList = new SelectList(tables, "Id", "TableNumber");
+            TableDropdownList = new SelectList(tables, "Id", "DisplayText");
         }
     }
 }
