@@ -7,5 +7,6 @@
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public int GuestCount { get; set; }
+        public bool IsAvailable { get; set; } = true;
     }
 }

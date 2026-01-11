@@ -20,7 +20,7 @@ public class DeleteTableHandler(AppDbContext context, ICacheService cacheService
     }
 }
 
-public static class DeleteTableEndpoint
+public static class DeleteReservationEndpoint
     {
     public static RouteGroupBuilder DeleteTableGroupItemEndpoint(this RouteGroupBuilder group)
     {

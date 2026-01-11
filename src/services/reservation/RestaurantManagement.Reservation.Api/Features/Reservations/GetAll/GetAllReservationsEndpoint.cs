@@ -17,7 +17,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAll
 
             if (reservationList?.Any() != true)
             {
-                var reservations = await context.Reservations.OrderByDescending(x => x.Created)
+                var reservations = await context.Reservations.Where(x => x.IsAvailable && x.ReservationDate >= DateTime.UtcNow.Date).OrderByDescending(x => x.Created)
                 .ToListAsync(cancellationToken);
 
                 var tables = await context.Tables.Where(x => x.IsAvailable).ToListAsync(cancellationToken);

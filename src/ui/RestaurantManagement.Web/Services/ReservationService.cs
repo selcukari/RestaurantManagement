@@ -112,5 +112,18 @@ namespace RestaurantManagement.Web.Services
 
             return ServiceResult.Success();
         }
+        public async Task<ServiceResult> DeleteReservationAsync(Guid Id)
+        {
+            var response = await reservationRefitService.DeleteReservationAsync(Id);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while creating Reservation");
+                return ServiceResult.Error("Fail to create table. Please try again later");
+            }
+
+            return ServiceResult.Success();
+        }
     }
 }

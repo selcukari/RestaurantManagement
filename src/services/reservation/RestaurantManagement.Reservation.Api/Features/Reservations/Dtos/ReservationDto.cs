@@ -9,6 +9,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Dtos
     DateTime ReservationDate,
     TimeSpan StartTime,
     TimeSpan EndTime,
+    bool IsAvailable,
     int GuestCount,
     TableDto Table
     );

@@ -24,5 +24,15 @@ namespace RestaurantManagement.Web.Pages.Instructor
 
             return Page();
         }
+        public async Task<IActionResult> OnGetDeleteAsync(Guid id)
+        {
+            var result = await reservationService.DeleteReservationAsync(id);
+            if (result.IsFail)
+            {
+                return RedirectToPage("Error");
+            }
+
+            return RedirectToPage();
+        }
     }
 }
