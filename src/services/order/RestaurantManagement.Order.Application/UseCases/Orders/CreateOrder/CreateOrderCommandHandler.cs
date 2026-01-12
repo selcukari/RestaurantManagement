@@ -68,7 +68,7 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
             await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
                 cancellationToken);
             // mutfak service ye kayıt et
-            await publishEndpoint.Publish(new OrderCreatedForKitchenEvent(identityService.UserId,
+            await publishEndpoint.Publish(new OrderCreatedForKitchenEvent(identityService.UserName,
                 order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
                 item.ProductId,
                 item.ProductName,

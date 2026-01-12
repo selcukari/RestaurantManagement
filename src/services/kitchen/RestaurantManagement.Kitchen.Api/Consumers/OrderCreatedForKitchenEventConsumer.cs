@@ -16,7 +16,7 @@ namespace RestaurantManagement.Kitchen.Api.Consumers
             var kitchen = new RestaurantManagement.Kitchen.Api.Features.Kitchens.Kitchen
             {
                 Id = NewId.NextSequentialGuid(),
-                UserId = eventMessage.UserId,
+                UserFullName = eventMessage.UserFullName,
                 Created = DateTime.Now,
                 // Event içindeki item listesini KitchenItem listesine mapliyoruz
                 Items = eventMessage.items.Select(item => new KitchenItem

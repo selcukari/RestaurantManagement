@@ -98,7 +98,7 @@
                                 </td>
                                 <td class="pe-4 text-end">
                                     <div class="btn-group shadow-sm border rounded">
-                                        <a title="Düzenle" class="btn btn-white btn-sm border-0"><i class="bi bi-pencil text-primary"></i></a>
+                                        <a asp-page="Update" asp-route-id="@res.Id" title="Düzenle" class="btn btn-white btn-sm border-0"><i class="bi bi-pencil text-primary"></i></a>
                                         <a title="İptal Et" asp-page-handler="Delete" asp-route-id="@res.Id"
                                            onclick="return confirm('Silmek istediğinize emin misiniz?');"  class="btn btn-white btn-sm border-0"><i class="bi bi-trash text-danger"></i></a>
                                     </div>

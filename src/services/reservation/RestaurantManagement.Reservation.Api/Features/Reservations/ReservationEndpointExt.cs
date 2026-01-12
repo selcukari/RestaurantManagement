@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.Builder;
+using RestaurantManagement.Reservation.Api.Features.Products.GetById;
 using RestaurantManagement.Reservation.Api.Features.Reservations.Create;
 using RestaurantManagement.Reservation.Api.Features.Reservations.Delete;
 using RestaurantManagement.Reservation.Api.Features.Reservations.GetAll;
@@ -13,7 +14,8 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations
             app.MapGroup("api/v{version:apiVersion}/reservations").WithTags("Reservations").WithApiVersionSet(apiVersionSet)
                 .CreateReservationGroupItemEndpoint()
                 .GetAllReservationGroupItemEndpoint()
-                .DeleteReservationGroupItemEndpoint();
+                .DeleteReservationGroupItemEndpoint()
+                .GetByIdReservationGroupItemEndpoint();
         }
     }
 }

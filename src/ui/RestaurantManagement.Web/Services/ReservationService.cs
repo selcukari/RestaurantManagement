@@ -42,6 +42,20 @@ namespace RestaurantManagement.Web.Services
 
             return ServiceResult<List<ReservationViewModel>>.Success(reservationsViewModel);
         }
+        public async Task<ServiceResult<ReservationViewModel>> GetReservationAsync(Guid reservationId)
+        {
+            var response = await reservationRefitService.GetReservation(reservationId);
+
+            if (!response.IsSuccessStatusCode)
+                return ServiceResult<ReservationViewModel>.FailFromProblemDetails(response.Error);
+
+
+            var reservation = response.Content!;
+            var reservationViewModel = new ReservationViewModel(reservation.Id, reservation.CustomerFullName, reservation.Created.ToLongDateString(),
+                  reservation.ReservationDate.ToLongDateString(), reservation.StartTime.ToString(), reservation.EndTime.ToString(), reservation.GuestCount, reservation.Table.Id, reservation.Table.TableNumber);
+
+            return ServiceResult<ReservationViewModel>.Success(reservationViewModel);
+        }
 
         public async Task<ServiceResult<List<TableViewModel>>> GetTablesAsync()
         {

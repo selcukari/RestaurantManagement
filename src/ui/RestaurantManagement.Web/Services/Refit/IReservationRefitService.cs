@@ -8,6 +8,9 @@ namespace RestaurantManagement.Web.Services.Refit
         [Get("/api/v1/reservations")]
         Task<ApiResponse<List<ReservationDto>>> GetAllReservations();
 
+        [Get("/api/v1/reservations/{id}")]
+        Task<ApiResponse<ReservationDto>> GetReservation(Guid id);
+
         [Get("/api/v1/tables")]
         Task<ApiResponse<List<TableDto>>> GetTablesAsync();
 

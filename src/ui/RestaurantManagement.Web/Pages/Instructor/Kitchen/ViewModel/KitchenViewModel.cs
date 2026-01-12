@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 
 namespace RestaurantManagement.Web.Pages.Instructor.Kitchen.ViewModel
 {
-    public record KitchenViewModel(Guid? UserId, string Created)
+    public record KitchenViewModel(string UserFullName, string Created)
     {
         private List<KitchenItemViewModel> KitchenItems { get; } = [];
 

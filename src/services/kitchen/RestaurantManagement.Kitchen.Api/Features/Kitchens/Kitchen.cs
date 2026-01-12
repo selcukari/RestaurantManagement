@@ -2,7 +2,7 @@
 {
     public class Kitchen: BaseEntity
     {
-        public Guid UserId { get; set; }
+        public string UserFullName { get; set; } = string.Empty;
         public DateTime Created { get; set; }
 
         public List<KitchenItem> Items { get; set; } = new();

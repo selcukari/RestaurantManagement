@@ -13,7 +13,6 @@
         return;
     }
 
-
     <div class="accordion" id="orderHistoryAccordion">
         @foreach (var order in Model.OrderHistoryList)
         {
@@ -29,7 +28,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Ürün Name</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Adet/Miktar</th>
                                     <th>Ürün Price</th>
                                 </tr>
                             </thead>
@@ -38,6 +38,7 @@
                                 {
                                     <tr>
                                         <td>@item.ProductName</td>
+                                        <td>@item.Quantity</td>
                                         <td>₺@item.UnitPrice</td>
                                     </tr>
                                 }

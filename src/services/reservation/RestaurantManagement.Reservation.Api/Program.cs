@@ -13,12 +13,12 @@ builder.Services.AddOptionsExt();
 builder.Services.AddCommonServiceExt(typeof(TableAssembly));
 builder.Services.AddVersioningExt();
 builder.Services.AddDatabaseServiceExt();
-
-builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddScoped<ICacheService, CacheService>();
 
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+
 // back service ile 1 gun bir active gunu gecmiþ reservation IsAvailable(false) ve table status(Empty) do
-// builder.Services.AddHostedService<StatusReservationBackgroundService>();
+builder.Services.AddHostedService<StatusReservationBackgroundService>();
 
 var app = builder.Build();
 

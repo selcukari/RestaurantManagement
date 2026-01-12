@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Services;
@@ -5,6 +6,7 @@ using RestaurantManagement.Web.ViewModel;
 
 namespace RestaurantManagement.Web.Pages.Instructor
 {
+    [Authorize(Roles = "instructor")]
     public class UpdateModel(MenuService menuService) : BasePageModel
     {
         [BindProperty] public UpdateProductViewModel ViewModel { get; set; } = new UpdateProductViewModel();

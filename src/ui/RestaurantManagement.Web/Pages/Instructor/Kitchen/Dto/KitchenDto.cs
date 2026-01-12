@@ -2,5 +2,5 @@
 
 namespace RestaurantManagement.Web.Instructor.Pages.Kitchen.Dto
 {
-    public record KitchenDto(Guid UserId, DateTime Created, List<KitchenItemViewModel> Items);
+    public record KitchenDto(string UserFullName, DateTime Created, List<KitchenItemViewModel> Items);
 }
