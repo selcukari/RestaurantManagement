@@ -11,7 +11,9 @@ public class DeleteTableHandler(AppDbContext context, ICacheService cacheService
         var hasTable = await context.Tables.FindAsync([request.Id], cancellationToken);
         if (hasTable == null) return ServiceResult.ErrorAsNotFound();
 
-        context.Tables.Remove(hasTable);
+        hasTable.IsAvailable = false;
+        context.Tables.Update(hasTable);
+
         await context.SaveChangesAsync(cancellationToken);
 
         cacheService.Remove("tables");

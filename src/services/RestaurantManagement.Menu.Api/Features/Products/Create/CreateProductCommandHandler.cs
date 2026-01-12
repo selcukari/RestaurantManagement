@@ -12,7 +12,6 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
         {
             var hasMenu = await context.Menus.AnyAsync(x => x.Id == request.MenumId, cancellationToken);
 
-
             if (!hasMenu)
                 return ServiceResult<Guid>.Error("Menu not found.",
                     $"The Menu with id({request.MenumId}) was not found", HttpStatusCode.NotFound);

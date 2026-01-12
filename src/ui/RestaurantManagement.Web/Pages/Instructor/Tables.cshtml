@@ -43,7 +43,7 @@
                         <a asp-page-handler="Delete"
                            asp-route-id="@table.Id"
                            class="btn btn-sm @(table.Status == "Occupied" ? "btn-secondary" : "btn-outline-danger") w-100"
-                           onclick="return confirm('Silmek istediğinize emin misiniz?');">
+                           onclick="@(table.Status == "Occupied" ? "return false;" : "return confirm('Silmek istediğinize emin misiniz?');")">
                             Sil
                         </a>
                     </div>

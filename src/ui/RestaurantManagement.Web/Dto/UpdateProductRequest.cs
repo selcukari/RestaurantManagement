@@ -5,6 +5,7 @@
     string Name,
     string Description,
     decimal Price,
+    int Quantity,
     string? ImageUrl,
     Guid MenumId);
 }

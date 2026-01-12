@@ -127,6 +127,7 @@ namespace RestaurantManagement.Web.Services
                     model.Name,
                     model.Description,
                     model.Price,
+                    model.Quantity,
                     model.ExistingPictureUrl,
                     model.MenuId
                 )
