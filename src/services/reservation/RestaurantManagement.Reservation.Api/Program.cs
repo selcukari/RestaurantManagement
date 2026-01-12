@@ -1,4 +1,5 @@
 using RestaurantManagement.Reservation.Api;
+using RestaurantManagement.Reservation.Api.BackgroundServices;
 using RestaurantManagement.Reservation.Api.Features.Reservations;
 using RestaurantManagement.Reservation.Api.Features.Tables;
 using RestaurantManagement.Reservation.Api.Options;
@@ -15,6 +16,9 @@ builder.Services.AddDatabaseServiceExt();
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddScoped<ICacheService, CacheService>();
+
+// back service ile 1 gun bir active gunu gecmiþ reservation IsAvailable(false) ve table status(Empty) do
+builder.Services.AddHostedService<StatusReservationBackgroundService>();
 
 var app = builder.Build();
 
