@@ -25,7 +25,7 @@ namespace RestaurantManagement.Web.Services
             foreach (var kitchenResponse in response.Content)
             {
                 var newKitchen =
-                    new KitchenViewModel(kitchenResponse.UserId, kitchenResponse.Created.ToLongDateString());
+                    new KitchenViewModel(kitchenResponse.UserFullName, kitchenResponse.Created.ToLongDateString());
 
                 foreach (var kitchenItem in kitchenResponse.Items)
                     newKitchen.AddItem(kitchenItem.Id, kitchenItem.Name, kitchenItem.Quantity);
