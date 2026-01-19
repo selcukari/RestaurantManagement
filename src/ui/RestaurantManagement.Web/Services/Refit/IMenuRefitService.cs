@@ -32,7 +32,7 @@ namespace RestaurantManagement.Web.Services.Refit
 
 
         [Put("/api/v1/products")]
-        Task<ApiResponse<object>> UpdaterPoductAsync(UpdateProductRequest request);
+        Task<ApiResponse<object>> UpdatePoductAsync(UpdateProductRequest request);
 
 
         [Delete("/api/v1/products/{id}")]

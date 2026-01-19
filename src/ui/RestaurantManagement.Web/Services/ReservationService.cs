@@ -1,4 +1,5 @@
-﻿using RestaurantManagement.Web.Dto;
+﻿using Refit;
+using RestaurantManagement.Web.Dto;
 using RestaurantManagement.Web.Services.Refit;
 using RestaurantManagement.Web.ViewModel;
 using System.Text.Json;
@@ -68,11 +69,25 @@ namespace RestaurantManagement.Web.Services
             }
 
             var tables = response!.Content!
-                .Select(c => new TableViewModel(c.Id, c.TableNumber, c.UserFullName, c.Capacity, c.Created, c.Location.ToString(), c.Status.ToString()))
+                .Select(c => new TableViewModel(c.Id, c.TableNumber, c.UserFullName, c.Capacity, c.Created, c.Location.ToString(), c.Status.ToString(), c.IsAvailable))
                 .ToList();
             return ServiceResult<List<TableViewModel>>.Success(tables);
         }
+        public async Task<ServiceResult<TableViewModel>> GetTableAsync(Guid tableId)
+        {
+            var response = await reservationRefitService.GetTableAsync(tableId);
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while fetching tables");
+                return ServiceResult<TableViewModel>.Error("Fail to retrieve table. Please try again later");
+            }
 
+            var table = response!.Content!;
+            var tableViewModel = new TableViewModel(table.Id, table.TableNumber, table.UserFullName, table.Capacity, table.Created, table.Location.ToString(), table.Status.ToString(), table.IsAvailable);
+            
+            return ServiceResult<TableViewModel>.Success(tableViewModel);
+        }
         public async Task<ServiceResult> CreateTableAsync(CreateTableViewModel model)
         {
             var request = new AddTableRequest(
@@ -89,6 +104,25 @@ namespace RestaurantManagement.Web.Services
                 logger.LogError("Error occurred while creating table");
                 return ServiceResult.Error("Fail to create table. Please try again later");
             }
+
+            return ServiceResult.Success();
+        }
+        public async Task<ServiceResult> UpdateTableAsync(UpdateTableViewModel model)
+        {
+
+            var response = await reservationRefitService.UpdateTableAsync(
+                new UpdateTableRequest(
+                    model.Id,
+                    model.TableNumber, model.Capacity, model.Location, model.IsAvailable)
+            );
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occurred while updateing table");
+                return ServiceResult.Error("Fail to update table. Please try again later");
+            }
+
 
             return ServiceResult.Success();
         }

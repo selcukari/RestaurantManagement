@@ -3,6 +3,5 @@
     public record UpdateTableCommand(Guid Id,
     int TableNumber,
     int Capacity,
-    Location Location,
-    bool IsAvailable,
-    TableStatus Status) : IRequestByServiceResult;
+    string Location,
+    bool IsAvailable) : IRequestByServiceResult;

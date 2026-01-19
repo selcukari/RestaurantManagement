@@ -121,7 +121,7 @@ namespace RestaurantManagement.Web.Services
                     new StreamPart(stream!, model.PictureFormFile.FileName, model.PictureFormFile.ContentType);
 
 
-            var response = await menuRefitService.UpdaterPoductAsync(
+            var response = await menuRefitService.UpdatePoductAsync(
                 new UpdateProductRequest(
                     model.Id,
                     model.Name,

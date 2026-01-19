@@ -39,7 +39,8 @@
                     </div>
 
                     <div class="card-footer bg-light border-0 d-flex justify-content-around py-3">
-                        <button class="btn btn-sm btn-outline-primary w-100 me-1">Düzenle</button>
+                        <a asp-page="UpdateTable" asp-route-id="@table.Id" class="btn btn-sm btn-primary"
+                           onclick="@(table.Status == "Occupied" ? "return false;" : "return true;")">Güncelle</a>
                         <a asp-page-handler="Delete"
                            asp-route-id="@table.Id"
                            class="btn btn-sm @(table.Status == "Occupied" ? "btn-secondary" : "btn-outline-danger") w-100"

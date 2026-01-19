@@ -1,0 +1,54 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Instructor.UpdateTableModel
+@{
+    ViewData["Title"] = "Update Table";
+    Layout = "_Instructor_Layout";
+}
+
+<div class="row">
+    <h2>Table Güncelle</h2>
+    <div asp-validation-summary="ModelOnly" class="alert alert-warning"></div>
+    <div class="card-body">
+        <form method="post">
+            <input type="hidden" asp-for="ViewModel.Id" />
+
+            <div class="mb-3">
+                <label asp-for="ViewModel.TableNumber" class="form-label">Masa Numarası</label>
+                <input asp-for="ViewModel.TableNumber" type="number" min="1" class="form-control" />
+                <span asp-validation-for="ViewModel.TableNumber" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ViewModel.Capacity" class="form-label">Kapasite</label>
+                <input asp-for="ViewModel.Capacity" type="number" min="1" class="form-control" />
+                <span asp-validation-for="ViewModel.Capacity" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ViewModel.Location" class="form-label">Konum</label>
+                <select asp-for="ViewModel.Location" asp-items="@Model.ViewModel.LocationDropdownList" class="form-select">
+                    <option value="">Select Table</option>
+                </select>
+                <span asp-validation-for="ViewModel.Location" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="ViewModel.IsAvailable" type="checkbox" class="form-check-input" id="isAvailableCheck" />
+                <label asp-for="ViewModel.IsAvailable" class="form-check-label" for="isAvailableCheck">
+                    Müsait mi?
+                </label>
+                <span asp-validation-for="ViewModel.IsAvailable" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");
+    }
+}
