@@ -28,6 +28,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
             var newReservation = mapper.Map<Reservation>(request);
             newReservation.Created = DateTime.Now;
             newReservation.CustomerFullName = identityService.UserName;
+            newReservation.CustomerId = identityService.UserId;
             newReservation.Id = NewId.NextSequentialGuid(); // index performance
 
             hasTable.Status = Tables.TableStatus.Occupied; // Masayı dolu olarak işaretle

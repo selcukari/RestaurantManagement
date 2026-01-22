@@ -15,6 +15,11 @@ public class GetProductByIdQueryHandler(AppDbContext context, IMapper mapper)
 
         var categories = await context.Menus.ToListAsync(cancellationToken);
 
+        if (!products.Any())
+        {
+            ServiceResult<HashSet<ProductDto>>.SuccessAsOk(new HashSet<ProductDto>());
+        }
+
 
         foreach (var product in products) product.Menum = categories.First(x => x.Id == product.MenumId);
 

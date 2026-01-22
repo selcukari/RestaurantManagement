@@ -32,6 +32,7 @@ namespace RestaurantManagement.Reservation.Api.Repositories
                    .IsRequired();
 
             builder.Property(x => x.TableId).HasElementName("tableId");
+            builder.Property(x => x.CustomerId).HasElementName("customerId");
             builder.Property(x => x.CustomerFullName).HasElementName("customerFullName");
             builder.Property(x => x.GuestCount).HasElementName("guestCount");
         }

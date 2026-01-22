@@ -1,0 +1,51 @@
+﻿<header>
+    <div class="bg-primary text-white py-1 d-none d-md-block">
+        <div class="container d-flex justify-content-between font-monospace" style="font-size: 0.8rem;">
+            <span><i class="bi bi-geo-alt-fill me-1"></i> İstanbul, Beşiktaş</span>
+            <span><i class="bi bi-telephone-fill me-1"></i> 0212 000 00 00</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
+                <span class="bg-primary text-white p-2 rounded-3 me-2">
+                    <i class="bi bi-egg-fried"></i>
+                </span>
+                <span class="fw-bolder fs-3 tracking-tight text-dark">RESTORAN</span>
+            </a>
+
+            <div class="d-flex align-items-center order-lg-last">
+                <a asp-page="/Basket/Index" class="nav-link position-relative me-3 text-dark">
+                    <i class="bi bi-bag fs-4"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </a>
+
+                <partial name="_Instructor_Auth_Identity_Header" />
+
+                <button class="navbar-toggler ms-2 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#customerNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="customerNavbar">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-medium">
+                    <li class="nav-item">
+                        <a class="nav-link active px-3" asp-page="/Index">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" asp-page="/Menu">Menü</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" asp-page="/Reservation">Rezervasyon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" asp-page="/About">Hakkımızda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

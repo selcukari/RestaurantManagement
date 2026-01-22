@@ -26,6 +26,9 @@ namespace RestaurantManagement.Web.Services.Refit
         [Post("/api/v1/reservations")]
         Task<ApiResponse<object>> AddReservationItemAsync(AddReservationRequest model);
 
+        [Get("/api/v1/reservations/user/{userId}")]
+        Task<ApiResponse<List<ReservationDto>>> GetAllByIdReservations(Guid UserId);
+
         [Delete("/api/v1/tables/{Id}")]
         Task<ApiResponse<object>> DeleteTableAsync(Guid Id);
 

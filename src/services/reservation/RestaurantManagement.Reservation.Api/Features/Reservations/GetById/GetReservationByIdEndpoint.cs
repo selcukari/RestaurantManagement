@@ -1,7 +1,7 @@
 ﻿
 using RestaurantManagement.Reservation.Api.Features.Reservations.Dtos;
 
-namespace RestaurantManagement.Reservation.Api.Features.Products.GetById
+namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetById
 {
     public record GetReservationByIdQuery(Guid Id) : IRequestByServiceResult<ReservationDto>;
 

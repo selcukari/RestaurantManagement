@@ -4,6 +4,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Dtos
 {
     public record ReservationDto(
     Guid Id,
+    Guid CustomerId,
     string CustomerFullName,
     DateTime Created,
     DateTime ReservationDate,
