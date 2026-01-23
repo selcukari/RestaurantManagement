@@ -60,6 +60,13 @@ public static class AuthenticationExt
                 policy.RequireRole(ClaimTypes.Role, "instructor");
             });
 
+            options.AddPolicy("CustomerPolicy", policy =>
+            {
+                policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                policy.RequireAuthenticatedUser();
+                policy.RequireClaim(ClaimTypes.Email);
+                policy.RequireRole(ClaimTypes.Role, "customer");
+            });
 
             options.AddPolicy("Password", policy =>
             {

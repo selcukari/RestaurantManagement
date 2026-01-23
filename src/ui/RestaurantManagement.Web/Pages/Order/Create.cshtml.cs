@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Pages.Order.ViewModel;
@@ -5,6 +6,7 @@ using RestaurantManagement.Web.Services;
 
 namespace RestaurantManagement.Web.Pages.Order
 {
+    [Authorize(Roles = "customer,instructor")]
     public class CreateModel(BasketService basketService, OrderService orderService) : BasePageModel
     {
         [BindProperty] public CreateOrderViewModel CreateOrderViewModel { get; set; } = CreateOrderViewModel.Empty;

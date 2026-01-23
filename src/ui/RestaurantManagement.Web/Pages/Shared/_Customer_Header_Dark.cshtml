@@ -1,4 +1,6 @@
-﻿<header>
+﻿﻿@using System.Security.Claims
+
+<header>
     <div class="bg-primary text-white py-1 d-none d-md-block">
         <div class="container d-flex justify-content-between font-monospace" style="font-size: 0.8rem;">
             <span><i class="bi bi-geo-alt-fill me-1"></i> İstanbul, Beşiktaş</span>
@@ -23,7 +25,11 @@
                     </span>
                 </a>
 
-                <partial name="_Instructor_Auth_Identity_Header" />
+                @if (User.Identity!.IsAuthenticated)
+                {
+                    <partial name="_Instructor_Auth_Identity_Header" />
+
+                }
 
                 <button class="navbar-toggler ms-2 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#customerNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -36,10 +42,10 @@
                         <a class="nav-link active px-3" asp-page="/Index">Ana Sayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" asp-page="/Menu">Menü</a>
+                        <a class="nav-link px-3" asp-page="/Customer/CreateReservation">Rezervasyon</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" asp-page="/Reservation">Rezervasyon</a>
+                        <a class="nav-link px-3" asp-page="/Order/History">Sipariş History</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" asp-page="/About">Hakkımızda</a>

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="~/RestaurantManagement.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+
+    <partial name="_Customer_Header_Dark" />
+    @* <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">RestaurantManagement.Web</a>
@@ -78,7 +80,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> *@
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Error" />

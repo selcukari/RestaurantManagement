@@ -6,7 +6,7 @@ using RestaurantManagement.Web.Services;
 
 namespace RestaurantManagement.Web.Pages.Instructor.Kitchen
 {
-    [Authorize]
+    [Authorize(Roles = "customer,instructor")]
     public class IndexModel(KitchenService kitchenService) : BasePageModel
     {
         public List<KitchenViewModel> KitchenList { get; set; } = null!;
