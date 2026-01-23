@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="~/RestaurantManagement.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
-
-    <partial name="_Customer_Header_Dark" />
+    @if (User.Claims.Any(x => x is { Type: ClaimTypes.Role, Value: "instructor" }))
+    {
+        <partial name="_Instructor_Header_Dark" />
+    } else
+    {
+        <partial name="_Customer_Header_Dark" />
+    }
     @* <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">

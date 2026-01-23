@@ -18,15 +18,16 @@
             </a>
 
             <div class="d-flex align-items-center order-lg-last">
-                <a asp-page="/Basket/Index" class="nav-link position-relative me-3 text-dark">
-                    <i class="bi bi-bag fs-4"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        0
-                    </span>
-                </a>
-
+                
                 @if (User.Identity!.IsAuthenticated)
                 {
+                    <a asp-page="/Basket/Index" class="nav-link position-relative me-3 text-dark">
+                        <i class="bi bi-bag fs-4"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+
                     <partial name="_Instructor_Auth_Identity_Header" />
 
                 }
