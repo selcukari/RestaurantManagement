@@ -31,7 +31,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
 
             newProduct.Feature = new Feature
             {
-                Duration = 10, // calculate by course video
+                Calorie = request.Calorie, // Calorie
                 EducatorFullName = identityService.UserName, // get by token payload
                 Rating = 0
             };

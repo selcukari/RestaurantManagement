@@ -5,6 +5,7 @@
         public string Name { get; init; } = null!;
         public string Description { get; init; } = null!;
         public int Quantity { get; set; }
+        public int Calorie { get; set; } = 0;
         public decimal Price { get; init; }
         public Guid MenumId { get; init; }
 

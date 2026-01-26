@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestaurantManagement.Web.PageModels;
 using RestaurantManagement.Web.Services;
 using RestaurantManagement.Web.ViewModel;

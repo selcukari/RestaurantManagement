@@ -12,7 +12,7 @@
     string EducatorFullName,
     string MenuName,
     Guid? MenuId,
-    int Duration,
+    int Calorie,
     float Rating)
     {
         public string TruncateDescription(int maxLength)

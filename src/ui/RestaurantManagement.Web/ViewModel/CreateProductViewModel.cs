@@ -23,6 +23,7 @@ namespace RestaurantManagement.Web.ViewModel
         [Display(Name = "Product Price")] public decimal Price { get; init; }
 
         [Display(Name = "Product Quantity")] public int Quantity { get; init; }
+        [Display(Name = "Product Kalori")] public int Calorie { get; init; }
 
         public Guid? MenuId { get; init; }
 

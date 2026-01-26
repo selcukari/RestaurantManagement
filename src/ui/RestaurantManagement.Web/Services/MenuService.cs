@@ -41,7 +41,7 @@ namespace RestaurantManagement.Web.Services
                     c.Feature.EducatorFullName,
                     c.Menum.Name,
                     c.Menum.Id,
-                    c.Feature.Duration,
+                    c.Feature.Calorie,
                     c.Feature.Rating)).ToList();
 
             return ServiceResult<List<ProductViewModel>>.Success(productsViewModel);
@@ -59,7 +59,7 @@ namespace RestaurantManagement.Web.Services
             var product = response.Content!;
             var courseViewModel = new ProductViewModel(product.Id, product.Name, product.Description, product.Price,
                 product.ImageUrl, product.Created.ToLongDateString(), product.Quantity, product.Feature.EducatorFullName, product.Menum.Name,
-                product.Menum.Id, product.Feature.Duration, product.Feature.Rating);
+                product.Menum.Id, product.Feature.Calorie, product.Feature.Rating);
 
             return ServiceResult<ProductViewModel>.Success(courseViewModel);
         }
@@ -96,6 +96,7 @@ namespace RestaurantManagement.Web.Services
                 model.Description,
                 model.Price,
                 model.Quantity,
+                model.Calorie,
                 pictureStreamPart,
                 model.MenuId.ToString()!
             );
@@ -168,7 +169,7 @@ namespace RestaurantManagement.Web.Services
                     c.Feature.EducatorFullName,
                     c.Menum.Name,
                     c.Menum.Id,
-                    c.Feature.Duration,
+                    c.Feature.Calorie,
                     c.Feature.Rating
                 ))
                 .ToList();

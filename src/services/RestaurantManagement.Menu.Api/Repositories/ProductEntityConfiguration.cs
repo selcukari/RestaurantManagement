@@ -23,7 +23,7 @@ namespace RestaurantManagement.Menu.Api.Repositories
             builder.OwnsOne(c => c.Feature, feature =>
             {
                 feature.HasElementName("feature");
-                feature.Property(x => x.Duration).HasElementName("duration");
+                feature.Property(x => x.Calorie).HasElementName("calorie");
                 feature.Property(x => x.Rating).HasElementName("rating");
                 feature.Property(x => x.EducatorFullName).HasElementName("educatorFullName").HasMaxLength(100);
             });

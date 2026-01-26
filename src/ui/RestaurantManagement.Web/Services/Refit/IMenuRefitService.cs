@@ -27,6 +27,7 @@ namespace RestaurantManagement.Web.Services.Refit
             [AliasAs("Description")] string Description,
             [AliasAs("Price")] decimal Price,
             [AliasAs("Quantity")] decimal Quantity,
+            [AliasAs("Calorie")] decimal Calorie,
             [AliasAs("Picture")] StreamPart? Picture,
             [AliasAs("MenumId")] string MenumId);
 
