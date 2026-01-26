@@ -1,0 +1,114 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.AboutModel
+@{
+}
+
+<style>
+    /* Özel Tasarım Dokunuşları */
+    .about-header {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        padding: 120px 0;
+        color: white;
+        text-align: center;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #f8f9fa;
+        color: #d9534f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        transition: 0.3s;
+    }
+
+    .card:hover .feature-icon {
+        background-color: #d9534f;
+        color: white;
+    }
+
+    .chef-img {
+        border-radius: 20px;
+        box-shadow: 20px 20px 0px #f8f9fa;
+    }
+</style>
+
+<div class="container-fluid p-0">
+    <header class="about-header mb-5">
+        <h1 class="display-3 fw-bold">Hikayemiz</h1>
+        <p class="lead">1998'den beri lezzet ve samimiyetle.</p>
+    </header>
+
+    <div class="container py-5">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="display-5 fw-bold mb-4">Mutfakta <span class="text-danger">Aşkla</span> Başlayan Yolculuk</h2>
+                <p class="text-muted">
+                    Restoranımız, sadece bir yemek alanı değil, nesiller boyu aktarılan tariflerin modern dokunuşlarla buluştuğu bir duraktır.
+                    En taze malzemeleri yerel üreticilerden seçiyor, tabağınıza gelen her bir parçanın bir hikayesi olmasına özen gösteriyoruz.
+                </p>
+                <p class="text-muted">
+                    Şeflerimizin tutkusu ve ekibimizin güler yüzü ile sizlere evinizdeki konforu, profesyonel bir mutfak kalitesiyle sunuyoruz.
+                </p>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <h3 class="fw-bold">25+</h3>
+                        <p class="text-secondary">Yıllık Tecrübe</p>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="fw-bold">150+</h3>
+                        <p class="text-secondary">Özel Tarif</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fbaf?q=80&w=1972&auto=format&fit=crop" class="img-fluid chef-img" alt="Şefimiz">
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-egg-fried"></i>
+                    </div>
+                    <h4>Taze Malzeme</h4>
+                    <p class="text-muted">Her sabah pazarın en taze ve organik ürünlerini sizin için özenle seçiyoruz.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    <h4>Usta Eller</h4>
+                    <p class="text-muted">Mutfak ekibimiz, uluslararası deneyime sahip ödüllü şeflerden oluşmaktadır.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+                    <h4>Müşteri Memnuniyeti</h4>
+                    <p class="text-muted">Sizin mutluluğunuz bizim en büyük motivasyon kaynağımızdır.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="bg-light py-5 mt-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Bu eşsiz deneyimi tatmak ister misiniz?</h2>
+            <a asp-page="/Customer/CreateReservation" class="btn btn-danger btn-lg px-5 rounded-pill">Hemen Rezervasyon Yap</a>
+        </div>
+    </section>
+</div>
