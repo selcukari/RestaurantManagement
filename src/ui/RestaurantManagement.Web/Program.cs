@@ -106,7 +106,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 });
 
 // Configure the HTTP request pipeline.
-// app.UseExceptionHandler("/Error");
+ // app.UseExceptionHandler("/Error");
 
 if (!app.Environment.IsDevelopment())
 {

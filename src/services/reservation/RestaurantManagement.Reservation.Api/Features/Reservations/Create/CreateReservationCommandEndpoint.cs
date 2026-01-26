@@ -17,7 +17,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
                 .AddEndpointFilter<ValidationFilter<CreateReservationCommand>>()
-                .RequireAuthorization(policyNames: "InstructorPolicy");  // musteri role
+                .RequireAuthorization(policyNames: "Password");  // musteri, admin role
 
             return group;
         }

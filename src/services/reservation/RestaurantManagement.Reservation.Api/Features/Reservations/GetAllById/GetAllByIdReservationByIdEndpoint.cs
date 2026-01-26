@@ -28,7 +28,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAllById
         }
     }
 
-    public static class GetAllReservationByIdEndpoint
+    public static class GetAllByIdReservationByIdEndpoint
     {
         public static RouteGroupBuilder GetAllByIdReservationGroupItemEndpoint(this RouteGroupBuilder group)
         {
@@ -36,7 +36,8 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAllById
                     async (IMediator mediator, Guid userId) =>
                         (await mediator.Send(new GetAllReservationByIdQuery(userId))).ToGenericResult())
                 .WithName("GetAllByIdReservation")
-                .MapToApiVersion(1, 0);
+                .MapToApiVersion(1, 0)
+                .RequireAuthorization(policyNames: "CustomerPolicy"); // sadece muşteri
 
             return group;
         }

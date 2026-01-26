@@ -1,5 +1,4 @@
-﻿using Refit;
-using RestaurantManagement.Web.Dto;
+﻿using RestaurantManagement.Web.Dto;
 using RestaurantManagement.Web.Services.Refit;
 using RestaurantManagement.Web.ViewModel;
 using System.Text.Json;
@@ -21,8 +20,8 @@ namespace RestaurantManagement.Web.Services
                 logger.LogError("Error occurred while fetching reservations");
                 //logger.LogProblemDetails(productAsResult.Error);
 
-                return ServiceResult<List<ReservationViewModel>>.Error(
-                    "Failed to retrieve reservation data. Please try again later.");
+                return ServiceResult<List<ReservationViewModel>>.Error(problemDetails.Title ??
+                    "Failed to retrieve reservation data.", problemDetails.Detail!);
             }
 
 
@@ -54,7 +53,7 @@ namespace RestaurantManagement.Web.Services
                 //logger.LogProblemDetails(productAsResult.Error);
 
                 return ServiceResult<List<ReservationViewModel>>.Error(
-                    "Failed to retrieve reservation data. Please try again later.");
+                    problemDetails.Title ?? "Failed to retrieve reservation data.", problemDetails.Detail!);
             }
 
 
@@ -97,7 +96,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while fetching tables");
-                return ServiceResult<List<TableViewModel>>.Error("Fail to retrieve table. Please try again later");
+                return ServiceResult<List<TableViewModel>>.Error(problemDetails.Title ?? "Fail to getAll table.", problemDetails.Detail!);
             }
 
             var tables = response!.Content!
@@ -112,7 +111,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while fetching tables");
-                return ServiceResult<TableViewModel>.Error("Fail to retrieve table. Please try again later");
+                return ServiceResult<TableViewModel>.Error(problemDetails.Title ?? "Fail to get table.", problemDetails.Detail!);
             }
 
             var table = response!.Content!;
@@ -134,7 +133,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating table");
-                return ServiceResult.Error("Fail to create table. Please try again later");
+                return ServiceResult.Error(problemDetails.Title ?? "Fail to create table.", problemDetails.Detail!);
             }
 
             return ServiceResult.Success();
@@ -152,7 +151,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while updateing table");
-                return ServiceResult.Error("Fail to update table. Please try again later");
+                return ServiceResult.Error(problemDetails.Title ?? "Fail to update table.", problemDetails.Detail!);
             }
 
 
@@ -174,7 +173,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating Reservation");
-                return ServiceResult.Error("Fail to create table. Please try again later");
+                return ServiceResult.Error(problemDetails.Title ?? "Fail to create reservation.", problemDetails.Detail!);
             }
 
             return ServiceResult.Success();
@@ -187,7 +186,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating Reservation");
-                return ServiceResult.Error("Fail to create table. Please try again later");
+                return ServiceResult.Error(problemDetails.Title ?? "Fail to create table.", problemDetails.Detail!);
             }
 
             return ServiceResult.Success();
@@ -200,7 +199,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating Reservation");
-                return ServiceResult.Error("Fail to create table. Please try again later");
+                return ServiceResult.Error(problemDetails.Title ?? "Fail to delete reservation.", problemDetails.Detail!);
             }
 
             return ServiceResult.Success();
