@@ -32,6 +32,7 @@ namespace RestaurantManagement.Web.Pages.Instructor
                 Description = product.Description,
                 Price = product.Price,
                 Quantity = product.Quantity,
+                Calorie = product.Calorie,
                 MenuId = (Guid)product?.MenuId!,
                 ExistingPictureUrl = product.ImageUrl // Mevcut resim yolu
             };

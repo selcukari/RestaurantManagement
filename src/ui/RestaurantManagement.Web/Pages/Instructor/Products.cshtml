@@ -11,11 +11,12 @@
             <th scope="col">#</th>
             <td>Picture</td>
             <th scope="col">Name</th>
+            <th scope="col">Edet/Miktar</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Category Name</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Duration</th>
+            <th scope="col">Puan</th>
+            <th scope="col">Calorie</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -31,6 +32,7 @@
                         <product-thumbnail-picture with="100px" class="img-fluid img-thumbnail" src="@product.ImageUrl"></product-thumbnail-picture>
                     </td>
                     <td>@product.Name</td>
+                    <td>@product.Quantity</td>
                     <td>@product.TruncateDescription(100)</td>
                     <td>@product.Price.ToString("C")</td>
                     <td>@product.MenuName</td>

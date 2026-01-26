@@ -29,6 +29,9 @@ namespace RestaurantManagement.Web.ViewModel
         [Display(Name = "Product Quantity")]
         public int Quantity { get; init; }
 
+        [Display(Name = "Product Kalori")]
+        public int Calorie { get; init; }
+
         [Display(Name = "Menu")]
         public Guid MenuId { get; init; }
 

@@ -6,6 +6,7 @@
     string Description,
     decimal Price,
     int Quantity,
+    int Calorie,
     string? ImageUrl,
     Guid MenumId);
 }

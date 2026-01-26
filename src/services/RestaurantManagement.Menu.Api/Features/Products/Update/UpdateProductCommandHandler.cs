@@ -18,6 +18,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Update
             hasProduct.ImageUrl = request.ImageUrl;
             hasProduct.MenumId = request.MenumId;
 
+            hasProduct.Feature.Calorie = request.Calorie;
 
             context.Products.Update(hasProduct);
 
