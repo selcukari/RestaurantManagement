@@ -1,5 +1,7 @@
 ﻿using RestaurantManagement.Web.Pages.Instructor.Kitchen.ViewModel;
 using RestaurantManagement.Web.Services.Refit;
+using System.Text.Json;
+using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace RestaurantManagement.Web.Services
 {
@@ -14,9 +16,10 @@ namespace RestaurantManagement.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError(new EventId(), null, response.Error);
                 return ServiceResult<List<KitchenViewModel>>.Error(
-                    "An error occurred while getting the Kitchen");
+                    "An error occurred while getting the Kitchen", problemDetails.Detail!);
             }
 
             var kitchenList = new List<KitchenViewModel>();

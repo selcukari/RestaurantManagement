@@ -22,8 +22,8 @@ namespace RestaurantManagement.Web.Services
                 logger.LogError("Error occurred while fetching products");
                 //logger.LogProblemDetails(productAsResult.Error);
 
-                return ServiceResult<List<ProductViewModel>>.Error(
-                    "Failed to retrieve product data. Please try again later.");
+                return ServiceResult<List<ProductViewModel>>.Error(problemDetails.Title ??
+                    "Failed to retrieve product data.", problemDetails.Detail!);
             }
 
 
@@ -72,7 +72,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while fetching categories");
-                return ServiceResult<List<MenuViewModel>>.Error("Fail to retrieve menu. Please try again later");
+                return ServiceResult<List<MenuViewModel>>.Error("Fail to retrieve menu.", problemDetails.Detail!);
             }
 
             var menus = response!.Content!
@@ -104,7 +104,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating course");
-                return ServiceResult.Error("Fail to create course. Please try again later");
+                return ServiceResult.Error("Fail to create product.", problemDetails.Detail!);
             }
 
 
@@ -137,7 +137,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while creating course");
-                return ServiceResult.Error("Fail to create course. Please try again later");
+                return ServiceResult.Error("Fail to update course.", problemDetails.Detail!);
             }
 
 
@@ -153,7 +153,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(product.Error.Content!);
                 logger.LogError("Error occurred while fetching courses by user id");
-                return ServiceResult<List<ProductViewModel>>.Error("Fail to retrieve courses. Please try again later");
+                return ServiceResult<List<ProductViewModel>>.Error("Fail to getId products.", problemDetails.Detail!);
             }
 
             var products = product!.Content!
@@ -183,7 +183,7 @@ namespace RestaurantManagement.Web.Services
             {
                 var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occurred while deleting course");
-                return ServiceResult.Error("Fail to delete Product. Please try again later");
+                return ServiceResult.Error("Fail to delete Product.", problemDetails.Detail!);
             }
 
             return ServiceResult.Success();
