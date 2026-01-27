@@ -15,7 +15,6 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.AddBasketItem
             .MapToApiVersion(1, 0)
             .AddEndpointFilter<ValidationFilter<AddBasketItemCommand>>();
 
-
         return group;
     }
 }

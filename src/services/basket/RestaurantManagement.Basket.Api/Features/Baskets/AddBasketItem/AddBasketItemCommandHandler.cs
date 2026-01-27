@@ -32,9 +32,7 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.AddBasketItem
 
             currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
-
             var existingBasketItem = currentBasket!.Items.FirstOrDefault(x => x.Id == request.ProductId);
-
 
             if (existingBasketItem is not null) // basket  var ise quantity leri topla
                  // TODO : business rule
@@ -43,12 +41,9 @@ namespace RestaurantManagement.Basket.Api.Features.Baskets.AddBasketItem
                 newBasketItem.Quantity += existingBasketItem.Quantity;
             }
 
-
             currentBasket.Items.Add(newBasketItem);
 
-
             currentBasket.ApplyAvailableDiscount();
-
 
             await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 

@@ -56,7 +56,7 @@ public static class AuthenticationExt
             {
                 policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                 policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimTypes.Email);
+                policy.RequireAssertion(context => context.User.HasClaim(c => c.Type == ClaimTypes.Email) ? true : false);
                 policy.RequireRole(ClaimTypes.Role, "instructor");
             });
 
@@ -64,7 +64,7 @@ public static class AuthenticationExt
             {
                 policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                 policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimTypes.Email);
+                policy.RequireUserName(ClaimTypes.Name);
                 policy.RequireRole(ClaimTypes.Role, "customer");
             });
 
@@ -73,6 +73,7 @@ public static class AuthenticationExt
                 policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                 policy.RequireAuthenticatedUser();
                 policy.RequireClaim(ClaimTypes.Email);
+                policy.RequireAssertion(context => context.User.HasClaim(c => c.Type == ClaimTypes.Email) ? true : false);
             });
 
             options.AddPolicy("ClientCredential", policy =>

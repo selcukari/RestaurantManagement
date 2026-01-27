@@ -3,7 +3,6 @@ using RestaurantManagement.Web.Pages.Order.ViewModel;
 using RestaurantManagement.Web.Services.Refit;
 using System.Net;
 using System.Text.Json;
-using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace RestaurantManagement.Web.Services
 {
@@ -54,10 +53,9 @@ namespace RestaurantManagement.Web.Services
                 if (response.StatusCode == HttpStatusCode.BadRequest)
                     return ServiceResult.FailFromProblemDetails(response.Error);
 
-                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError(new EventId(), null, response.Error);
 
-                return ServiceResult.Error("An error occurred while creating the order", problemDetails.Detail!);
+                return ServiceResult.Error("An error occurred while creating the order");
             }
 
             return ServiceResult.Success();
@@ -69,11 +67,10 @@ namespace RestaurantManagement.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError(new EventId(), null, response.Error);
 
                 return ServiceResult<List<OrderHistoryViewModel>>.Error(
-                    "An error occurred while getting the order history", problemDetails.Detail!);
+                    "An error occurred while getting the order history");
             }
 
             var orderHistoryList = new List<OrderHistoryViewModel>();

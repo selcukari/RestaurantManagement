@@ -108,15 +108,16 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 // Configure the HTTP request pipeline.
  // app.UseExceptionHandler("/Error");
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error"); // Şu an bu satır çalışıyor ve detayları gizliyor.
-    app.UseHsts();
-}
-else
-{
-    app.UseDeveloperExceptionPage(); // Detaylı hatayı bu satır gösterir.
-}
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Error"); // Şu an bu satır çalışıyor ve detayları gizliyor.
+//    app.UseHsts();
+//}
+//else
+//{
+//    app.UseDeveloperExceptionPage(); // Detaylı hatayı bu satır gösterir.
+//}
+app.UseDeveloperExceptionPage(); // Detaylı hatayı bu satır gösterir.
 
 app.UseRouting();
 

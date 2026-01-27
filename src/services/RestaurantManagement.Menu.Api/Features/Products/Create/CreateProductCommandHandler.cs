@@ -33,7 +33,7 @@ namespace RestaurantManagement.Menu.Api.Features.Products.Create
             {
                 Calorie = request.Calorie, // Calorie
                 EducatorFullName = identityService.UserName, // get by token payload
-                Rating = 0
+                Rating = 70
             };
 
             context.Products.Add(newProduct);

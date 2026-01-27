@@ -2,8 +2,6 @@
 using RestaurantManagement.Web.Pages.Basket.ViewModel;
 using RestaurantManagement.Web.Services.Refit;
 using System.Net;
-using System.Text.Json;
-using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace RestaurantManagement.Web.Services
 {
@@ -18,7 +16,6 @@ namespace RestaurantManagement.Web.Services
 
             if (!responseAsResult.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(responseAsResult.Error.Content!);
                 logger.LogError(new EventId(), null, responseAsResult.Error);
 
                 return ServiceResult.Error("An error occurred while creating or updating the basket");
@@ -38,8 +35,8 @@ namespace RestaurantManagement.Web.Services
                 if (responseAsResult.StatusCode == HttpStatusCode.NotFound)
                     return ServiceResult<BasketViewModel>.Success(BasketViewModel.Empty());
 
-
                 logger.LogError(new EventId(), null, responseAsResult.Error);
+
                 return ServiceResult<BasketViewModel>.Error("An error occurred while getting the baskets");
             }
 
@@ -93,6 +90,7 @@ namespace RestaurantManagement.Web.Services
             if (!responseAsResult.IsSuccessStatusCode)
             {
                 logger.LogError(new EventId(), null, responseAsResult.Error);
+
                 return ServiceResult.Error("An error occurred while deleting the basket");
             }
 
@@ -101,6 +99,7 @@ namespace RestaurantManagement.Web.Services
 
         public async Task<ServiceResult> ApplyDiscountAsync(string coupon)
         {
+            // veri tabandan codun rate bilgisini al gecerli ise
             var responseAsResult = await discountRefitService.GetDiscountByCoupon(coupon);
 
             if (!responseAsResult.IsSuccessStatusCode) return ServiceResult.FailFromProblemDetails(responseAsResult.Error);
@@ -108,15 +107,16 @@ namespace RestaurantManagement.Web.Services
 
             var discount = responseAsResult.Content;
 
+            // sepetteki urunlere indirim code uygula
             var response =
                 await basketRefitService.ApplyDiscountRateAsync(new ApplyDiscountRateRequest(coupon,
                     responseAsResult.Content!.Rate));
             if (!responseAsResult.IsSuccessStatusCode)
             {
                 logger.LogError(new EventId(), null, responseAsResult.Error);
+
                 return ServiceResult.Error("An error occurred while applying the discount");
             }
-
 
             return ServiceResult.Success();
         }
@@ -128,6 +128,7 @@ namespace RestaurantManagement.Web.Services
             if (!response.IsSuccessStatusCode)
             {
                 logger.LogError(new EventId(), null, response.Error);
+
                 return ServiceResult.Error("An error occurred while removing the discount");
             }
 

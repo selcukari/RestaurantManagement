@@ -15,7 +15,8 @@ namespace RestaurantManagement.Discount.Api.Features.Discounts.CreateDiscount
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateDiscountCommand>>().AllowAnonymous();
+                .AddEndpointFilter<ValidationFilter<CreateDiscountCommand>>().AllowAnonymous()
+                .RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }

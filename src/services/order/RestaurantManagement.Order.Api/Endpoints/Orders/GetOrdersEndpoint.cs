@@ -17,8 +17,7 @@ namespace RestaurantManagement.Order.Api.Endpoints.Orders
                 .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .RequireAuthorization("Password");
-
+                .RequireAuthorization(policyNames: "Password");
 
             return group;
         }

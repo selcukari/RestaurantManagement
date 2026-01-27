@@ -22,7 +22,7 @@ namespace RestaurantManagement.Discount.Api.Features.Discounts.GetDiscountByCode
 
 
             return ServiceResult<GetDiscountByCodeQueryResponse>.SuccessAsOk(
-                new GetDiscountByCodeQueryResponse(hasDiscount.Code, hasDiscount.Rate));
+                new GetDiscountByCodeQueryResponse(hasDiscount.Rate));
         }
     }
 }

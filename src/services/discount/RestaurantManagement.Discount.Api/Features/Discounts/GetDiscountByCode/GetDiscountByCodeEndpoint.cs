@@ -6,15 +6,14 @@ namespace RestaurantManagement.Discount.Api.Features.Discounts.GetDiscountByCode
     {
         public static RouteGroupBuilder GetDiscountByCodeGroupItemEndpoint(this RouteGroupBuilder group)
         {
-            group.MapGet("/{code:length(10)}", // validation yapıldı bu sekilde de olabilir
-                    async (string code, IMediator mediator) =>
-                        (await mediator.Send(new GetDiscountByCodeQuery(code))).ToGenericResult())
+            group.MapGet("/{coupon:length(10)}", // validation yapıldı bu sekilde de olabilir
+                    async (IMediator mediator, string coupon) =>
+                        (await mediator.Send(new GetDiscountByCodeQuery(coupon))).ToGenericResult())
                 .WithName("GetDiscountByCode")
                 .MapToApiVersion(1, 0)
                 .Produces<GetDiscountByCodeQueryResponse>()
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
-                // .RequireAuthorization(policyNames: "Password");
 
             return group;
         }
