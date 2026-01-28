@@ -1,14 +1,13 @@
 ﻿using RestaurantManagement.Bus.Events;
 using RestaurantManagement.Reporting.Api.Features.Reporting;
 using RestaurantManagement.Reporting.Api.Repositories;
-using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reporting.Api.Consumers
 {
-    public class ReportingCreatedEventConsumer(IServiceProvider serviceProvider, ICacheService cacheService)
-    : IConsumer<Bus.Events.ReportingCreatedEvent>
+    public class ReportingCreatedReservationEventConsumer(IServiceProvider serviceProvider)
+    : IConsumer<Bus.Events.ReportingCreatedReservationEvent>
     {
-        public async Task Consume(ConsumeContext<ReportingCreatedEvent> context)
+        public async Task Consume(ConsumeContext<ReportingCreatedReservationEvent> context)
         {
             using var scope = serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();

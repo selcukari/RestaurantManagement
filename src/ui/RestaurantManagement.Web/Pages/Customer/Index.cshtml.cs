@@ -10,7 +10,7 @@ namespace RestaurantManagement.Web.Pages.Customer
     [Authorize(Roles = "customer")]
     public class IndexModel(ReservationService reservationService) : BasePageModel
     {
-        public List<ReservationViewModel> ReservationViewModels { get; set; } = null!;
+        public List<ReservationViewModel> ReservationViewModels { get; set; } = new List<ReservationViewModel>();
 
         public async Task<IActionResult> OnGetAsync()
         {

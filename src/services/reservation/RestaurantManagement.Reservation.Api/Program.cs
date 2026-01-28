@@ -1,3 +1,4 @@
+using RestaurantManagement.Bus;
 using RestaurantManagement.Reservation.Api;
 using RestaurantManagement.Reservation.Api.BackgroundServices;
 using RestaurantManagement.Reservation.Api.Features.Reservations;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOptionsExt();
 builder.Services.AddCommonServiceExt(typeof(TableAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration); // bus msstaransit
 builder.Services.AddVersioningExt();
 builder.Services.AddDatabaseServiceExt();
 builder.Services.AddScoped<ICacheService, CacheService>();

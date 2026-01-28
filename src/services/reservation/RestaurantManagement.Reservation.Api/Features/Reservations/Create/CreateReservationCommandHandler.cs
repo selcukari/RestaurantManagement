@@ -1,9 +1,11 @@
-﻿using RestaurantManagement.Shared.Services;
+﻿using MassTransit.Transports;
+using RestaurantManagement.Bus.Events;
+using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
 {
     public class CreateReservationCommandHandler(AppDbContext context,
-    IMapper mapper,
+    IMapper mapper, IPublishEndpoint publishEndpoint,
     IIdentityService identityService, ICacheService cacheService) : IRequestHandler<CreateReservationCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
@@ -37,6 +39,10 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
             context.Tables.Update(hasTable);
 
             await context.SaveChangesAsync(cancellationToken);
+
+            // rapor icin reporing serviceye gonderiliyor
+            await publishEndpoint.Publish(new ReportingCreatedReservationEvent(newReservation.Id,newReservation.CustomerFullName, newReservation.ReservationDate,
+                newReservation.StartTime, newReservation.EndTime, newReservation.GuestCount, newReservation.CustomerId, newReservation.TableId), cancellationToken);
 
             // 5. Cache temizliği
             cacheService.Remove("tables");

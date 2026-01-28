@@ -1,3 +1,4 @@
+using RestaurantManagement.Menu.Api.Features.Products;
 using RestaurantManagement.Reporting.Api;
 using RestaurantManagement.Reporting.Api.Options;
 using RestaurantManagement.Reporting.Api.Repositories;
@@ -12,13 +13,16 @@ builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(ReportingAssembly));
 builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
-builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddScoped<ICacheService, CacheService>();
+
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler(x => { });
+
+app.AddReportingGroupEndpointExt(app.AddVersionSetExt());
 
 // Configure the HTTP request pipeline.
 
