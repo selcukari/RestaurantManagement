@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using RestaurantManagement.Reporting.Api.Features.Reporting.GetAll;
 
-namespace RestaurantManagement.Menu.Api.Features.Products
+namespace RestaurantManagement.Reporting.Api.Features.Reporting
 {
     public static class ReporingEndpointExt
     {

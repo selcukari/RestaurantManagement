@@ -39,7 +39,7 @@ namespace RestaurantManagement.Reporting.Api.Features.Reporting.GetAll
                     async (IMediator mediator) =>
                         (await mediator.Send(new GetAllReportingsQuery())).ToGenericResult())
                 .MapToApiVersion(1, 0)
-                .WithName("GetAllReporing").RequireAuthorization(policyNames: "InstructorPolicy");
+                .WithName("GetAllReporing");/*.RequireAuthorization(policyNames: "Password");*/
 
             return group;
         }

@@ -1,0 +1,93 @@
+﻿@page
+@model RestaurantManagement.Web.Pages.Instructor.ReportingModel
+@{
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header fw-bold bg-primary text-white">
+                    Son 5 Ayın Rezervasyon Analizi
+                </div>
+                <div class="card-body">
+                    <canvas id="reservationChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header fw-bold bg-success text-white">
+                    En Çok Rezervasyon Yapan İlk 5 Müşteri
+                </div>
+                <div class="card-body">
+                    <canvas id="customerChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // --- 1. GRAFİK: AYLIK ANALİZ ---
+        const prefRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.ReservationForPreferenceViewModel));
+        console.log("prefRawData:", prefRawData)
+        const prefLabels = prefRawData.map(item => item.monthYears);
+        const prefCounts = prefRawData.map(item => item.count);
+
+        new Chart(document.getElementById('reservationChart'), {
+            type: 'bar',
+            data: {
+                labels: prefLabels,
+                datasets: [{
+                    label: 'Toplam Rezervasyon',
+                    data: prefCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+
+        // --- 2. GRAFİK: MÜŞTERİ ANALİZİ ---
+        const custRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.ReservationForCustomerViewModel));
+        console.log("prefRawData:", custRawData)
+
+        const custLabels = custRawData.map(item => item.fullName);
+        const custCounts = custRawData.map(item => item.count);
+
+        new Chart(document.getElementById('customerChart'), {
+            type: 'doughnut', // Farklılık olması için Doughnut (Halka) seçtim
+            data: {
+                labels: custLabels,
+                datasets: [{
+                    label: 'Rezervasyon Sayısı',
+                    data: custCounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+}
+

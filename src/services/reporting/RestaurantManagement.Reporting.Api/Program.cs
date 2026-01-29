@@ -1,4 +1,4 @@
-using RestaurantManagement.Menu.Api.Features.Products;
+using RestaurantManagement.Reporting.Api.Features.Reporting;
 using RestaurantManagement.Reporting.Api;
 using RestaurantManagement.Reporting.Api.Options;
 using RestaurantManagement.Reporting.Api.Repositories;
