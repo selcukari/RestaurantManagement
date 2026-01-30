@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using RestaurantManagement.Bus.Events;
 using RestaurantManagement.Order.Application.Contracts.Refit.PaymentService;
 using RestaurantManagement.Order.Application.Contracts.Repositories;
@@ -68,6 +69,13 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
                 cancellationToken);
             // mutfak service ye kayıt et
             await publishEndpoint.Publish(new OrderCreatedForKitchenEvent(identityService.UserName,
+                order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
+                item.ProductId,
+                item.ProductName,
+                item.Quantity
+            )).ToList()), cancellationToken);
+            // repor icin kayıt
+            await publishEndpoint.Publish(new OrderCreatedForReporingEvent(identityService.UserName, DateTime.Now,
                 order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
                 item.ProductId,
                 item.ProductName,

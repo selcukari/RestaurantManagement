@@ -11,6 +11,7 @@ namespace RestaurantManagement.Reporting.Api.Features.Reporting
         {
             CreateMap<Reporting, ReportingDto>().ReverseMap();
             CreateMap<ReservationRepor, ReservationReporDto>().ReverseMap();
+            CreateMap<KitchenRepor, KitchenReporDto>().ReverseMap();
         }
     }
 }

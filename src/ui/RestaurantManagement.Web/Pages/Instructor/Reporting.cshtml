@@ -26,6 +26,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header fw-bold bg-primary text-white">
+                    Son 5 Ayın Ürün Analizi
+                </div>
+                <div class="card-body">
+                    <canvas id="productChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -35,7 +45,6 @@
     <script>
         // --- 1. GRAFİK: AYLIK ANALİZ ---
         const prefRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.ReservationForPreferenceViewModel));
-        console.log("prefRawData:", prefRawData)
         const prefLabels = prefRawData.map(item => item.monthYears);
         const prefCounts = prefRawData.map(item => item.count);
 
@@ -59,7 +68,6 @@
 
         // --- 2. GRAFİK: MÜŞTERİ ANALİZİ ---
         const custRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.ReservationForCustomerViewModel));
-        console.log("prefRawData:", custRawData)
 
         const custLabels = custRawData.map(item => item.fullName);
         const custCounts = custRawData.map(item => item.count);
@@ -86,6 +94,28 @@
                 plugins: {
                     legend: { position: 'bottom' }
                 }
+            }
+        });
+         // --- 3. GRAFİK: topKitchenForProducts ANALİZ ---
+        const productRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.KitchenForProductViewModel));
+        const productLabels = productRawData.map(item => item.name);
+        const productCounts = productRawData.map(item => item.count);
+
+        new Chart(document.getElementById('productChart'), {
+            type: 'bar',
+            data: {
+                labels: productLabels,
+                datasets: [{
+                    label: 'Ürün Analizi',
+                    data: productCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
             }
         });
     </script>

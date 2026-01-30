@@ -5,11 +5,12 @@
         Guid Id,
         string Update,
         List<ReservationForCustomerViewModel>? ReservationForCustomerViewModel = null,
-        List<ReservationForPreferenceViewModel>? ReservationForPreferenceViewModel = null // reservation tercih edildi
+        List<ReservationForPreferenceViewModel>? ReservationForPreferenceViewModel = null, // reservation tercih edildi
+        List<KitchenForProductViewModel>? KitchenForProductViewModel = null
 
      )
     {
-        public ReportingViewModel() : this(Guid.Empty, string.Empty, null, null)
+        public ReportingViewModel() : this(Guid.Empty, string.Empty, null, null, null)
         {
         }
     }

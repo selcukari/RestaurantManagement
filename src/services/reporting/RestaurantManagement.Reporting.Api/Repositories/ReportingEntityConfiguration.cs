@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace RestaurantManagement.Reporting.Api.Repositories
@@ -23,6 +24,19 @@ namespace RestaurantManagement.Reporting.Api.Repositories
                 r.Property(x => x.StartTime).HasElementName("startTime");
                 r.Property(x => x.EndTime).HasElementName("endTime");
                 r.Property(x => x.GuestCount).HasElementName("guestCount");
+            });
+            // Listeyi MongoDB içindeki bir array (döküman listesi) olarak mapliyoruz
+            builder.OwnsMany(x => x.KitchenRepors, r =>
+            {
+                r.Property(x => x.UserFullName).HasElementName("userFullName");
+                r.Property(x => x.Created).HasElementName("created");
+                // İçerideki KitchenReporDetails listesini de yapılandırıyoruz
+                r.OwnsMany(x => x.KitchenReporDetails, d =>
+                {
+                    d.Property(x => x.Id).HasElementName("id");
+                    d.Property(x => x.Name).HasElementName("name");
+                    d.Property(x => x.Quantity).HasElementName("quantity");
+                });
             });
         }
     }

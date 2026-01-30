@@ -14,6 +14,7 @@ namespace RestaurantManagement.Reporting.Api
             services.AddMassTransit(configure =>
             {
                 configure.AddConsumer<ReportingCreatedReservationEventConsumer>();
+                configure.AddConsumer<ReportingCreatedKitchenEventConsumer>();
 
                 configure.UsingRabbitMq((ctx, cfg) =>
                 {
@@ -25,6 +26,9 @@ namespace RestaurantManagement.Reporting.Api
 
                     cfg.ReceiveEndpoint("reporing-microservice.reporing-reservation-create.queue",
                         e => { e.ConfigureConsumer<ReportingCreatedReservationEventConsumer>(ctx); });
+
+                    cfg.ReceiveEndpoint("reporing-microservice.reporing-kitchen-create.queue",
+                        e => { e.ConfigureConsumer<ReportingCreatedKitchenEventConsumer>(ctx); });
 
 
                     // cfg.ConfigureEndpoints(ctx);

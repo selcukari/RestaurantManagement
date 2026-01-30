@@ -7,5 +7,6 @@ namespace RestaurantManagement.Reporting.Api.Features.Reporting
         public DateTime Update { get; set; }
 
         public List<ReservationRepor> ReservationRepors { get; set; } = default!;
+        public List<KitchenRepor> KitchenRepors { get; set; } = default!;
     }
 }

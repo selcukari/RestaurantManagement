@@ -22,7 +22,6 @@ namespace RestaurantManagement.Reporting.Api.Consumers
             {
                 reporting = new RestaurantManagement.Reporting.Api.Features.Reporting.Reporting
                 {
-                    Update = DateTime.Now,
                     ReservationRepors = new List<ReservationRepor>()
                 };
                 dbContext.Reportings.Add(reporting);

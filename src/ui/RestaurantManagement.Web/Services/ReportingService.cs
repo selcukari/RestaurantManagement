@@ -23,9 +23,13 @@ namespace RestaurantManagement.Web.Services
 
             var dto = response.Content;
             var rawReservations = dto.ReservationRepors ?? new List<ReservationReporDto>();
+            var rawKitchens = dto.KitchenRepors ?? new List<KitchenReporDto>();
 
-            // 1. En çok rezervasyon yapan benzersiz 5 müşteri
+            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-5);
+
+            // 1. En çok rezervasyon yapan benzersiz 5 müşteri son 10 ay
             var topCustomers = rawReservations
+                .Where(r => r.ReservationDate >= new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-10))
                 .GroupBy(r => r.CustomerId)
                 .Select(g => new ReservationForCustomerViewModel(
                     g.Key,
@@ -35,8 +39,6 @@ namespace RestaurantManagement.Web.Services
                 .OrderByDescending(c => c.Count)
                 .Take(5)
                 .ToList();
-
-            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-5);
 
             var lastFiveMonths = rawReservations
                 .Where(r => r.ReservationDate >= startDate) // Son 5 ayın başlangıcından itibaren al
@@ -53,11 +55,25 @@ namespace RestaurantManagement.Web.Services
                 ))
                 .ToList();
 
+            // 1. En çok ürün yapan benzersiz 5 ay
+            var topKitchenForProducts = rawKitchens
+                .Where(r => r.Created >= startDate) // Son 5 ay filtresi
+                .SelectMany(r => r.KitchenReporDetails) // List<KitchenReporDetail> içindeki tüm ürünleri tek bir listeye indirger
+                .GroupBy(p => p.Id) // Ürün adına göre grupla (veya Id'ye göre)
+                .Select(g => new KitchenForProductViewModel(
+                    g.First().Name, // Ürün adı
+                    g.Sum(x => x.Quantity) // O gruba ait tüm miktarları topla
+                ))
+                .OrderByDescending(p => p.Count) // En çok satılanı başa al
+                .Take(5) // İstersen en çok satılan ilk 5 ürünü alabilirsin
+                .ToList();
+
             var reportings = new ReportingViewModel(
                 dto.Id,
                 dto.Update.ToString("dd.MM.yyyy HH:mm"),
                 topCustomers,
-                lastFiveMonths
+                lastFiveMonths,
+                topKitchenForProducts
             );
 
             return ServiceResult<ReportingViewModel>.Success(reportings);
