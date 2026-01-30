@@ -1,7 +1,6 @@
 ﻿using RestaurantManagement.Bus.Events;
 using RestaurantManagement.Reporting.Api.Features.Reporting;
 using RestaurantManagement.Reporting.Api.Repositories;
-using System.Linq;
 
 namespace RestaurantManagement.Reporting.Api.Consumers
 {

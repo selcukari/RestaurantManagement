@@ -41,7 +41,14 @@ namespace RestaurantManagement.Reporting.Api.Consumers
             };
 
             // 3. Listenin en başına (0. index) ekle her yeni kayıtı
-            reporting.ReservationRepors.Insert(0, newReservationReport);
+            if (reporting.ReservationRepors == null)
+            {
+                reporting.ReservationRepors = new List<ReservationRepor> { newReservationReport };
+            }
+            else
+            {
+                reporting.ReservationRepors.Insert(0, newReservationReport);
+            }
             reporting.Update = DateTime.Now;
 
             // 4. Değişiklikleri kaydet
