@@ -1,4 +1,6 @@
-﻿namespace RestaurantManagement.Web.ViewModel
+﻿using RestaurantManagement.Web.Pages.Order.ViewModel;
+
+namespace RestaurantManagement.Web.ViewModel
 {
     public record ReportingViewModel
     (
@@ -6,11 +8,12 @@
         string Update,
         List<ReservationForCustomerViewModel>? ReservationForCustomerViewModel = null,
         List<ReservationForPreferenceViewModel>? ReservationForPreferenceViewModel = null, // reservation tercih edildi
-        List<KitchenForProductViewModel>? KitchenForProductViewModel = null
+        List<KitchenForProductViewModel>? KitchenForProductViewModel = null,
+        List<PaymentForReportViewModel>? PaymentForReportViewModel = null
 
      )
     {
-        public ReportingViewModel() : this(Guid.Empty, string.Empty, null, null, null)
+        public ReportingViewModel() : this(Guid.Empty, string.Empty, null, null, null, null)
         {
         }
     }

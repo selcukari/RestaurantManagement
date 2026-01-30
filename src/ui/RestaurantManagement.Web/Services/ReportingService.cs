@@ -24,6 +24,7 @@ namespace RestaurantManagement.Web.Services
             var dto = response.Content;
             var rawReservations = dto.ReservationRepors ?? new List<ReservationReporDto>();
             var rawKitchens = dto.KitchenRepors ?? new List<KitchenReporDto>();
+            var rawPayments = dto.PaymentRepors ?? new List<PaymentReporDto>();
 
             var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-5);
 
@@ -68,12 +69,25 @@ namespace RestaurantManagement.Web.Services
                 .Take(5) // İstersen en çok satılan ilk 5 ürünü alabilirsin
                 .ToList();
 
+            // 1. son 5 ay payment
+            var topPayments = rawPayments
+                .Where(r => r.Created >= startDate)
+                .GroupBy(r => new { r.Created.Year, r.Created.Month })
+                .Select(g => new PaymentForReportViewModel(
+                    g.First().Created.ToString("MMMM yyyy"),
+                    g.Sum(x => x.TotalPrice)
+                ))
+                .OrderByDescending(c => c.Created)
+                .Take(5)
+                .ToList();
+
             var reportings = new ReportingViewModel(
                 dto.Id,
                 dto.Update.ToString("dd.MM.yyyy HH:mm"),
                 topCustomers,
                 lastFiveMonths,
-                topKitchenForProducts
+                topKitchenForProducts,
+                topPayments
             );
 
             return ServiceResult<ReportingViewModel>.Success(reportings);

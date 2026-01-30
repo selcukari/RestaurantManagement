@@ -36,6 +36,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card shadow mb-4">
+                <div class="card-header fw-bold bg-primary text-white">
+                    Son 5 Ayın Ödeme Analizi
+                </div>
+                <div class="card-body">
+                    <canvas id="paymentChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -108,6 +118,28 @@
                 datasets: [{
                     label: 'Ürün Analizi',
                     data: productCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+        // --- 4. GRAFİK: topPayment ANALİZ ---
+        const paymentRawData = @Html.Raw(Json.Serialize(Model.ReportingViewModel.PaymentForReportViewModel));
+        const paymentLabels = paymentRawData.map(item => item.created);
+        const paymentTotalPrizes = paymentRawData.map(item => item.totalPrice);
+
+        new Chart(document.getElementById('paymentChart'), {
+            type: 'bar',
+            data: {
+                labels: paymentLabels,
+                datasets: [{
+                    label: 'Ödeme Analizi',
+                    data: paymentTotalPrizes,
                     backgroundColor: 'rgba(54, 162, 235, 0.6)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1

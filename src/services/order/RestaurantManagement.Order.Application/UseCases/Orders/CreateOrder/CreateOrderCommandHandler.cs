@@ -81,6 +81,8 @@ namespace RestaurantManagement.Order.Application.UseCases.Orders.CreateOrder
                 item.ProductName,
                 item.Quantity
             )).ToList()), cancellationToken);
+            // repor icin kayıt total fiyat
+            await publishEndpoint.Publish(new ReportingForPaymentEvent(order.Created, order.TotalPrice), cancellationToken);
             // siparişleri tamamlananların depodan sayısını cıkar
             await publishEndpoint.Publish(new OrderCreatedItemsEvent(order.OrderItems.Select(item => new OrderCreatedForKitchenItem(
                 item.ProductId,

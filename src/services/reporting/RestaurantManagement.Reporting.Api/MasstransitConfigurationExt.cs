@@ -15,6 +15,7 @@ namespace RestaurantManagement.Reporting.Api
             {
                 configure.AddConsumer<ReportingCreatedReservationEventConsumer>();
                 configure.AddConsumer<ReportingCreatedKitchenEventConsumer>();
+                configure.AddConsumer<ReportingCreatedPaymentEventConsumer>();
 
                 configure.UsingRabbitMq((ctx, cfg) =>
                 {
@@ -29,6 +30,9 @@ namespace RestaurantManagement.Reporting.Api
 
                     cfg.ReceiveEndpoint("reporing-microservice.reporing-kitchen-create.queue",
                         e => { e.ConfigureConsumer<ReportingCreatedKitchenEventConsumer>(ctx); });
+
+                    cfg.ReceiveEndpoint("reporing-microservice.reporing-payment-create.queue",
+                        e => { e.ConfigureConsumer<ReportingCreatedPaymentEventConsumer>(ctx); });
 
 
                     // cfg.ConfigureEndpoints(ctx);

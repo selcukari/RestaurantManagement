@@ -52,11 +52,10 @@ namespace RestaurantManagement.Reporting.Api.Consumers
                 reporting.ReservationRepors.Insert(0, newReservationReport);
             }
             reporting.Update = DateTime.Now;
+            cacheService.Remove("reportings");
 
             // 4. Değişiklikleri kaydet
             await dbContext.SaveChangesAsync();
-
-            cacheService.Remove("reportings");
         }
     }
 }

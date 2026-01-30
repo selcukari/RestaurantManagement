@@ -38,6 +38,11 @@ namespace RestaurantManagement.Reporting.Api.Repositories
                     d.Property(x => x.Quantity).HasElementName("quantity");
                 });
             });
+            builder.OwnsMany(x => x.PaymentRepors, r =>
+            {
+                r.Property(x => x.TotalPrice).HasElementName("totalPrice");
+                r.Property(x => x.Created).HasElementName("created");
+            });
         }
     }
 }

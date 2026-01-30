@@ -5,10 +5,10 @@ using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reporting.Api.Consumers
 {
-    public class ReportingCreatedKitchenEventConsumer(IServiceProvider serviceProvider)
-    : IConsumer<Bus.Events.OrderCreatedForReporingEvent>
+    public class ReportingCreatedPaymentEventConsumer(IServiceProvider serviceProvider)
+    : IConsumer<Bus.Events.ReportingForPaymentEvent>
     {
-        public async Task Consume(ConsumeContext<OrderCreatedForReporingEvent> context)
+        public async Task Consume(ConsumeContext<ReportingForPaymentEvent> context)
         {
             using var scope = serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -16,7 +16,7 @@ namespace RestaurantManagement.Reporting.Api.Consumers
 
             // 1. Mevcut Reporting kaydını bul (Eğer hiç yoksa yeni bir tane oluştur)
             var reporting = await dbContext.Reportings
-                .Include(x => x.KitchenRepors) // Listeyi de yüklemesi için Include önemli
+                .Include(x => x.PaymentRepors) // Listeyi de yüklemesi için Include önemli
                 .FirstOrDefaultAsync(); // Şimdilik ilk bulduğunu alıyor
 
             // eger kayıt yok ise
@@ -24,34 +24,29 @@ namespace RestaurantManagement.Reporting.Api.Consumers
             {
                 reporting = new RestaurantManagement.Reporting.Api.Features.Reporting.Reporting
                 {
-                    KitchenRepors = new List<KitchenRepor>()
+                    PaymentRepors = new List<PaymentRepor>()
                 };
                 dbContext.Reportings.Add(reporting);
             }
 
-            // 2. Yeni rezervasyon objesini oluştur
-            var newReservationForKitchenReport = new KitchenRepor
+            // 2. Yeni newPaymentReport objesini oluştur
+            var newPaymentReport = new PaymentRepor
             {
-                UserFullName = context.Message.UserFullName,
                 Created = context.Message.Created,
-                KitchenReporDetails = context.Message.items.Select(item => new KitchenReporDetail
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Quantity = item.Quantity
-                }).ToList()
+                TotalPrice = context.Message.TotalPrice,
             };
 
-            if (reporting.KitchenRepors == null)
+            // 3. Listenin en başına (0. index) ekle her yeni kayıtı
+            if (reporting.PaymentRepors == null)
             {
-                reporting.KitchenRepors = new List<KitchenRepor> { newReservationForKitchenReport };
+                reporting.PaymentRepors = new List<PaymentRepor> { newPaymentReport };
             }
             else
             {
-                // 3. Listenin en başına (0. index) ekle her yeni kayıtı
-                reporting.KitchenRepors.Insert(0, newReservationForKitchenReport);
+                reporting.PaymentRepors.Insert(0, newPaymentReport);
             }
             reporting.Update = DateTime.Now;
+
             cacheService.Remove("reportings");
 
             // 4. Değişiklikleri kaydet
