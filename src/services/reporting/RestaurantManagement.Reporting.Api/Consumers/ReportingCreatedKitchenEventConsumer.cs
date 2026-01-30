@@ -1,6 +1,7 @@
 ﻿using RestaurantManagement.Bus.Events;
 using RestaurantManagement.Reporting.Api.Features.Reporting;
 using RestaurantManagement.Reporting.Api.Repositories;
+using RestaurantManagement.Shared.Services;
 
 namespace RestaurantManagement.Reporting.Api.Consumers
 {
@@ -11,6 +12,7 @@ namespace RestaurantManagement.Reporting.Api.Consumers
         {
             using var scope = serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            var cacheService = scope.ServiceProvider.GetRequiredService<ICacheService>();
 
             // 1. Mevcut Reporting kaydını bul (Eğer hiç yoksa yeni bir tane oluştur)
             var reporting = await dbContext.Reportings
@@ -53,6 +55,8 @@ namespace RestaurantManagement.Reporting.Api.Consumers
 
             // 4. Değişiklikleri kaydet
             await dbContext.SaveChangesAsync();
+
+            cacheService.Remove("reportings");
         }
     }
 }
