@@ -74,7 +74,7 @@ namespace RestaurantManagement.Web.Services
                 .Where(r => r.Created >= startDate)
                 .GroupBy(r => new { r.Created.Year, r.Created.Month })
                 .Select(g => new PaymentForReportViewModel(
-                    g.First().Created.ToString("MMMM yyyy")
+                    g.First().Created.ToString("MMMM yyyy"),
                     g.Sum(x => x.TotalPrice)
                 ))
                 .OrderByDescending(c => c.Created)
