@@ -33,7 +33,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-calendar-event"></i></span>
                                     <input asp-for="ViewModel.ReservationDate" type="date" class="form-control border-start-0"
-                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddDays(15).ToString("yyyy-MM-dd")" />
                                 </div>
                                 <span asp-validation-for="ViewModel.ReservationDate" class="text-danger small"></span>
                             </div>
