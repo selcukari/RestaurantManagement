@@ -17,7 +17,7 @@ namespace RestaurantManagement.Kitchen.Api.Features.Kitchens.GetAll
 
             if (kitchenList == null || kitchenList.Count == 0)
             {
-                var kitchens = await context.Kitchens.OrderByDescending(k => k.Created).ToListAsync(cancellationToken);
+                var kitchens = await context.Kitchens.AsNoTracking().OrderByDescending(k => k.Created).ToListAsync(cancellationToken);
                 kitchenList = mapper.Map<List<KitchenDto>>(kitchens);
 
                 cacheService.Set(cacheKey, kitchenList, TimeSpan.FromDays(5));

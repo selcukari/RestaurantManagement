@@ -1,4 +1,5 @@
 ﻿using RestaurantManagement.Web.Dto;
+using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.Web.Services.Refit;
 using RestaurantManagement.Web.ViewModel;
 
