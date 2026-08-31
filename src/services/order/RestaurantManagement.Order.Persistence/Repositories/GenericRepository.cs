@@ -40,6 +40,13 @@ namespace RestaurantManagement.Order.Persistence.Repositories
             return _dbSet.FindAsync(id);
         }
 
+        public async Task<TEntity?> GetByIdReadOnlyAsync(TId id)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id!.Equals(id));
+        }
+
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbSet.Where(predicate);

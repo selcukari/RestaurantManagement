@@ -17,6 +17,8 @@ namespace RestaurantManagement.Order.Application.Contracts.Repositories
 
         ValueTask<TEntity?> GetByIdAsync(TId id);
 
+        Task<TEntity?> GetByIdReadOnlyAsync(TId id);
+
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);

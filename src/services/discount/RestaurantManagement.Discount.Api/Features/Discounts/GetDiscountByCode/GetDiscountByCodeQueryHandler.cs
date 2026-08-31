@@ -10,7 +10,7 @@ namespace RestaurantManagement.Discount.Api.Features.Discounts.GetDiscountByCode
         public async Task<ServiceResult<GetDiscountByCodeQueryResponse>> Handle(GetDiscountByCodeQuery request,
         CancellationToken cancellationToken)
         {
-            var hasDiscount = await context.Discounts.SingleOrDefaultAsync(x => x.Code == request.Code, cancellationToken);
+            var hasDiscount = await context.Discounts.AsNoTracking().SingleOrDefaultAsync(x => x.Code == request.Code, cancellationToken);
 
 
             if (hasDiscount == null)
