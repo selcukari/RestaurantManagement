@@ -11,8 +11,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.GetById
         public async Task<ServiceResult<TableDto>> Handle(GetTableByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var hasTable = await context.Tables.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
-
+            var hasTable = await context.Tables.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             if (hasTable is null)
                 return ServiceResult<TableDto>.Error("Table not found",

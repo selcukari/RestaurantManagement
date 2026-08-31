@@ -11,14 +11,14 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetAllById
         public async Task<ServiceResult<List<ReservationDto>>> Handle(GetAllReservationByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var reservations = await context.Reservations.Where(x => x.CustomerId == request.Id).ToListAsync(cancellationToken);
+            var reservations = await context.Reservations.AsNoTracking().Where(x => x.CustomerId == request.Id).ToListAsync(cancellationToken);
 
 
             if (reservations is null)
                 return ServiceResult<List<ReservationDto>>.Error("reservations not found",
                     $"The reservation with id({request.Id}) was not found", HttpStatusCode.NotFound);
 
-            var tables = await context.Tables.Where(x => x.IsAvailable).ToListAsync(cancellationToken);
+            var tables = await context.Tables.AsNoTracking().Where(x => x.IsAvailable).ToListAsync(cancellationToken);
 
             foreach (var reservation in reservations) reservation.Table = tables.First(x => x.Id == reservation.TableId);
 

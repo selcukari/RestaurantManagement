@@ -11,17 +11,16 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.GetById
         public async Task<ServiceResult<ReservationDto>> Handle(GetReservationByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var hasReservation = await context.Reservations.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            var hasReservation = await context.Reservations.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
 
             if (hasReservation is null)
                 return ServiceResult<ReservationDto>.Error("Reservation not found",
                     $"The Product with id({request.Id}) was not found", HttpStatusCode.NotFound);
 
-            var table = await context.Tables.FindAsync(hasReservation.TableId, cancellationToken);
+            var table = await context.Tables.AsNoTracking().FirstOrDefaultAsync(x => x.Id == hasReservation.TableId, cancellationToken);
 
             hasReservation.Table = table!;
-
 
             var reservationAsDto = mapper.Map<ReservationDto>(hasReservation);
             return ServiceResult<ReservationDto>.SuccessAsOk(reservationAsDto);

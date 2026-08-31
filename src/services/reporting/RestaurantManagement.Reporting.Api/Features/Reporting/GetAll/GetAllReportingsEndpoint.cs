@@ -19,7 +19,7 @@ namespace RestaurantManagement.Reporting.Api.Features.Reporting.GetAll
             if (reporting == null)
             {
                 var getReservation = await context.Reportings
-                .Include(x => x.ReservationRepors)
+                .Include(x => x.ReservationRepors).AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken);
 
                 reporting = mapper.Map<ReportingDto>(getReservation);

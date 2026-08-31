@@ -13,23 +13,23 @@ namespace RestaurantManagement.Reservation.Api.Features.Tables.Create
                 // daha once veri tabanda aynı isimle data var mı
                 var hasTable = await context.Tables.AnyAsync(x => x.TableNumber == request.TableNumber, cancellationToken);
 
-            if (hasTable)
-                return ServiceResult<Guid>.Error("Table already exists.",
+                if (hasTable)
+                  return ServiceResult<Guid>.Error("Table already exists.",
                     $"The Table with name({request.TableNumber}) already exists", HttpStatusCode.BadRequest);
 
 
-            var newTable = mapper.Map<Table>(request);
-            newTable.Created = DateTime.Now;
-            newTable.UserFullName = identityService.UserName;
-            newTable.Id = NewId.NextSequentialGuid(); // index performance
+                var newTable = mapper.Map<Table>(request);
+                newTable.Created = DateTime.Now;
+                newTable.UserFullName = identityService.UserName;
+                newTable.Id = NewId.NextSequentialGuid(); // index performance
 
-            context.Tables.Add(newTable);
+                context.Tables.Add(newTable);
             
-            await context.SaveChangesAsync(cancellationToken);
+                await context.SaveChangesAsync(cancellationToken);
 
-            cacheService.Remove("tables");
+                cacheService.Remove("tables");
 
-            return ServiceResult<Guid>.SuccessAsCreated(newTable.Id, $"/api/tables/{newTable.Id}");
+                return ServiceResult<Guid>.SuccessAsCreated(newTable.Id, $"/api/tables/{newTable.Id}");
 
             }
             catch (Exception ex)

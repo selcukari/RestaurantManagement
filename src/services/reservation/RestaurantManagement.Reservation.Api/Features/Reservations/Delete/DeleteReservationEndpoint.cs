@@ -17,7 +17,7 @@ public class DeleteReservationHandler(AppDbContext context, ICacheService cacheS
         hasReservation.IsAvailable = false;
 
         // 2. Masayı bul ve durumunu güncelle
-        var hasTable = await context.Tables.FirstOrDefaultAsync(x => x.Id == hasReservation.TableId, cancellationToken);
+        var hasTable = await context.Tables.FindAsync(hasReservation.TableId, cancellationToken);
 
         if (hasTable == null)
             return ServiceResult<CreateReservationCommand>.Error("Masa Bulunamadı",

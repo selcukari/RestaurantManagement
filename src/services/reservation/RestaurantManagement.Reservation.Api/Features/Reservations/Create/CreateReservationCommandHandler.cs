@@ -21,7 +21,7 @@ namespace RestaurantManagement.Reservation.Api.Features.Reservations.Create
                     $"{request.ReservationDate.ToShortDateString()} tarihinde bu masa zaten rezerve edilmiş.", HttpStatusCode.BadRequest);
             
             // 2. Masayı bul ve durumunu güncelle
-            var hasTable = await context.Tables.FirstOrDefaultAsync(x => x.Id == request.TableId, cancellationToken);
+            var hasTable = await context.Tables.FindAsync(request.TableId, cancellationToken);
 
             if (hasTable == null)
                 return ServiceResult<CreateReservationCommand>.Error("Masa Bulunamadı",
